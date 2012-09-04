@@ -1,8 +1,6 @@
 module.exports = function(grunt) {
   "use strict";
 
-  grunt.file.mkdir("tmp");
-
   grunt.initConfig({
 
     lint: {
@@ -26,10 +24,6 @@ module.exports = function(grunt) {
       }
     },
 
-    clean: {
-      tmp: ["tmp"]
-    },
-
     less: {
       compile: {
         files: {
@@ -44,15 +38,20 @@ module.exports = function(grunt) {
       }
     },
 
-    test: {
+    nodeunit: {
       tasks: ["test/*_test.js"]
     }
 
   });
 
+  grunt.registerTask("testprep", "prepare for tests", function() {
+    require("rimraf").sync("tmp");
+    grunt.file.mkdir("tmp");
+  });
+
   grunt.registerTask("default", "lint");
-  //grunt.renameTask("test", "test2");
-  //grunt.registerTask("test", "clean less test2 clean");
+  grunt.renameTask("test", "nodeunit");
+  grunt.registerTask("test", "testprep less nodeunit");
   grunt.loadTasks("tasks");
 };
 

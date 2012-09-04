@@ -11,7 +11,7 @@ module.exports = function(grunt) {
   // TODO: ditch this when grunt v0.4 is released
   grunt.util = grunt.util || grunt.utils;
 
-  var helpers = require('./helpers').init(grunt);
+  var helpers = require('grunt-contrib-lib').init(grunt);
 
   var _ = grunt.util._;
   var async = grunt.util.async;
@@ -20,6 +20,21 @@ module.exports = function(grunt) {
     var pos = '[' + 'L' + e.line + ':' + ('C' + e.column) + ']';
     grunt.log.error(e.filename + ': ' + pos + ' ' + e.message);
     grunt.fail.warn("Error compiling LESS.", 1);
+  };
+
+  var less = function(source, options, callback) {
+    require("less").Parser(options).parse(source, function(parse_error, tree) {
+      if (parse_error) {
+        lessError(parse_error);
+      }
+
+      try {
+        var css = tree.toCSS();
+        callback(css);
+      } catch (e) {
+        lessError(e);
+      }
+    });
   };
 
   grunt.registerMultiTask("less", "Compile LESS files to CSS", function() {
@@ -43,7 +58,7 @@ module.exports = function(grunt) {
         helperOptions = _.extend({filename: srcFile}, options);
         sourceCode = grunt.file.read(srcFile);
 
-        grunt.helper("less", sourceCode, helperOptions, function(css) {
+        less(sourceCode, helperOptions, function(css) {
           nextConcat(null, css);
         });
       }, function(err, css) {
@@ -55,21 +70,6 @@ module.exports = function(grunt) {
 
     }, function() {
       done();
-    });
-  });
-
-  grunt.registerHelper("less", function(source, options, callback) {
-    require("less").Parser(options).parse(source, function(parse_error, tree) {
-      if (parse_error) {
-        lessError(parse_error);
-      }
-
-      try {
-        var css = tree.toCSS();
-        callback(css);
-      } catch (e) {
-        lessError(e);
-      }
     });
   });
 };
