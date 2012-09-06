@@ -19,8 +19,8 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
         node: true,
-        es5: true,
-      },
+        es5: true
+      }
     },
     nodeunit: {
       tasks: ['test/*_test.js']
@@ -30,27 +30,22 @@ module.exports = function(grunt) {
     less: {
       compile: {
         files: {
-          '<%= TMP %>/less_a.css': ['test/fixtures/style.less'],
-          '<%= TMP %>/less_b.css': ['test/fixtures/style.less'],
-          '<%= TMP %>/less_c.css': ['test/fixtures/**/*.nomatches'],
-          '<%= TMP %>/less_d.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
+          'tmp/less_a.css': ['test/fixtures/style.less'],
+          'tmp/less_b.css': ['test/fixtures/style.less'],
+          'tmp/less_c.css': ['test/fixtures/**/*.nomatches'],
+          'tmp/less_d.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
         },
         options: {
           paths: ['test/fixtures/include']
-        },
+        }
       }
-    },
+    }
   });
 
   // This needs to be run before our task + tests are run.
-  grunt.registerTask('test_setup', 'Test setup.', function() {
-    // Create a temporary directory.
-    var Tempdir = require('temporary/lib/dir');
-    var tmpdir = new Tempdir();
-    // Update config so our task can utilize the tempdir.
-    grunt.config.set('TMP', tmpdir.path);
-    // Unit tests need to know where the tempdir is.
-    global.TMP = tmpdir.path;
+  grunt.registerTask("test_setup", "prepare for tests", function() {
+    require("rimraf").sync("tmp");
+    grunt.file.mkdir("tmp");
   });
 
   // Whenever "test" is run, perform test setup, run task in as many ways

@@ -1,5 +1,4 @@
 /**
- * Task: less
  * Description: Compile LESS files to CSS
  * Dependencies: less
  * Contributor: @tkellen
