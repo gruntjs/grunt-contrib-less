@@ -1,3 +1,12 @@
+/*
+ * grunt-contrib-less
+ * http://gruntjs.com/
+ *
+ * Copyright (c) 2012 Tyler Kellen, contributors
+ * Licensed under the MIT license.
+ * https://github.com/gruntjs/grunt-contrib-less/blob/master/LICENSE-MIT
+ */
+
 module.exports = function(grunt) {
   'use strict';
 
