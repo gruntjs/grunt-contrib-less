@@ -26,6 +26,10 @@ module.exports = function(grunt) {
       tasks: ['test/*_test.js']
     },
 
+    clean: {
+      test: ["tmp"]
+    },
+
     // Configuration to be run (and then tested).
     less: {
       compile: {
@@ -42,16 +46,12 @@ module.exports = function(grunt) {
     }
   });
 
-  // This needs to be run before our task + tests are run.
-  grunt.registerTask("test_setup", "prepare for tests", function() {
-    require("rimraf").sync("tmp");
-    grunt.file.mkdir("tmp");
-  });
+  grunt.loadNpmTasks("grunt-contrib-clean");
 
   // Whenever "test" is run, perform test setup, run task in as many ways
   // as necessary, then test the result.
   grunt.renameTask('test', 'nodeunit');
-  grunt.registerTask('test', 'test_setup less nodeunit');
+  grunt.registerTask('test', 'clean less nodeunit');
 
   // By default, lint and run all tests.
   grunt.registerTask('default', 'lint test');

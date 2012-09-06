@@ -1,5 +1,5 @@
 # grunt-contrib-less
-> Compile LESS files to CSS--part of the [grunt-contrib](/gruntjs/grunt-contrib) collection.  Submitted by [Tyler Kellen](/tkellen).
+> Compile LESS files to CSS (part of the [grunt-contrib](/gruntjs/grunt-contrib) collection).  Submitted by [Tyler Kellen](/tkellen).
 
 ## Getting Started
 Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-contrib-less`
