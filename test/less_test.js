@@ -1,7 +1,7 @@
 var grunt = require('grunt');
 
-exports.less = {
-  main: function(test) {
+exports['less'] = {
+  'main': function(test) {
     'use strict';
 
     test.expect(4);
