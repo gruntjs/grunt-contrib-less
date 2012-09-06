@@ -12,6 +12,7 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    // JSHint files and options.
     lint: {
       all: ['grunt.js', 'tasks/*.js', '<config:nodeunit.tasks>']
     },
@@ -28,44 +29,45 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
         node: true,
-        es5: true
+        es5: true,
       }
     },
-    nodeunit: {
-      tasks: ['test/*_test.js']
-    },
-
+    // Before generating any new files, remove any previously-created files.
     clean: {
-      test: ["tmp"]
+      test: ['tmp']
     },
-
-    // Configuration to be run (and then tested).
+    // Configuration to be run and then tested. All files will be created in
+    // the local "tmp" directory.
     less: {
       compile: {
+        options: {
+          paths: ['test/fixtures/include']
+        },
         files: {
           'tmp/less_a.css': ['test/fixtures/style.less'],
           'tmp/less_b.css': ['test/fixtures/style.less'],
           'tmp/less_c.css': ['test/fixtures/**/*.nomatches'],
           'tmp/less_d.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
         },
-        options: {
-          paths: ['test/fixtures/include']
-        }
       }
-    }
+    },
+    // Unit tests.
+    nodeunit: {
+      tasks: ['test/*_test.js']
+    },
   });
 
-  grunt.loadNpmTasks("grunt-contrib-clean");
+  // Actually load this plugin's task(s).
+  grunt.loadTasks('tasks');
+  // The clean plugin helps in testing.
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
-  // Whenever "test" is run, perform test setup, run task in as many ways
-  // as necessary, then test the result.
+  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
+  // plugin's task(s), then test the result.
   grunt.renameTask('test', 'nodeunit');
   grunt.registerTask('test', 'clean less nodeunit');
 
   // By default, lint and run all tests.
   grunt.registerTask('default', 'lint test');
-
-  // Actually load tasks to be tested.
-  grunt.loadTasks('tasks');
 
 };
