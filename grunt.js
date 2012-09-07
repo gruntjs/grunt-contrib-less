@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
         node: true,
-        es5: true,
+        es5: true
       }
     },
     // Before generating any new files, remove any previously-created files.
@@ -48,17 +48,18 @@ module.exports = function(grunt) {
           'tmp/less_b.css': ['test/fixtures/style.less'],
           'tmp/less_c.css': ['test/fixtures/**/*.nomatches'],
           'tmp/less_d.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
-        },
+        }
       }
     },
     // Unit tests.
     nodeunit: {
       tasks: ['test/*_test.js']
-    },
+    }
   });
 
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
+
   // The clean plugin helps in testing.
   grunt.loadNpmTasks('grunt-contrib-clean');
 
