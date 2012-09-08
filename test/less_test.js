@@ -4,25 +4,25 @@ exports['less'] = {
   main: function(test) {
     'use strict';
 
+    var expect, result;
+
     test.expect(4);
 
-    var actual, expected;
+    expect = 'body {\n  color: #ffffff;\n}\n';
+    result = grunt.file.read('tmp/less_a.css');
+    test.equal(expect, result, 'should compile less, with the ability to handle imported files from alternate include paths');
 
-    actual = grunt.file.read('tmp/less_a.css');
-    expected = 'body {\n  color: #ffffff;\n}\n';
-    test.equal(actual, expected, 'should compile less, with the ability to handle imported files from alternate include paths');
+    expect = 'body {\n  color: #ffffff;\n}\n';
+    result = grunt.file.read('tmp/less_b.css');
+    test.equal(expect, result, 'should support multiple destination:source sets');
 
-    actual = grunt.file.read('tmp/less_b.css');
-    expected = 'body {\n  color: #ffffff;\n}\n';
-    test.equal(actual, expected, 'should support multiple destination:source sets');
+    expect = '';
+    result = grunt.file.read('tmp/less_c.css');
+    test.equal(expect, result, 'should write an empty file when no less sources are found');
 
-    actual = grunt.file.read('tmp/less_c.css');
-    expected = '';
-    test.equal(actual, expected, 'should write an empty file when no less sources are found');
-
-    actual = grunt.file.read('tmp/less_d.css');
-    expected = 'body {\n  color: #ffffff;\n}\n\n#header {\n  background: #ffffff;\n}\n';
-    test.equal(actual, expected, 'should concat output when passed an array');
+    expect = 'body {\n  color: #ffffff;\n}\n\n#header {\n  background: #ffffff;\n}\n';
+    result = grunt.file.read('tmp/less_d.css');
+    test.equal(expect, result, 'should concat output when passed an array');
 
     test.done();
   }

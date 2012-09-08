@@ -13,31 +13,10 @@ module.exports = function(grunt) {
   // TODO: ditch this when grunt v0.4 is released
   grunt.util = grunt.util || grunt.utils;
 
-  var helpers = require('grunt-contrib-lib').init(grunt);
-
   var _ = grunt.util._;
   var async = grunt.util.async;
 
-  var lessError = function(e) {
-    var pos = '[' + 'L' + e.line + ':' + ('C' + e.column) + ']';
-    grunt.log.error(e.filename + ': ' + pos + ' ' + e.message);
-    grunt.fail.warn('Error compiling LESS.', 1);
-  };
-
-  var less = function(source, options, callback) {
-    require('less').Parser(options).parse(source, function(parse_error, tree) {
-      if (parse_error) {
-        lessError(parse_error);
-      }
-
-      try {
-        var css = tree.toCSS();
-        callback(css);
-      } catch (e) {
-        lessError(e);
-      }
-    });
-  };
+  var helpers = require('grunt-contrib-lib').init(grunt);
 
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
     var options = helpers.options(this);
@@ -60,12 +39,12 @@ module.exports = function(grunt) {
         helperOptions = _.extend({filename: srcFile}, options);
         sourceCode = grunt.file.read(srcFile);
 
-        less(sourceCode, helperOptions, function(css) {
+        compileLess(sourceCode, helperOptions, function(css) {
           nextConcat(null, css);
         });
       }, function(err, css) {
         grunt.file.write(file.dest, css.join('\n') || '');
-        grunt.log.writeln('File "' + file.dest + '" created.');
+        grunt.log.writeln('File ' + file.dest + ' created.');
 
         next();
       });
@@ -74,4 +53,25 @@ module.exports = function(grunt) {
       done();
     });
   });
+
+  var lessError = function(e) {
+    var pos = '[' + 'L' + e.line + ':' + ('C' + e.column) + ']';
+    grunt.log.error(e.filename + ': ' + pos + ' ' + e.message);
+    grunt.fail.warn('Error compiling LESS.', 1);
+  };
+
+  var compileLess = function(source, options, callback) {
+    require('less').Parser(options).parse(source, function(parse_error, tree) {
+      if (parse_error) {
+        lessError(parse_error);
+      }
+
+      try {
+        var css = tree.toCSS();
+        callback(css);
+      } catch (e) {
+        lessError(e);
+      }
+    });
+  };
 };

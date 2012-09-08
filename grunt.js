@@ -12,10 +12,10 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    // JSHint files and options.
     lint: {
       all: ['grunt.js', 'tasks/*.js', '<config:nodeunit.tasks>']
     },
+
     jshint: {
       options: {
         curly: true,
@@ -32,12 +32,13 @@ module.exports = function(grunt) {
         es5: true
       }
     },
+
     // Before generating any new files, remove any previously-created files.
     clean: {
       test: ['tmp']
     },
-    // Configuration to be run and then tested. All files will be created in
-    // the local "tmp" directory.
+
+    // Configuration to be run (and then tested).
     less: {
       compile: {
         options: {
@@ -51,6 +52,7 @@ module.exports = function(grunt) {
         }
       }
     },
+
     // Unit tests.
     nodeunit: {
       tasks: ['test/*_test.js']
@@ -70,5 +72,4 @@ module.exports = function(grunt) {
 
   // By default, lint and run all tests.
   grunt.registerTask('default', 'lint test');
-
 };
