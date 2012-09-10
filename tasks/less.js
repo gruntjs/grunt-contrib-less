@@ -39,8 +39,12 @@ module.exports = function(grunt) {
         helperOptions = _.extend({filename: srcFile}, options);
         sourceCode = grunt.file.read(srcFile);
 
-        compileLess(sourceCode, helperOptions, function(css) {
-          nextConcat(null, css);
+        compileLess(sourceCode, helperOptions, function(css, err) {
+          if(!err) {
+            nextConcat(null, css);
+          } else {
+            done();
+          }
         });
       }, function(err, css) {
         grunt.file.write(file.dest, css.join('\n') || '');
@@ -68,9 +72,10 @@ module.exports = function(grunt) {
 
       try {
         var css = tree.toCSS();
-        callback(css);
+        callback(css, null);
       } catch (e) {
         lessError(e);
+        callback(css, true);
       }
     });
   };
