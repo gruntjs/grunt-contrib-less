@@ -64,13 +64,14 @@ module.exports = function(grunt) {
   };
 
   var compileLess = function(source, options, callback) {
+    var css;
     require('less').Parser(options).parse(source, function(parse_error, tree) {
       if (parse_error) {
         lessError(parse_error);
       }
 
       try {
-        var css = tree.toCSS();
+        css = tree.toCSS();
         callback(css, null);
       } catch (e) {
         lessError(e);
