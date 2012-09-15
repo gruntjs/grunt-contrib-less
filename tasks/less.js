@@ -62,9 +62,15 @@ module.exports = function(grunt) {
     });
   });
 
-  var lessError = function(e) {
+  var formatLessError = function(e) {
     var pos = '[' + 'L' + e.line + ':' + ('C' + e.column) + ']';
-    grunt.log.error(e.filename + ': ' + pos + ' ' + e.message);
+    return e.filename + ': ' + pos + ' ' + e.message;
+  };
+
+  var lessError = function(e) {
+    var message = less.formatError ? less.formatError(e) : formatLessError(e);
+
+    grunt.log.error(message);
     grunt.fail.warn('Error compiling LESS.', 1);
   };
 
