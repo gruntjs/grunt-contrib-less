@@ -13,13 +13,18 @@ module.exports = function(grunt) {
   // TODO: ditch this when grunt v0.4 is released
   grunt.util = grunt.util || grunt.utils;
 
+  var _ = grunt.util._;
+  var less = require('less');
+  var async = grunt.util.async;
+  var helpers = require('grunt-contrib-lib').init(grunt);
+
+  var lessOptions = {
+    parse: ['paths', 'optimization', 'filename', 'strictImports'],
+    render: ['compress', 'yuicompress']
+  };
+
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
-
-    var _ = grunt.util._;
-    var async = grunt.util.async;
-    var helpers = require('grunt-contrib-lib').init(grunt);
     var options = helpers.options(this);
-
     grunt.verbose.writeflags(options, 'Options');
 
     // TODO: ditch this when grunt v0.4 is released
@@ -63,15 +68,26 @@ module.exports = function(grunt) {
     grunt.fail.warn('Error compiling LESS.', 1);
   };
 
+  // TODO: ditch when grunt upgrades to underscore 1.3.3
+  var pick = function(obj, keys) {
+    var result = {};
+    keys.forEach(function(key) {
+      if (key in obj) { result[key] = obj[key]; }
+    });
+
+    return result;
+  };
+
   var compileLess = function(source, options, callback) {
     var css;
-    require('less').Parser(options).parse(source, function(parse_error, tree) {
+    var parser = new less.Parser(pick(options, lessOptions.parse));
+    parser.parse(source, function(parse_error, tree) {
       if (parse_error) {
         lessError(parse_error);
       }
 
       try {
-        css = tree.toCSS();
+        css = tree.toCSS(pick(options, lessOptions.render));
         callback(css, null);
       } catch (e) {
         lessError(e);
