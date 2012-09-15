@@ -46,7 +46,7 @@ module.exports = function(grunt) {
           }
         });
       }, function(err, css) {
-        grunt.file.write(file.dest, css.join('\n') || '');
+        grunt.file.write(file.dest, css.join(grunt.util.linefeed) || '');
         grunt.log.writeln('File ' + file.dest + ' created.');
 
         next();
