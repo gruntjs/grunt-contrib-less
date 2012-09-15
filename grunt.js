@@ -50,6 +50,24 @@ module.exports = function(grunt) {
           'tmp/less_c.css': ['test/fixtures/**/*.nomatches'],
           'tmp/less_d.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
         }
+      },
+      compress: {
+        options: {
+          paths: ['test/fixtures/include'],
+          compress: true
+        },
+        files: {
+          'tmp/less_a.min.css': ['test/fixtures/style.less']
+        }
+      },
+      yuicompress: {
+        options: {
+          paths: ['test/fixtures/include'],
+          yuicompress: true
+        },
+        files: {
+          'tmp/less_a.yuimin.css': ['test/fixtures/style.less']
+        }
       }
     },
 
