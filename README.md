@@ -35,15 +35,32 @@ This controls how this task (and its helpers) operate and should contain key:val
 
 ##### paths ```string|array```
 
-This specifies directories to scan for @import directives when parsing.
+This specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
+
+##### compress ```boolean```
+
+If set to `true`, the generated CSS will be minified. 
+
+##### yuicompress ```boolean```
+
+If set to `true`, the generated CSS will be minified with [YUI Compressor's CSS minifier](http://developer.yahoo.com/yui/compressor/css.html). 
 
 #### Config Example
 
 ``` javascript
 less: {
-  compile: {
+  development: {
     options: {
       paths: ["assets/css"]
+    },
+    files: {
+      "path/to/result.css": "path/to/source.less"
+    }
+  },
+  production: {
+    options: {
+      paths: ["assets/css"],
+      yuicompress: true
     },
     files: {
       "path/to/result.css": "path/to/source.less"
