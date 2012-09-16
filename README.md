@@ -35,7 +35,7 @@ This controls how this task (and its helpers) operate and should contain key:val
 
 ##### paths ```string|array```
 
-This specifies directories to scan for @import directives when parsing.
+This specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
 
 ##### compress ```boolean```
 
