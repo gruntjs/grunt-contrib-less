@@ -39,11 +39,11 @@ This specifies directories to scan for @import directives when parsing. Default 
 
 ##### compress ```boolean```
 
-If set to `true`, the generated CSS will be minified. 
+If set to `true`, the generated CSS will be minified.
 
 ##### yuicompress ```boolean```
 
-If set to `true`, the generated CSS will be minified with [YUI Compressor's CSS minifier](http://developer.yahoo.com/yui/compressor/css.html). 
+If set to `true`, the generated CSS will be minified with [YUI Compressor's CSS minifier](http://developer.yahoo.com/yui/compressor/css.html).
 
 #### Config Example
 
@@ -71,4 +71,5 @@ less: {
 
 ## Release History
 
+* 2012/08/16 - v0.2.2 - Support all less options, normalize linefeeds, default path to dirname of src file.
 * 2012/08/10 - v0.2.0 - Refactored from grunt-contrib into individual repo.
