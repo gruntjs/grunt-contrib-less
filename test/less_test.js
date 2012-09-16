@@ -6,7 +6,7 @@ exports['less'] = {
 
     var expect, result;
 
-    test.expect(4);
+    test.expect(7);
 
     expect = 'body {\n  color: #ffffff;\n}\n';
     result = grunt.file.read('tmp/less_a.css');
@@ -23,6 +23,18 @@ exports['less'] = {
     expect = 'body {\n  color: #ffffff;\n}\n\n#header {\n  background: #ffffff;\n}\n';
     result = grunt.file.read('tmp/less_d.css');
     test.equal(expect, result, 'should concat output when passed an array');
+
+    expect = 'body {\n  color: #ffffff;\n}\n';
+    result = grunt.file.read('tmp/less_no_paths_specified.css');
+    test.equal(expect, result, 'should default paths to the dirname of the less file');
+
+    expect = 'body{color:#ffffff;}\n';
+    result = grunt.file.read('tmp/less_a.min.css');
+    test.equal(expect, result, 'should compress output when compress option is true');
+
+    expect = 'body{color:#fff}';
+    result = grunt.file.read('tmp/less_a.yuimin.css');
+    test.equal(expect, result, 'should yuicompress output when yuicompress option is true');
 
     test.done();
   }
