@@ -15,6 +15,7 @@ module.exports = function(grunt) {
 
   var _ = grunt.util._;
   var less = require('less');
+  var path = require('path');
   var async = grunt.util.async;
   var helpers = require('grunt-contrib-lib').init(grunt);
 
@@ -41,6 +42,8 @@ module.exports = function(grunt) {
 
       async.concatSeries(srcFiles, function(srcFile, nextConcat) {
         helperOptions = _.extend({filename: srcFile}, options);
+        helperOptions.paths = helperOptions.paths || [path.dirname(srcFile)];
+
         sourceCode = grunt.file.read(srcFile);
 
         compileLess(sourceCode, helperOptions, function(css, err) {

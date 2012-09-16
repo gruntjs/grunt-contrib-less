@@ -51,6 +51,11 @@ module.exports = function(grunt) {
           'tmp/less_d.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
         }
       },
+      no_paths_specified: {
+        files: {
+          'tmp/less_no_paths_specified.css': ['test/fixtures/style_no_paths_specified.less'],
+        }
+      },
       compress: {
         options: {
           paths: ['test/fixtures/include'],
