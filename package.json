@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-less",
   "description": "Compile LESS files to CSS.",
-  "version": "0.2.2",
+  "version": "0.2.3-alpha",
   "homepage": "https://github.com/gruntjs/grunt-contrib-less",
   "author": {
     "name": "Tyler Kellen",

@@ -13,11 +13,9 @@ module.exports = function(grunt) {
   // TODO: ditch this when grunt v0.4 is released
   grunt.util = grunt.util || grunt.utils;
 
-  var _ = grunt.util._;
-  var less = require('less');
   var path = require('path');
-  var async = grunt.util.async;
-  var helpers = require('grunt-contrib-lib').init(grunt);
+
+  var less = require('less');
 
   var lessOptions = {
     parse: ['paths', 'optimization', 'filename', 'strictImports'],
@@ -25,7 +23,13 @@ module.exports = function(grunt) {
   };
 
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
-    var options = helpers.options(this);
+    var helpers = require('grunt-contrib-lib').init(grunt);
+
+    var options = helpers.options(this, {
+      basePath: false,
+      flatten: false
+    });
+
     grunt.verbose.writeflags(options, 'Options');
 
     // TODO: ditch this when grunt v0.4 is released
@@ -33,33 +37,54 @@ module.exports = function(grunt) {
 
     var done = this.async();
 
+    var basePath;
+    var newFileDest;
+
     var srcFiles;
-    var sourceCode;
-    var helperOptions;
 
-    async.forEachSeries(this.files, function(file, next) {
-     srcFiles = grunt.file.expandFiles(file.src);
+    grunt.util.async.forEachSeries(this.files, function(file, next) {
+      file.dest = path.normalize(file.dest);
+      srcFiles = grunt.file.expandFiles(file.src);
 
-      async.concatSeries(srcFiles, function(srcFile, nextConcat) {
-        helperOptions = _.extend({filename: srcFile}, options);
-        helperOptions.paths = helperOptions.paths || [path.dirname(srcFile)];
+      if (srcFiles.length === 0) {
+        grunt.fail.warn('Unable to compile; no valid source files were found.');
+      }
 
-        sourceCode = grunt.file.read(srcFile);
+      if (helpers.isIndividualDest(file.dest)) {
+        basePath = helpers.findBasePath(srcFiles, options.basePath);
 
-        compileLess(sourceCode, helperOptions, function(css, err) {
-          if(!err) {
-            nextConcat(null, css);
-          } else {
-            done();
-          }
+        grunt.util.async.forEachSeries(srcFiles, function(srcFile, nextFile) {
+          newFileDest = helpers.buildIndividualDest(file.dest, srcFile, basePath, options.flatten);
+
+          compileLess(srcFile, options, function(css, err) {
+            if(!err) {
+              grunt.file.write(newFileDest, css || '');
+              grunt.log.writeln('File ' + newFileDest.cyan + ' created.');
+
+              nextFile(null);
+            } else {
+              done();
+            }
+          });
+        }, function(err) {
+          next();
         });
-      }, function(err, css) {
-        grunt.file.write(file.dest, css.join(grunt.util.linefeed) || '');
-        grunt.log.writeln('File ' + file.dest + ' created.');
+      } else {
+        grunt.util.async.concatSeries(srcFiles, function(srcFile, nextConcat) {
+          compileLess(srcFile, options, function(css, err) {
+            if(!err) {
+              nextConcat(null, css);
+            } else {
+              done();
+            }
+          });
+        }, function(err, css) {
+          grunt.file.write(file.dest, css.join('\n') || '');
+          grunt.log.writeln('File ' + file.dest.cyan + ' created.');
 
-        next();
-      });
-
+          next();
+        });
+      }
     }, function() {
       done();
     });
@@ -74,7 +99,7 @@ module.exports = function(grunt) {
     var message = less.formatError ? less.formatError(e) : formatLessError(e);
 
     grunt.log.error(message);
-    grunt.fail.warn('Error compiling LESS.', 1);
+    grunt.fail.warn('Error compiling LESS.');
   };
 
   // TODO: ditch when grunt upgrades to underscore 1.3.3
@@ -87,12 +112,18 @@ module.exports = function(grunt) {
     return result;
   };
 
-  var compileLess = function(source, options, callback) {
+  var compileLess = function(srcFile, options, callback) {
+    options = grunt.util._.extend({filename: srcFile}, options);
+    options.paths = options.paths || [path.dirname(srcFile)];
+
     var css;
+    var srcCode = grunt.file.read(srcFile);
+
     var parser = new less.Parser(pick(options, lessOptions.parse));
-    parser.parse(source, function(parse_error, tree) {
-      if (parse_error) {
-        lessError(parse_error);
+
+    parser.parse(srcCode, function(parse_err, tree) {
+      if (parse_err) {
+        lessError(parse_err);
       }
 
       try {

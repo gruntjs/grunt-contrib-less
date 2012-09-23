@@ -45,15 +45,9 @@ module.exports = function(grunt) {
           paths: ['test/fixtures/include']
         },
         files: {
-          'tmp/less_a.css': ['test/fixtures/style.less'],
-          'tmp/less_b.css': ['test/fixtures/style.less'],
-          'tmp/less_c.css': ['test/fixtures/**/*.nomatches'],
-          'tmp/less_d.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
-        }
-      },
-      no_paths_specified: {
-        files: {
-          'tmp/less_no_paths_specified.css': ['test/fixtures/style_no_paths_specified.less'],
+          'tmp/less.css': ['test/fixtures/style.less'],
+          'tmp/concat.css': ['test/fixtures/style.less', 'test/fixtures/style2.less'],
+          'tmp/individual/*.css': ['test/fixtures/style*.less', 'test/fixtures/level2/*.less']
         }
       },
       compress: {
@@ -62,7 +56,21 @@ module.exports = function(grunt) {
           compress: true
         },
         files: {
-          'tmp/less_a.min.css': ['test/fixtures/style.less']
+          'tmp/compress.css': ['test/fixtures/style.less']
+        }
+      },
+      flatten: {
+        files: {
+          'tmp/individual_flatten/*.css': ['test/fixtures/style*.less', 'test/fixtures/level2/*.less']
+        },
+        options: {
+          flatten: true,
+          paths: ['test/fixtures/include']
+        },
+      },
+      nopaths: {
+        files: {
+          'tmp/nopaths.css': ['test/fixtures/nopaths.less'],
         }
       },
       yuicompress: {
@@ -71,7 +79,7 @@ module.exports = function(grunt) {
           yuicompress: true
         },
         files: {
-          'tmp/less_a.yuimin.css': ['test/fixtures/style.less']
+          'tmp/yuicompress.css': ['test/fixtures/style.less']
         }
       }
     },

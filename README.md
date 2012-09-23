@@ -25,7 +25,7 @@ This defines what files this task will process and should contain key:value pair
 
 The key (destination) should be an unique filepath (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)).
 
-Note: When the value contains an array of multiple filepaths, the contents are concatenated in the order passed.
+As of v0.2.3, you can use *.{ext} as your destination filename to individually compile each file to the destination directory. Otherwise, when the source contains an array of multiple filepaths, the contents are concatenated in the order passed.
 
 ##### options ```object```
 
@@ -71,5 +71,6 @@ less: {
 
 ## Release History
 
-* 2012/08/16 - v0.2.2 - Support all less options, normalize linefeeds, default path to dirname of src file.
-* 2012/08/10 - v0.2.0 - Refactored from grunt-contrib into individual repo.
+* 2012/09/24 - v0.2.3 - general cleanup and consolidation. test refactoring. revert normalize linefeeds for now.
+* 2012/09/16 - v0.2.2 - support all less options, normalize linefeeds, default path to dirname of src file.
+* 2012/09/10 - v0.2.0 - refactored from grunt-contrib into individual repo.

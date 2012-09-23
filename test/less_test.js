@@ -1,40 +1,67 @@
 var grunt = require('grunt');
+var fs = require('fs');
 
-exports['less'] = {
-  main: function(test) {
+exports.less = {
+  compile: function(test) {
     'use strict';
 
-    var expect, result;
+    test.expect(3);
 
-    test.expect(7);
+    var actual = grunt.file.read('tmp/less.css');
+    var expected = grunt.file.read('test/expected/less.css');
+    test.equal(expected, actual, 'should compile less, with the ability to handle imported files from alternate include paths');
 
-    expect = 'body {\n  color: #ffffff;\n}\n';
-    result = grunt.file.read('tmp/less_a.css');
-    test.equal(expect, result, 'should compile less, with the ability to handle imported files from alternate include paths');
+    actual = grunt.file.read('tmp/concat.css');
+    expected = grunt.file.read('test/expected/concat.css');
+    test.equal(expected, actual, 'should concat output when passed an array');
 
-    expect = 'body {\n  color: #ffffff;\n}\n';
-    result = grunt.file.read('tmp/less_b.css');
-    test.equal(expect, result, 'should support multiple destination:source sets');
+    actual = fs.readdirSync('tmp/individual').sort();
+    expected = fs.readdirSync('test/expected/individual').sort();
+    test.deepEqual(expected, actual, 'should individually compile files');
 
-    expect = '';
-    result = grunt.file.read('tmp/less_c.css');
-    test.equal(expect, result, 'should write an empty file when no less sources are found');
+    test.done();
+  },
+  compress: function(test) {
+    'use strict';
 
-    expect = 'body {\n  color: #ffffff;\n}\n\n#header {\n  background: #ffffff;\n}\n';
-    result = grunt.file.read('tmp/less_d.css');
-    test.equal(expect, result, 'should concat output when passed an array');
+    test.expect(1);
 
-    expect = 'body {\n  color: #ffffff;\n}\n';
-    result = grunt.file.read('tmp/less_no_paths_specified.css');
-    test.equal(expect, result, 'should default paths to the dirname of the less file');
+    var actual = grunt.file.read('tmp/compress.css');
+    var expected = grunt.file.read('test/expected/compress.css');
+    test.equal(expected, actual, 'should compress output when compress option is true');
 
-    expect = 'body{color:#ffffff;}\n';
-    result = grunt.file.read('tmp/less_a.min.css');
-    test.equal(expect, result, 'should compress output when compress option is true');
+    test.done();
+  },
+  flatten: function(test) {
+    'use strict';
 
-    expect = 'body{color:#fff}';
-    result = grunt.file.read('tmp/less_a.yuimin.css');
-    test.equal(expect, result, 'should yuicompress output when yuicompress option is true');
+    test.expect(1);
+
+    var actual = fs.readdirSync('tmp/individual_flatten').sort();
+    var expected = fs.readdirSync('test/expected/individual_flatten').sort();
+    test.deepEqual(expected, actual, 'should individually compile files (to flat structure)');
+
+    test.done();
+  },
+  nopaths: function(test) {
+    'use strict';
+
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/nopaths.css');
+    var expected = grunt.file.read('test/expected/nopaths.css');
+    test.equal(expected, actual, 'should default paths to the dirname of the less file');
+
+    test.done();
+  },
+  yuicompress: function(test) {
+    'use strict';
+
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/yuicompress.css');
+    var expected = grunt.file.read('test/expected/yuicompress.css');
+    test.equal(expected, actual, 'should yuicompress output when yuicompress option is true');
 
     test.done();
   }
