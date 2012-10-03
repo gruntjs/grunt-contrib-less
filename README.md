@@ -1,5 +1,6 @@
 # grunt-contrib-less [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-less)
-> Compile LESS files to CSS (part of the [grunt-contrib](https://github.com/gruntjs/grunt-contrib) collection).  Submitted by [Tyler Kellen](https://github.com/tkellen).
+
+> Compile LESS files to CSS.
 
 ## Getting Started
 Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-contrib-less`
@@ -71,6 +72,10 @@ less: {
 
 ## Release History
 
-* 2012/09/24 - v0.3.0 - general cleanup and consolidation. test refactoring. global options depreciated. revert normalize linefeeds for now.
-* 2012/09/16 - v0.2.2 - support all less options, normalize linefeeds, default path to dirname of src file.
-* 2012/09/10 - v0.2.0 - refactored from grunt-contrib into individual repo.
+* 2012/09/24 - v0.3.0 - Global options depreciated, revert normalize linefeeds.
+* 2012/09/16 - v0.2.2 - Support all less options, normalize linefeeds, default path to dirname of src file.
+* 2012/09/10 - v0.2.0 - Refactored from grunt-contrib into individual repo.
+
+--
+
+Task submitted by [Tyler Kellen](http://goingslowly.com/).
