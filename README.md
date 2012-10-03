@@ -69,13 +69,6 @@ less: {
   }
 }
 ```
-
-## Release History
-
-* 2012/09/24 - v0.3.0 - Global options depreciated, revert normalize linefeeds.
-* 2012/09/16 - v0.2.2 - Support all less options, normalize linefeeds, default path to dirname of src file.
-* 2012/09/10 - v0.2.0 - Refactored from grunt-contrib into individual repo.
-
 --
 
-Task submitted by [Tyler Kellen](http://goingslowly.com/).
+*Task submitted by [Tyler Kellen](http://goingslowly.com/).*
