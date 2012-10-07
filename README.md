@@ -11,8 +11,8 @@ Then add this line to your project's `grunt.js` gruntfile:
 grunt.loadNpmTasks('grunt-contrib-less');
 ```
 
-[grunt]: https://github.com/cowboy/grunt
-[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
+[grunt]: https://github.com/gruntjs/grunt
+[getting_started]: https://github.com/gruntjs/grunt/blob/master/docs/getting_started.md
 
 ### Overview
 
@@ -24,7 +24,7 @@ Inside your `grunt.js` file add a section named `less`. This section specifies t
 
 This defines what files this task will process and should contain key:value pairs.
 
-The key (destination) should be an unique filepath (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)).
+The key (destination) should be an unique filepath (supports [grunt.template](https://github.com/gruntjs/grunt/blob/master/docs/api_template.md)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)).
 
 As of v0.3.0, you can use *.{ext} as your destination filename to individually compile each file to the destination directory. Otherwise, when the source contains an array of multiple filepaths, the contents are concatenated in the order passed.
 
