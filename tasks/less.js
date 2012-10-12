@@ -22,7 +22,7 @@ module.exports = function(grunt) {
   };
 
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
-    var helpers = require('grunt-contrib-lib').init(grunt);
+    var helpers = require('grunt-lib-contrib').init(grunt);
 
     var options = helpers.options(this, {
       basePath: false,
