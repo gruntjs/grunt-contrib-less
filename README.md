@@ -2,53 +2,33 @@
 
 > Compile LESS files to CSS.
 
+_Note that this plugin has not yet been released, and only works with the latest bleeding-edge, in-development version of grunt. See the [When will I be able to use in-development feature 'X'?](https://github.com/gruntjs/grunt/blob/devel/docs/faq.md#when-will-i-be-able-to-use-in-development-feature-x) FAQ entry for more information._
+
 ## Getting Started
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-contrib-less`
+_If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
 
-Then add this line to your project's `grunt.js` gruntfile:
+From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
 
-```javascript
+```bash
+npm install grunt-contrib-less --save-dev
+```
+
+Once that's done, add this line to your project's Gruntfile:
+
+```js
 grunt.loadNpmTasks('grunt-contrib-less');
 ```
 
-[grunt]: https://github.com/gruntjs/grunt
-[getting_started]: https://github.com/gruntjs/grunt/blob/master/docs/getting_started.md
+If the plugin has been installed correctly, running `grunt --help` at the command line should list the newly-installed plugin's task or tasks. In addition, the plugin should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
 
-### Overview
+[grunt]: http://gruntjs.com/
+[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+[package.json]: https://npmjs.org/doc/json.html
 
-Inside your `grunt.js` file add a section named `less`. This section specifies the files to compile and the options passed to [LESS](http://lesscss.org/#-server-side-usage).
 
-#### Parameters
+## The less-examples task
 
-##### files ```object```
-
-This defines what files this task will process and should contain key:value pairs.
-
-The key (destination) should be an unique filepath (supports [grunt.template](https://github.com/gruntjs/grunt/blob/master/docs/api_template.md)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)).
-
-As of v0.3.0, you can use *.{ext} as your destination filename to individually compile each file to the destination directory. Otherwise, when the source contains an array of multiple filepaths, the contents are concatenated in the order passed.
-
-##### options ```object```
-
-This controls how this task (and its helpers) operate and should contain key:value pairs, see options below.
-
-#### Options
-
-##### paths ```string|array```
-
-This specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
-
-##### compress ```boolean```
-
-If set to `true`, the generated CSS will be minified.
-
-##### yuicompress ```boolean```
-
-If set to `true`, the generated CSS will be minified with [YUI Compressor's CSS minifier](http://developer.yahoo.com/yui/compressor/css.html).
-
-#### Config Example
-
-``` javascript
+```js
 less: {
   development: {
     options: {
@@ -69,6 +49,71 @@ less: {
   }
 }
 ```
---
 
-*Task submitted by [Tyler Kellen](http://goingslowly.com/).*
+## The less-options task
+
+## options.paths
+Type: `String|Array`
+Default: Directory of input file.
+
+Specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
+
+## options.compress
+Type: `Boolean`
+Default: False
+
+Compress output by removing some whitespaces.
+
+## options.yuicompress
+Type: `Boolean`
+Default: False
+
+Compress output using cssmin.js
+
+## options.optimization
+Type: `Integer`
+Default: null
+
+Set the parser's optimization level. The lower the number, the less nodes it will create in the tree. This could matter for debugging, or if you want to access the individual nodes in the tree.
+
+## options.strictImports
+Type: `Boolean`
+Default: False
+
+Force evaluation of imports.
+
+## options.dumpLineNumbers
+Type: `String`
+Default: false
+
+Configures -sass-debug-info support.
+
+Accepts following values: `comments`, `mediaquery`, `all`.
+
+## The less-overview task
+
+# Overview
+
+In your project's Gruntfile, add a section named `less` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  less: {
+    options: {
+      // Task-specific options go here.
+    },
+    your_target: {
+      // Target-specific file lists and/or options go here.
+    },
+  },
+})
+```
+
+
+## Release History
+
+ * 2012-10-17 - v0.3.2 - Add support for dumpLineNumbers.
+ * 2012-10-11 - v0.3.1 - Rename grunt-contrib-lib dep to grunt-lib-contrib.
+ * 2012-09-23 - v0.3.0 - Global options depreciated Revert normalize linefeeds.
+ * 2012-09-15 - v0.2.2 - Support all less options Normalize linefeeds Default path to dirname of src file.
+ * 2012-09-09 - v0.2.0 - Refactored from grunt-contrib into individual repo.

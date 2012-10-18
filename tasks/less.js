@@ -9,12 +9,9 @@
 module.exports = function(grunt) {
   'use strict';
 
-  // TODO: ditch this when grunt v0.4 is released
-  grunt.util = grunt.util || grunt.utils;
-
   var path = require('path');
-
   var less = require('less');
+  var helpers = require('grunt-lib-contrib').init(grunt);
 
   var lessOptions = {
     parse: ['paths', 'optimization', 'filename', 'strictImports', 'dumpLineNumbers'],
@@ -22,24 +19,16 @@ module.exports = function(grunt) {
   };
 
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
-    var helpers = require('grunt-lib-contrib').init(grunt);
-
-    var options = helpers.options(this, {
+    var done = this.async();
+    var basePath;
+    var newFileDest;
+    var srcFiles;
+    var options = this.options({
       basePath: false,
       flatten: false
     });
 
     grunt.verbose.writeflags(options, 'Options');
-
-    // TODO: ditch this when grunt v0.4 is released
-    this.files = helpers.normalizeMultiTaskFiles(this.data, this.target);
-
-    var done = this.async();
-
-    var basePath;
-    var newFileDest;
-
-    var srcFiles;
 
     grunt.util.async.forEachSeries(this.files, function(file, next) {
       file.dest = path.normalize(file.dest);
