@@ -26,8 +26,61 @@ If the plugin has been installed correctly, running `grunt --help` at the comman
 [package.json]: https://npmjs.org/doc/json.html
 
 
-## The less-examples task
+## The less task
 
+### Overview
+
+In your project's Gruntfile, add a section named `less` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  less: {
+    options: {
+      // Task-specific options go here.
+    },
+    your_target: {
+      // Target-specific file lists and/or options go here.
+    },
+  },
+})
+```
+#### options.paths
+Type: `String|Array`
+Default: Directory of input file.
+
+Specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
+
+#### options.compress
+Type: `Boolean`
+Default: False
+
+Compress output by removing some whitespaces.
+
+#### options.yuicompress
+Type: `Boolean`
+Default: False
+
+Compress output using cssmin.js
+
+#### options.optimization
+Type: `Integer`
+Default: null
+
+Set the parser's optimization level. The lower the number, the less nodes it will create in the tree. This could matter for debugging, or if you want to access the individual nodes in the tree.
+
+#### options.strictImports
+Type: `Boolean`
+Default: False
+
+Force evaluation of imports.
+
+#### options.dumpLineNumbers
+Type: `String`
+Default: false
+
+Configures -sass-debug-info support.
+
+Accepts following values: `comments`, `mediaquery`, `all`.
 ```js
 less: {
   development: {
@@ -50,66 +103,6 @@ less: {
 }
 ```
 
-## The less-options task
-
-## options.paths
-Type: `String|Array`
-Default: Directory of input file.
-
-Specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
-
-## options.compress
-Type: `Boolean`
-Default: False
-
-Compress output by removing some whitespaces.
-
-## options.yuicompress
-Type: `Boolean`
-Default: False
-
-Compress output using cssmin.js
-
-## options.optimization
-Type: `Integer`
-Default: null
-
-Set the parser's optimization level. The lower the number, the less nodes it will create in the tree. This could matter for debugging, or if you want to access the individual nodes in the tree.
-
-## options.strictImports
-Type: `Boolean`
-Default: False
-
-Force evaluation of imports.
-
-## options.dumpLineNumbers
-Type: `String`
-Default: false
-
-Configures -sass-debug-info support.
-
-Accepts following values: `comments`, `mediaquery`, `all`.
-
-## The less-overview task
-
-# Overview
-
-In your project's Gruntfile, add a section named `less` to the data object passed into `grunt.initConfig()`.
-
-```js
-grunt.initConfig({
-  less: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
-})
-```
-
-
 ## Release History
 
  * 2012-10-17 - v0.3.2 - Add support for dumpLineNumbers.
@@ -117,3 +110,8 @@ grunt.initConfig({
  * 2012-09-23 - v0.3.0 - Global options depreciated Revert normalize linefeeds.
  * 2012-09-15 - v0.2.2 - Support all less options Normalize linefeeds Default path to dirname of src file.
  * 2012-09-09 - v0.2.0 - Refactored from grunt-contrib into individual repo.
+
+--
+Task submitted by <a href="http://goingslowly.com/">Tyler Kellen</a>.
+
+*Generated on Thu Oct 18 2012 16:42:20.*
