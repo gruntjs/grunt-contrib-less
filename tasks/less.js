@@ -6,8 +6,9 @@
  * Licensed under the MIT license.
  */
 
+'use strict';
+
 module.exports = function(grunt) {
-  'use strict';
 
   var path = require('path');
   var less = require('less');
