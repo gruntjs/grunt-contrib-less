@@ -1,3 +1,5 @@
+# Options
+
 ## options.paths
 Type: `String|Array`
 Default: Directory of input file.

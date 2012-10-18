@@ -19,15 +19,13 @@ module.exports = function(grunt) {
   };
 
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
+    var basePath, newFileDest, srcFiles;
     var done = this.async();
-    var basePath;
-    var newFileDest;
-    var srcFiles;
+
     var options = this.options({
       basePath: false,
       flatten: false
     });
-
     grunt.verbose.writeflags(options, 'Options');
 
     grunt.util.async.forEachSeries(this.files, function(file, next) {
@@ -90,16 +88,6 @@ module.exports = function(grunt) {
     grunt.fail.warn('Error compiling LESS.');
   };
 
-  // TODO: ditch when grunt upgrades to underscore 1.3.3
-  var pick = function(obj, keys) {
-    var result = {};
-    keys.forEach(function(key) {
-      if (key in obj) { result[key] = obj[key]; }
-    });
-
-    return result;
-  };
-
   var compileLess = function(srcFile, options, callback) {
     options = grunt.util._.extend({filename: srcFile}, options);
     options.paths = options.paths || [path.dirname(srcFile)];
@@ -107,7 +95,7 @@ module.exports = function(grunt) {
     var css;
     var srcCode = grunt.file.read(srcFile);
 
-    var parser = new less.Parser(pick(options, lessOptions.parse));
+    var parser = new less.Parser(grunt.util._.pick(options, lessOptions.parse));
 
     parser.parse(srcCode, function(parse_err, tree) {
       if (parse_err) {
@@ -115,7 +103,7 @@ module.exports = function(grunt) {
       }
 
       try {
-        css = tree.toCSS(pick(options, lessOptions.render));
+        css = tree.toCSS(grunt.util._.pick(options, lessOptions.render));
         callback(css, null);
       } catch (e) {
         lessError(e);

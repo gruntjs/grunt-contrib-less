@@ -44,6 +44,8 @@ grunt.initConfig({
   },
 })
 ```
+### Options
+
 #### options.paths
 Type: `String|Array`
 Default: Directory of input file.
@@ -81,6 +83,8 @@ Default: false
 Configures -sass-debug-info support.
 
 Accepts following values: `comments`, `mediaquery`, `all`.
+### Usage Examples
+
 ```js
 less: {
   development: {
@@ -114,4 +118,4 @@ less: {
 --
 Task submitted by <a href="http://goingslowly.com/">Tyler Kellen</a>.
 
-*Generated on Thu Oct 18 2012 16:42:20.*
+*Generated on Thu Oct 18 2012 16:46:03.*
