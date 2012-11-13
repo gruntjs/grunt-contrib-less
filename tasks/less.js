@@ -20,7 +20,6 @@ module.exports = function(grunt) {
   };
 
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
-    var basePath, newFileDest, srcFiles;
     var done = this.async();
 
     var options = this.options({
@@ -29,52 +28,46 @@ module.exports = function(grunt) {
     });
     grunt.verbose.writeflags(options, 'Options');
 
-    grunt.util.async.forEachSeries(this.files, function(file, next) {
-      file.dest = path.normalize(file.dest);
-      srcFiles = grunt.file.expandFiles(file.src);
+    // get files
+    var files = grunt.file.expandFiles(this.file.src);
+    var destFile = this.file.dest;
 
-      if (srcFiles.length === 0) {
-        grunt.fail.warn('Unable to compile; no valid source files were found.');
-      }
-
-      if (helpers.isIndividualDest(file.dest)) {
-        basePath = helpers.findBasePath(srcFiles, options.basePath);
-
-        grunt.util.async.forEachSeries(srcFiles, function(srcFile, nextFile) {
-          newFileDest = helpers.buildIndividualDest(file.dest, srcFile, basePath, options.flatten);
-
-          compileLess(srcFile, options, function(css, err) {
-            if(!err) {
-              grunt.file.write(newFileDest, css || '');
-              grunt.log.writeln('File ' + newFileDest.cyan + ' created.');
-
-              nextFile(null);
-            } else {
-              done();
-            }
-          });
-        }, function(err) {
-          next();
-        });
-      } else {
-        grunt.util.async.concatSeries(srcFiles, function(srcFile, nextConcat) {
-          compileLess(srcFile, options, function(css, err) {
-            if(!err) {
-              nextConcat(null, css);
-            } else {
-              done();
-            }
-          });
-        }, function(err, css) {
-          grunt.file.write(file.dest, css.join('\n') || '');
-          grunt.log.writeln('File ' + file.dest.cyan + ' created.');
-
-          next();
-        });
-      }
-    }, function() {
+    if (files.length === 0) {
+      grunt.fail.warn('Unable to compile; no valid source files were found.');
       done();
-    });
+    }
+
+    // hack by chris to support compiling individual files
+    if (helpers.isIndividualDest(destFile)) {
+      var basePath = helpers.findBasePath(files, options.basePath);
+      grunt.util.async.forEachSeries(files, function(file, next) {
+        var newFileDest = helpers.buildIndividualDest(destFile, file, basePath, options.flatten);
+        compileLess(file, options, function(css, err) {
+          if(!err) {
+            grunt.file.write(newFileDest, css || '');
+            grunt.log.writeln('File ' + newFileDest.cyan + ' created.');
+            next(null);
+          } else {
+            done(false);
+          }
+        });
+      });
+    } else {
+      // normal execution
+      grunt.util.async.concatSeries(files, function(file, next) {
+        compileLess(file, options, function(css, err) {
+          if(!err) {
+            next(null, css);
+          } else {
+            done(false);
+          }
+        });
+      }, function(err, css) {
+        grunt.file.write(destFile, css.join('\n') || '');
+        grunt.log.writeln('File ' + destFile.cyan + ' created.');
+        done();
+      });
+    }
   });
 
   var formatLessError = function(e) {
@@ -101,6 +94,7 @@ module.exports = function(grunt) {
     parser.parse(srcCode, function(parse_err, tree) {
       if (parse_err) {
         lessError(parse_err);
+        callback('',true);
       }
 
       try {
