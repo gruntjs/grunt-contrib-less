@@ -44,43 +44,35 @@ module.exports = function(grunt) {
         var newFileDest = helpers.buildIndividualDest(destFile, file, basePath, options.flatten);
         compileLess(file, options, function(css, err) {
           if(!err) {
-            grunt.file.write(newFileDest, css || '');
+            grunt.file.write(newFileDest, css||'');
             grunt.log.writeln('File ' + newFileDest.cyan + ' created.');
             next(null);
           } else {
             done(false);
           }
         });
+      }, function() {
+        done();
       });
     } else {
       // normal execution
+      var compiled = [];
       grunt.util.async.concatSeries(files, function(file, next) {
         compileLess(file, options, function(css, err) {
           if(!err) {
-            next(null, css);
+            compiled.push(css);
+            next(null);
           } else {
             done(false);
           }
         });
-      }, function(err, css) {
-        grunt.file.write(destFile, css.join('\n') || '');
+      }, function() {
+        grunt.file.write(destFile, compiled.join('\n'));
         grunt.log.writeln('File ' + destFile.cyan + ' created.');
         done();
       });
     }
   });
-
-  var formatLessError = function(e) {
-    var pos = '[' + 'L' + e.line + ':' + ('C' + e.column) + ']';
-    return e.filename + ': ' + pos + ' ' + e.message;
-  };
-
-  var lessError = function(e) {
-    var message = less.formatError ? less.formatError(e) : formatLessError(e);
-
-    grunt.log.error(message);
-    grunt.fail.warn('Error compiling LESS.');
-  };
 
   var compileLess = function(srcFile, options, callback) {
     options = grunt.util._.extend({filename: srcFile}, options);
@@ -106,4 +98,18 @@ module.exports = function(grunt) {
       }
     });
   };
+
+  var formatLessError = function(e) {
+    var pos = '[' + 'L' + e.line + ':' + ('C' + e.column) + ']';
+    return e.filename + ': ' + pos + ' ' + e.message;
+  };
+
+  var lessError = function(e) {
+    var message = less.formatError ? less.formatError(e) : formatLessError(e);
+
+    grunt.log.error(message);
+    grunt.fail.warn('Error compiling LESS.');
+  };
+
+
 };
