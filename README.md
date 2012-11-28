@@ -17,61 +17,50 @@ npm install grunt-contrib-less --save-dev
 ## Less task
 _Run this task with the `grunt less` command._
 
-### Overview
+_This task is a [multi task][] so any targets, files and options should be specified according to the [multi task][] documentation._
+[multi task]: https://github.com/gruntjs/grunt/wiki/Configuring-tasks
 
-In your project's Gruntfile, add a section named `less` to the data object passed into `grunt.initConfig()`.
 
-```js
-grunt.initConfig({
-  less: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
-})
-```
 ### Options
 
-#### options.paths
+#### paths
 Type: `String|Array`
 Default: Directory of input file.
 
 Specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
 
-#### options.compress
+#### compress
 Type: `Boolean`
 Default: False
 
 Compress output by removing some whitespaces.
 
-#### options.yuicompress
+#### yuicompress
 Type: `Boolean`
 Default: False
 
 Compress output using cssmin.js
 
-#### options.optimization
+#### optimization
 Type: `Integer`
 Default: null
 
 Set the parser's optimization level. The lower the number, the less nodes it will create in the tree. This could matter for debugging, or if you want to access the individual nodes in the tree.
 
-#### options.strictImports
+#### strictImports
 Type: `Boolean`
 Default: False
 
 Force evaluation of imports.
 
-#### options.dumpLineNumbers
+#### dumpLineNumbers
 Type: `String`
 Default: false
 
 Configures -sass-debug-info support.
 
 Accepts following values: `comments`, `mediaquery`, `all`.
+
 ### Usage Examples
 
 ```js
@@ -108,4 +97,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Tue Nov 13 2012 16:14:04.*
+*This file was generated on Wed Nov 28 2012 08:42:08.*
