@@ -24,16 +24,26 @@ module.exports = function(grunt) {
 
     var options = this.options({
       basePath: false,
-      flatten: false
+      flatten: false,
+      separator: grunt.util.linefeed
     });
     grunt.verbose.writeflags(options, 'Options');
 
     grunt.util.async.forEachSeries(this.files, function(f, nextFileObj) {
-      var files = f.src;
       var destFile = f.dest;
 
+      var files = f.src.filter(function(filepath) {
+        // Warn on and remove invalid source files (if nonull was set).
+        if (!grunt.file.exists(filepath)) {
+          grunt.log.warn('Source file "' + filepath + '" not found.');
+          return false;
+        } else {
+          return true;
+        }
+      });
+
       if (files.length === 0) {
-        grunt.fail.warn('Unable to compile; no valid source files were found.');
+        // No src files, goto next target. Warn would have been issued above.
         nextFileObj();
       }
 
@@ -44,7 +54,7 @@ module.exports = function(grunt) {
           var newFileDest = helpers.buildIndividualDest(destFile, file, basePath, options.flatten);
           compileLess(file, options, function(css, err) {
             if (!err) {
-              grunt.file.write(newFileDest, css||'');
+              grunt.file.write(newFileDest, css || '');
               grunt.log.writeln('File ' + newFileDest.cyan + ' created.');
               next(null);
             } else {
@@ -65,8 +75,12 @@ module.exports = function(grunt) {
             }
           });
         }, function() {
-          grunt.file.write(destFile, compiled.join('\n'));
-          grunt.log.writeln('File ' + destFile.cyan + ' created.');
+          if (compiled.length < 1) {
+            grunt.log.warn('Destination not written because compiled files were empty.');
+          } else {
+            grunt.file.write(destFile, compiled.join(grunt.util.normalizelf(options.separator)));
+            grunt.log.writeln('File ' + destFile.cyan + ' created.');
+          }
           nextFileObj();
         });
       }

@@ -1,5 +1,11 @@
 # Options
 
+## separator
+Type: `String`
+Default: linefeed
+
+Concatenated files will be joined on this string.
+
 ## paths
 Type: `String|Array`
 Default: Directory of input file.
