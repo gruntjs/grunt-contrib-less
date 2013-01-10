@@ -28,50 +28,50 @@ module.exports = function(grunt) {
     });
     grunt.verbose.writeflags(options, 'Options');
 
-    // get files
-    var files = this.file.src;
-    var destFile = this.file.dest;
+    grunt.util.async.forEachSeries(this.files, function(f, nextFileObj) {
+      var files = f.src;
+      var destFile = f.dest;
 
-    if (files.length === 0) {
-      grunt.fail.warn('Unable to compile; no valid source files were found.');
-      done();
-    }
+      if (files.length === 0) {
+        grunt.fail.warn('Unable to compile; no valid source files were found.');
+        nextFileObj();
+      }
 
-    // hack by chris to support compiling individual files
-    if (helpers.isIndividualDest(destFile)) {
-      var basePath = helpers.findBasePath(files, options.basePath);
-      grunt.util.async.forEachSeries(files, function(file, next) {
-        var newFileDest = helpers.buildIndividualDest(destFile, file, basePath, options.flatten);
-        compileLess(file, options, function(css, err) {
-          if(!err) {
-            grunt.file.write(newFileDest, css||'');
-            grunt.log.writeln('File ' + newFileDest.cyan + ' created.');
-            next(null);
-          } else {
-            done(false);
-          }
+      // hack by chris to support compiling individual files
+      if (helpers.isIndividualDest(destFile)) {
+        var basePath = helpers.findBasePath(files, options.basePath);
+        grunt.util.async.forEachSeries(files, function(file, next) {
+          var newFileDest = helpers.buildIndividualDest(destFile, file, basePath, options.flatten);
+          compileLess(file, options, function(css, err) {
+            if (!err) {
+              grunt.file.write(newFileDest, css||'');
+              grunt.log.writeln('File ' + newFileDest.cyan + ' created.');
+              next(null);
+            } else {
+              nextFileObj(false);
+            }
+          });
+        }, nextFileObj);
+      } else {
+        // normal execution
+        var compiled = [];
+        grunt.util.async.concatSeries(files, function(file, next) {
+          compileLess(file, options, function(css, err) {
+            if (!err) {
+              compiled.push(css);
+              next(null);
+            } else {
+              nextFileObj(false);
+            }
+          });
+        }, function() {
+          grunt.file.write(destFile, compiled.join('\n'));
+          grunt.log.writeln('File ' + destFile.cyan + ' created.');
+          nextFileObj();
         });
-      }, function() {
-        done();
-      });
-    } else {
-      // normal execution
-      var compiled = [];
-      grunt.util.async.concatSeries(files, function(file, next) {
-        compileLess(file, options, function(css, err) {
-          if(!err) {
-            compiled.push(css);
-            next(null);
-          } else {
-            done(false);
-          }
-        });
-      }, function() {
-        grunt.file.write(destFile, compiled.join('\n'));
-        grunt.log.writeln('File ' + destFile.cyan + ' created.');
-        done();
-      });
-    }
+      }
+
+    }, done);
   });
 
   var compileLess = function(srcFile, options, callback) {

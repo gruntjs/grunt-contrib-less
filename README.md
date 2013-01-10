@@ -21,6 +21,8 @@ _This task is a [multi task][] so any targets, files and options should be speci
 [multi task]: https://github.com/gruntjs/grunt/wiki/Configuring-tasks
 
 
+_Version `0.4.x` of this plugin is compatible with Grunt `0.4.x`. Version `0.3.x` of this plugin is compatible with Grunt `0.3.x`._
+
 ### Options
 
 #### paths
@@ -87,6 +89,7 @@ less: {
 
 ## Release History
 
+ * 2013-01-08   v0.4.0rc5   Updating to work with grunt v0.4.0rc5. Switching to this.files api.
  * 2012-10-17   v0.3.2   Add support for dumpLineNumbers.
  * 2012-10-11   v0.3.1   Rename grunt-contrib-lib dep to grunt-lib-contrib.
  * 2012-09-23   v0.3.0   Global options depreciated Revert normalize linefeeds.
@@ -97,4 +100,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Wed Nov 28 2012 08:42:08.*
+*This file was generated on Wed Jan 09 2013 16:44:23.*
