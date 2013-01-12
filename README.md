@@ -25,12 +25,6 @@ _Version `0.4.x` of this plugin is compatible with Grunt `0.4.x`. Version `0.3.x
 
 ### Options
 
-#### separator
-Type: `String`
-Default: linefeed
-
-Concatenated files will be joined on this string.
-
 #### paths
 Type: `String|Array`
 Default: Directory of input file.
@@ -106,4 +100,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Thu Jan 10 2013 13:51:45.*
+*This file was generated on Fri Jan 11 2013 18:06:34.*
