@@ -5,7 +5,7 @@ exports.less = {
   compile: function(test) {
     'use strict';
 
-    test.expect(3);
+    test.expect(2);
 
     var actual = grunt.file.read('tmp/less.css');
     var expected = grunt.file.read('test/expected/less.css');
@@ -14,10 +14,6 @@ exports.less = {
     actual = grunt.file.read('tmp/concat.css');
     expected = grunt.file.read('test/expected/concat.css');
     test.equal(expected, actual, 'should concat output when passed an array');
-
-    actual = fs.readdirSync('tmp/individual').sort();
-    expected = fs.readdirSync('test/expected/individual').sort();
-    test.deepEqual(expected, actual, 'should individually compile files');
 
     test.done();
   },
@@ -29,17 +25,6 @@ exports.less = {
     var actual = grunt.file.read('tmp/compress.css');
     var expected = grunt.file.read('test/expected/compress.css');
     test.equal(expected, actual, 'should compress output when compress option is true');
-
-    test.done();
-  },
-  flatten: function(test) {
-    'use strict';
-
-    test.expect(1);
-
-    var actual = fs.readdirSync('tmp/individual_flatten').sort();
-    var expected = fs.readdirSync('test/expected/individual_flatten').sort();
-    test.deepEqual(expected, actual, 'should individually compile files (to flat structure)');
 
     test.done();
   },

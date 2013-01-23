@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-less",
   "description": "Compile LESS files to CSS.",
-  "version": "0.4.0rc5",
+  "version": "0.5.0rc7",
   "homepage": "https://github.com/gruntjs/grunt-contrib-less",
   "author": {
     "name": "Grunt Team",
@@ -32,11 +32,11 @@
     "grunt-lib-contrib": "~0.3.0"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1rc5",
-    "grunt-contrib-nodeunit": "~0.1.2rc5",
-    "grunt-contrib-clean": "~0.4.0rc5",
+    "grunt-contrib-jshint": "0.1.1rc6",
+    "grunt-contrib-nodeunit": "0.1.2rc6",
+    "grunt-contrib-clean": "0.4.0rc6",
     "grunt-contrib-internal": "*",
-    "grunt": "~0.4.0rc5"
+    "grunt": "0.4.0rc7"
   },
   "keywords": [
     "gruntplugin"

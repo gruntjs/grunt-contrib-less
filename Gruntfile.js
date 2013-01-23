@@ -36,8 +36,7 @@ module.exports = function(grunt) {
         },
         files: {
           'tmp/less.css': ['test/fixtures/style.less'],
-          'tmp/concat.css': ['test/fixtures/style.less', 'test/fixtures/style2.less'],
-          'tmp/individual/*.css': ['test/fixtures/style*.less', 'test/fixtures/level2/*.less']
+          'tmp/concat.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
         }
       },
       compress: {
@@ -47,15 +46,6 @@ module.exports = function(grunt) {
         },
         files: {
           'tmp/compress.css': ['test/fixtures/style.less']
-        }
-      },
-      flatten: {
-        files: {
-          'tmp/individual_flatten/*.css': ['test/fixtures/style*.less', 'test/fixtures/level2/*.less']
-        },
-        options: {
-          flatten: true,
-          paths: ['test/fixtures/include']
         }
       },
       nopaths: {
