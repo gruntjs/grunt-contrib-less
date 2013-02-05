@@ -11,7 +11,7 @@ npm install grunt-contrib-less --save-dev
 ```
 
 [grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+[Getting Started]: https://github.com/gruntjs/grunt/wiki/Getting-started
 
 
 ## Less task
