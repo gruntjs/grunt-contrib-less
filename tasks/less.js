@@ -15,7 +15,7 @@ module.exports = function(grunt) {
   var helpers = require('grunt-lib-contrib').init(grunt);
 
   var lessOptions = {
-    parse: ['paths', 'optimization', 'filename', 'strictImports', 'dumpLineNumbers'],
+    parse: ['paths', 'optimization', 'filename', 'strictImports', 'dumpLineNumbers', 'catFiles'],
     render: ['compress', 'yuicompress']
   };
 
@@ -24,7 +24,8 @@ module.exports = function(grunt) {
 
     var options = this.options({
       basePath: false,
-      flatten: false
+      flatten: false,
+      prependLESS: false
     });
     grunt.verbose.writeflags(options, 'Options');
 
@@ -35,6 +36,17 @@ module.exports = function(grunt) {
     if (files.length === 0) {
       grunt.fail.warn('Unable to compile; no valid source files were found.');
       done();
+    }
+
+    //check for files to prepend to each file, concat them if so
+    if(options.catFiles.length) {
+      //concat them together
+      options.prependLESS = grunt.helper('concat', options.catFiles);
+      //check it, fail and done if not
+      if(options.prependLESS.length === 0) {
+        grunt.fail.warn('Unable to prepend files; no valid source files were found.');
+        done();
+      }
     }
 
     // hack by chris to support compiling individual files
@@ -82,6 +94,11 @@ module.exports = function(grunt) {
     var srcCode = grunt.file.read(srcFile);
 
     var parser = new less.Parser(grunt.util._.pick(options, lessOptions.parse));
+
+    //prepend header files 
+    if(options.prependLESS) {
+      srcCode = options.prependLESS + srcCode; 
+    }
 
     parser.parse(srcCode, function(parse_err, tree) {
       if (parse_err) {
