@@ -21,7 +21,7 @@ _This task is a [multi task][] so any targets, files and options should be speci
 [multi task]: https://github.com/gruntjs/grunt/wiki/Configuring-tasks
 
 
-_Version `0.4.x` of this plugin is compatible with Grunt `0.4.x`. Version `0.3.x` of this plugin is compatible with Grunt `0.3.x`._
+_Version `0.5.x` of this plugin is compatible with Grunt `0.4.x`. Version `0.3.x` of this plugin is compatible with Grunt `0.3.x`._
 
 ### Options
 
