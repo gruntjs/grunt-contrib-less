@@ -12,7 +12,6 @@ module.exports = function(grunt) {
 
   var path = require('path');
   var less = require('less');
-  var helpers = require('grunt-lib-contrib').init(grunt);
 
   var lessOptions = {
     parse: ['paths', 'optimization', 'filename', 'strictImports', 'dumpLineNumbers'],
