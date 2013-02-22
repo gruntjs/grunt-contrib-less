@@ -36,8 +36,7 @@ module.exports = function(grunt) {
         },
         files: {
           'tmp/less.css': ['test/fixtures/style.less'],
-          'tmp/concat.css': ['test/fixtures/style.less', 'test/fixtures/style2.less'],
-          'tmp/individual/*.css': ['test/fixtures/style*.less', 'test/fixtures/level2/*.less']
+          'tmp/concat.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
         }
       },
       compress: {
@@ -47,15 +46,6 @@ module.exports = function(grunt) {
         },
         files: {
           'tmp/compress.css': ['test/fixtures/style.less']
-        }
-      },
-      flatten: {
-        files: {
-          'tmp/individual_flatten/*.css': ['test/fixtures/style*.less', 'test/fixtures/level2/*.less']
-        },
-        options: {
-          flatten: true,
-          paths: ['test/fixtures/include']
         }
       },
       nopaths: {
@@ -70,6 +60,14 @@ module.exports = function(grunt) {
         },
         files: {
           'tmp/yuicompress.css': ['test/fixtures/style.less']
+        }
+      },
+      headers: {
+        options: {
+          headers : ['test/fixtures/include/variables.less']
+        },
+        files: {
+          'tmp/headers.css': ['test/fixtures/style3.less']
         }
       }
     },
@@ -91,7 +89,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'less', 'nodeunit']);
+  grunt.registerTask('test', ['less', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test', 'build-contrib']);

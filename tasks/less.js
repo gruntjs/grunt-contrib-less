@@ -12,78 +12,66 @@ module.exports = function(grunt) {
 
   var path = require('path');
   var less = require('less');
-  var helpers = require('grunt-lib-contrib').init(grunt);
 
   var lessOptions = {
-    parse: ['paths', 'optimization', 'filename', 'strictImports', 'dumpLineNumbers', 'catFiles'],
+    parse: ['paths', 'optimization', 'filename', 'strictImports', 'dumpLineNumbers', 'headers'],
     render: ['compress', 'yuicompress']
   };
 
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
     var done = this.async();
 
-    var options = this.options({
-      basePath: false,
-      flatten: false,
-      prependLESS: false
-    });
+    var options = this.options();
     grunt.verbose.writeflags(options, 'Options');
 
-    // get files
-    var files = this.file.src;
-    var destFile = this.file.dest;
-
-    if (files.length === 0) {
-      grunt.fail.warn('Unable to compile; no valid source files were found.');
-      done();
+    //quickly concat out header files into a string and overwrite the option
+    if(options.headers) {
+      options.headers = options.headers.map(function(filepath){
+        if(grunt.file.exists(filepath)) {
+          return grunt.file.read(filepath)
+        } 
+      }).join('');
     }
 
-    //check for files to prepend to each file, concat them if so
-    if(options.catFiles.length) {
-      //concat them together
-      options.prependLESS = grunt.helper('concat', options.catFiles);
-      //check it, fail and done if not
-      if(options.prependLESS.length === 0) {
-        grunt.fail.warn('Unable to prepend files; no valid source files were found.');
-        done();
-      }
-    }
+    grunt.util.async.forEachSeries(this.files, function(f, nextFileObj) {
+      var destFile = f.dest;
 
-    // hack by chris to support compiling individual files
-    if (helpers.isIndividualDest(destFile)) {
-      var basePath = helpers.findBasePath(files, options.basePath);
-      grunt.util.async.forEachSeries(files, function(file, next) {
-        var newFileDest = helpers.buildIndividualDest(destFile, file, basePath, options.flatten);
-        compileLess(file, options, function(css, err) {
-          if(!err) {
-            grunt.file.write(newFileDest, css||'');
-            grunt.log.writeln('File ' + newFileDest.cyan + ' created.');
-            next(null);
-          } else {
-            done(false);
-          }
-        });
-      }, function() {
-        done();
+      var files = f.src.filter(function(filepath) {
+        // Warn on and remove invalid source files (if nonull was set).
+        if (!grunt.file.exists(filepath)) {
+          grunt.log.warn('Source file "' + filepath + '" not found.');
+          return false;
+        } else {
+          return true;
+        }
       });
-    } else {
-      // normal execution
+
+      if (files.length === 0) {
+        // No src files, goto next target. Warn would have been issued above.
+        nextFileObj();
+      }
+
       var compiled = [];
       grunt.util.async.concatSeries(files, function(file, next) {
         compileLess(file, options, function(css, err) {
-          if(!err) {
+          if (!err) {
             compiled.push(css);
             next(null);
           } else {
-            done(false);
+            nextFileObj(false);
           }
         });
       }, function() {
-        grunt.file.write(destFile, compiled.join('\n'));
-        grunt.log.writeln('File ' + destFile.cyan + ' created.');
-        done();
+        if (compiled.length < 1) {
+          grunt.log.warn('Destination not written because compiled files were empty.');
+        } else {
+          grunt.file.write(destFile, compiled.join(grunt.util.normalizelf(grunt.util.linefeed)));
+          grunt.log.writeln('File ' + destFile.cyan + ' created.');
+        }
+        nextFileObj();
       });
-    }
+
+    }, done);
   });
 
   var compileLess = function(srcFile, options, callback) {
@@ -95,9 +83,9 @@ module.exports = function(grunt) {
 
     var parser = new less.Parser(grunt.util._.pick(options, lessOptions.parse));
 
-    //prepend header files 
-    if(options.prependLESS) {
-      srcCode = options.prependLESS + srcCode; 
+    //check for header options and prepend if set
+    if(options.headers) {
+      srcCode = options.headers + srcCode;
     }
 
     parser.parse(srcCode, function(parse_err, tree) {
@@ -127,6 +115,4 @@ module.exports = function(grunt) {
     grunt.log.error(message);
     grunt.fail.warn('Error compiling LESS.');
   };
-
-
 };

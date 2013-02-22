@@ -1,26 +1,29 @@
-# grunt-contrib-less FORK TEST
+# grunt-contrib-less
 
-> Compile LESS files to CSS.
-
+> Compile LESS files to CSS
 
 ## Getting Started
-If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
+This plugin requires Grunt `~0.4.0`
+
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install grunt-contrib-less --save-dev
 ```
 
-[grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+
+```js
+grunt.loadNpmTasks('grunt-contrib-less');
+```
+
+*This plugin was designed to work with Grunt 0.4.x. If you're still using grunt v0.3.x it's strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4), but in case you can't please use [v0.3.2](https://github.com/gruntjs/grunt-contrib-less/tree/grunt-0.3-stable).*
 
 
 ## Less task
 _Run this task with the `grunt less` command._
 
-_This task is a [multi task][] so any targets, files and options should be specified according to the [multi task][] documentation._
-[multi task]: https://github.com/gruntjs/grunt/wiki/Configuring-tasks
-
-
+Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 ### Options
 
 #### paths
@@ -28,6 +31,13 @@ Type: `String|Array`
 Default: Directory of input file.
 
 Specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
+
+#### headers
+Type: `Array`
+Default: False
+Note : Fork Content
+
+Prepend a cocatination these files to each LESS file prase, useful for variables and mixins across multiple LESS actions.
 
 #### compress
 Type: `Boolean`
@@ -87,6 +97,8 @@ less: {
 
 ## Release History
 
+ * 2013-02-14   v0.5.0   First official release for Grunt 0.4.0.
+ * 2013-01-22   v0.5.0rc7   Updating grunt/gruntplugin dependencies to rc7. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions. Remove experimental wildcard destination support. Switching to this.files api.
  * 2012-10-17   v0.3.2   Add support for dumpLineNumbers.
  * 2012-10-11   v0.3.1   Rename grunt-contrib-lib dep to grunt-lib-contrib.
  * 2012-09-23   v0.3.0   Global options depreciated Revert normalize linefeeds.
@@ -97,4 +109,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Wed Nov 28 2012 08:42:08.*
+*This file was generated on Wed Feb 20 2013 12:35:58.*
