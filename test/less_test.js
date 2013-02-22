@@ -49,5 +49,16 @@ exports.less = {
     test.equal(expected, actual, 'should yuicompress output when yuicompress option is true');
 
     test.done();
+  },
+  headers: function(test) {
+    'use strict';
+
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/headers.css');
+    var expected = grunt.file.read('test/expected/less.css');
+    test.equal(expected, actual, 'should include variables.less via an task option');
+
+    test.done();
   }
 };

@@ -1,8 +1,6 @@
-# grunt-contrib-less [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-less)
+# grunt-contrib-less
 
-> Compile LESS files to CSS.
-
-
+> Compile LESS files to CSS
 
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
@@ -33,6 +31,13 @@ Type: `String|Array`
 Default: Directory of input file.
 
 Specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
+
+#### headers
+Type: `Array`
+Default: False
+Note : Fork Content
+
+Prepend a cocatination these files to each LESS file prase, useful for variables and mixins across multiple LESS actions.
 
 #### compress
 Type: `Boolean`

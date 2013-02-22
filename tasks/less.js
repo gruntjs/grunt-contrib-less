@@ -14,7 +14,7 @@ module.exports = function(grunt) {
   var less = require('less');
 
   var lessOptions = {
-    parse: ['paths', 'optimization', 'filename', 'strictImports', 'dumpLineNumbers'],
+    parse: ['paths', 'optimization', 'filename', 'strictImports', 'dumpLineNumbers', 'headers'],
     render: ['compress', 'yuicompress']
   };
 
@@ -23,6 +23,15 @@ module.exports = function(grunt) {
 
     var options = this.options();
     grunt.verbose.writeflags(options, 'Options');
+
+    //quickly concat out header files into a string and overwrite the option
+    if(options.headers) {
+      options.headers = options.headers.map(function(filepath){
+        if(grunt.file.exists(filepath)) {
+          return grunt.file.read(filepath)
+        } 
+      }).join('');
+    }
 
     grunt.util.async.forEachSeries(this.files, function(f, nextFileObj) {
       var destFile = f.dest;
@@ -73,6 +82,11 @@ module.exports = function(grunt) {
     var srcCode = grunt.file.read(srcFile);
 
     var parser = new less.Parser(grunt.util._.pick(options, lessOptions.parse));
+
+    //check for header options and prepend if set
+    if(options.headers) {
+      srcCode = options.headers + srcCode;
+    }
 
     parser.parse(srcCode, function(parse_err, tree) {
       if (parse_err) {
