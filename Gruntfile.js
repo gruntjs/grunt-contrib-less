@@ -61,6 +61,9 @@ module.exports = function(grunt) {
         files: {
           'tmp/yuicompress.css': ['test/fixtures/style.less']
         }
+      },
+      nomatchedfiles: {
+        files: { "tmp/nomatchedfiles.css" : 'test/nonexistent/*.less' }
       }
     },
 
