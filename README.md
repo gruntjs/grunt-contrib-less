@@ -92,6 +92,7 @@ less: {
 
 ## Release History
 
+ * 2013-04-24   v0.5.1   Gracefully handle configuration without sources
  * 2013-02-14   v0.5.0   First official release for Grunt 0.4.0.
  * 2013-01-22   v0.5.0rc7   Updating grunt/gruntplugin dependencies to rc7. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions. Remove experimental wildcard destination support. Switching to this.files api.
  * 2012-10-17   v0.3.2   Add support for dumpLineNumbers.
@@ -104,4 +105,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Wed Feb 20 2013 12:35:58.*
+*This file was generated on Thu Apr 25 2013 09:47:05.*
