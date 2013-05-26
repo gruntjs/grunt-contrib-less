@@ -1,5 +1,5 @@
 v0.5.2:
-  date: 2013-0523
+  date: 2013-05-23
   changes:
     - Improve error handling.
 v0.5.1:
