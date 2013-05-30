@@ -52,6 +52,12 @@ Configures -sass-debug-info support.
 
 Accepts following values: `comments`, `mediaquery`, `all`.
 
+## relativeUrls
+Type: `boolean`
+Default: false
+
+Rewrite urls to be relative. False: do not modify urls.
+
 ## report
 Choices: `false` `'min'` `'gzip'`
 Default: `false`
