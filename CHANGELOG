@@ -1,3 +1,7 @@
+v0.6.0:
+  date: 2013-06-09
+  changes:
+    - Bump less to 1.4.0
 v0.5.2:
   date: 2013-05-23
   changes:

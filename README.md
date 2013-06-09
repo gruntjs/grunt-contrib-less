@@ -92,6 +92,7 @@ less: {
 
 ## Release History
 
+ * 2013-06-09   v0.6.0   Bump less to 1.4.0
  * 2013-05-23   v0.5.2   Improve error handling.
  * 2013-04-25   v0.5.1   Gracefully handle configuration without sources.
  * 2013-02-15   v0.5.0   First official release for Grunt 0.4.0.
@@ -106,4 +107,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Sun May 26 2013 02:52:37.*
+*This file was generated on Sun Jun 09 2013 09:38:44.*
