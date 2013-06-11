@@ -62,6 +62,24 @@ module.exports = function(grunt) {
           'tmp/yuicompress.css': ['test/fixtures/style.less']
         }
       },
+      ieCompatTrue: {
+        options: {
+          paths: ['test/fixtures/include'],
+          ieCompat: true
+        },
+        files: {
+          'tmp/ieCompatTrue.css': ['test/fixtures/ieCompat.less']
+        }
+      },
+      ieCompatFalse: {
+        options: {
+          paths: ['test/fixtures/include'],
+          ieCompat: false
+        },
+        files: {
+          'tmp/ieCompatFalse.css': ['test/fixtures/ieCompat.less']
+        }
+      },
       nofiles: {
       },
       nomatchedfiles: {
