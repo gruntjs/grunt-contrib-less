@@ -46,6 +46,14 @@ Default: False
 
 Compress output using cssmin.js
 
+#### ieCompat
+Type: `Boolean`
+Default: true
+
+Enforce the css output is compatible with Internet Explorer 8.
+
+For example, the [data-uri](https://github.com/cloudhead/less.js/pull/1086) function encodes a file in base64 encoding and embeds it into the generated CSS files as a data-URI. Because Internet Explorer 8 limits `data-uri`s to 32KB, the [ieCompat](https://github.com/cloudhead/less.js/pull/1190) option prevents `less` from exceeding this.
+
 #### optimization
 Type: `Integer`
 Default: null
@@ -107,4 +115,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Sun Jun 09 2013 09:38:44.*
+*This file was generated on Tue Jun 11 2013 16:04:30.*
