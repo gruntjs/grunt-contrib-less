@@ -49,5 +49,22 @@ exports.less = {
     test.equal(expected, actual, 'should yuicompress output when yuicompress option is true');
 
     test.done();
+  },
+  ieCompat: function(test) {
+    'use strict';
+	
+	var actual, expected;
+	
+    test.expect(2);
+
+	actual = grunt.file.read('tmp/ieCompatFalse.css');
+	expected = grunt.file.read('test/expected/ieCompatFalse.css');
+    test.equal(expected, actual, 'should generate data-uris no matter the size when ieCompat option is true');
+	
+	actual = grunt.file.read('tmp/ieCompatTrue.css');
+	expected = grunt.file.read('test/expected/ieCompatTrue.css');
+    test.equal(expected, actual, 'should generate data-uris only when under the 32KB mark for Internet Explorer 8');
+
+    test.done();
   }
 };
