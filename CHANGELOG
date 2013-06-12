@@ -1,3 +1,7 @@
+v0.6.1:
+  date: 2013-06-12
+  changes:
+    - Support ieCompat
 v0.6.0:
   date: 2013-06-09
   changes:

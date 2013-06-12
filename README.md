@@ -100,6 +100,7 @@ less: {
 
 ## Release History
 
+ * 2013-06-12   v0.6.1   Support ieCompat
  * 2013-06-09   v0.6.0   Bump less to 1.4.0
  * 2013-05-23   v0.5.2   Improve error handling.
  * 2013-04-25   v0.5.1   Gracefully handle configuration without sources.
@@ -115,4 +116,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Tue Jun 11 2013 16:04:30.*
+*This file was generated on Wed Jun 12 2013 11:22:31.*
