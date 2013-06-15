@@ -66,6 +66,7 @@ module.exports = function(grunt) {
         } else {
           grunt.file.write(destFile, compiled.join(grunt.util.normalizelf(grunt.util.linefeed)));
           grunt.log.writeln('File ' + destFile.cyan + ' created.');
+          grunt.event.emit('less.compile', files, destFile);
         }
         nextFileObj();
       });
