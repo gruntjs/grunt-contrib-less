@@ -28,11 +28,12 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "less": "~1.4.0"
+    "less": "~1.4.0",
+    "grunt-lib-contrib": "~0.6.1"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.2.0",
-    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-internal": "~0.4.2",
     "grunt": "~0.4.0"

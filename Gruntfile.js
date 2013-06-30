@@ -36,7 +36,7 @@ module.exports = function(grunt) {
         },
         files: {
           'tmp/less.css': ['test/fixtures/style.less'],
-          'tmp/concat.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
+          'tmp/concat.css': ['test/fixtures/style.less', 'test/fixtures/style2.less', 'test/fixtures/style3.less']
         }
       },
       compress: {
@@ -84,6 +84,26 @@ module.exports = function(grunt) {
       },
       nomatchedfiles: {
         files: { "tmp/nomatchedfiles.css" : 'test/nonexistent/*.less' }
+      },
+      compressReport: {
+        options: {
+          paths: ['test/fixtures/include'],
+          compress: true,
+          report: 'min'
+        },
+        files: {
+          'tmp/compressReport.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
+        }
+      },
+      yuicompressReport: {
+        options: {
+          paths: ['test/fixtures/include'],
+          yuicompress: true,
+          report: 'gzip'
+        },
+        files: {
+          'tmp/yuicompressReport.css': ['test/fixtures/style.less', 'test/fixtures/style2.less', 'test/fixtures/style3.less']
+        }
       }
     },
 
