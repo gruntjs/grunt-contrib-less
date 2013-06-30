@@ -10,6 +10,9 @@
 
 module.exports = function(grunt) {
 
+  // Internal lib.
+  var contrib = require('grunt-lib-contrib').init(grunt);
+
   var path = require('path');
   var less = require('less');
 
@@ -50,22 +53,31 @@ module.exports = function(grunt) {
         return nextFileObj();
       }
 
-      var compiled = [];
+      var compiledMax = [], compiledMin = [];
       grunt.util.async.concatSeries(files, function(file, next) {
         compileLess(file, options, function(css, err) {
           if (!err) {
-            compiled.push(css);
+            if (css.max) {
+              compiledMax.push(css.max);
+            }
+            compiledMin.push(css.min);
             next();
           } else {
             nextFileObj(err);
           }
         });
       }, function() {
-        if (compiled.length < 1) {
+        if (compiledMin.length < 1) {
           grunt.log.warn('Destination not written because compiled files were empty.');
         } else {
-          grunt.file.write(destFile, compiled.join(grunt.util.normalizelf(grunt.util.linefeed)));
+          var min = compiledMin.join(options.yuicompress ? '' : grunt.util.normalizelf(grunt.util.linefeed));
+          grunt.file.write(destFile, min);
           grunt.log.writeln('File ' + destFile.cyan + ' created.');
+
+          // ...and report some size information.
+          if (options.report) {
+            contrib.minMaxInfo(min, compiledMax.join(grunt.util.normalizelf(grunt.util.linefeed)), options.report);
+          }
         }
         nextFileObj();
       });
@@ -89,7 +101,7 @@ module.exports = function(grunt) {
       }
 
       try {
-        css = tree.toCSS(grunt.util._.pick(options, lessOptions.render));
+        css = minify(tree, grunt.util._.pick(options, lessOptions.render));
         callback(css, null);
       } catch (e) {
         lessError(e);
@@ -108,5 +120,15 @@ module.exports = function(grunt) {
 
     grunt.log.error(message);
     grunt.fail.warn('Error compiling LESS.');
+  };
+
+  var minify = function (tree, options) {
+    var result = {
+      min: tree.toCSS(options)
+    };
+    if (!grunt.util._.isEmpty(options)) {
+      result.max = tree.toCSS();
+    }
+    return result;
   };
 };

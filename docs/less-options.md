@@ -51,3 +51,17 @@ Default: false
 Configures -sass-debug-info support.
 
 Accepts following values: `comments`, `mediaquery`, `all`.
+
+## report
+Choices: `false` `'min'` `'gzip'`
+Default: `false`
+
+Either do not report anything, report only minification result, or report minification and gzip results. This is useful to see exactly how well Less is performing, but using `'gzip'` can add 5-10x runtime task execution.
+
+Example ouput using `'gzip'`:
+
+```
+Original: 198444 bytes.
+Minified: 101615 bytes.
+Gzipped:  20084 bytes.
+```

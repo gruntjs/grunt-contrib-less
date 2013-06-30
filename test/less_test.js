@@ -42,27 +42,33 @@ exports.less = {
   yuicompress: function(test) {
     'use strict';
 
-    test.expect(1);
+    var actual, expected;
 
-    var actual = grunt.file.read('tmp/yuicompress.css');
-    var expected = grunt.file.read('test/expected/yuicompress.css');
+    test.expect(2);
+
+    actual = grunt.file.read('tmp/yuicompress.css');
+    expected = grunt.file.read('test/expected/yuicompress.css');
     test.equal(expected, actual, 'should yuicompress output when yuicompress option is true');
+
+    actual = grunt.file.read('tmp/yuicompressReport.css');
+    expected = grunt.file.read('test/expected/yuicompressReport.css');
+    test.equal(expected, actual, 'should yuicompress output when yuicompress option is true and concating is enable');
 
     test.done();
   },
   ieCompat: function(test) {
     'use strict';
-	
-	var actual, expected;
-	
+
+    var actual, expected;
+
     test.expect(2);
 
-	actual = grunt.file.read('tmp/ieCompatFalse.css');
-	expected = grunt.file.read('test/expected/ieCompatFalse.css');
+    actual = grunt.file.read('tmp/ieCompatFalse.css');
+    expected = grunt.file.read('test/expected/ieCompatFalse.css');
     test.equal(expected, actual, 'should generate data-uris no matter the size when ieCompat option is true');
-	
-	actual = grunt.file.read('tmp/ieCompatTrue.css');
-	expected = grunt.file.read('test/expected/ieCompatTrue.css');
+
+    actual = grunt.file.read('tmp/ieCompatTrue.css');
+    expected = grunt.file.read('test/expected/ieCompatTrue.css');
     test.equal(expected, actual, 'should generate data-uris only when under the 32KB mark for Internet Explorer 8');
 
     test.done();
