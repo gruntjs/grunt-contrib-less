@@ -70,7 +70,6 @@ module.exports = function(grunt) {
         if (compiledMin.length < 1) {
           grunt.log.warn('Destination not written because compiled files were empty.');
         } else {
-          console.log(options.yuicompress);
           var min = compiledMin.join(options.yuicompress ? '' : grunt.util.normalizelf(grunt.util.linefeed));
           grunt.file.write(destFile, min);
           grunt.log.writeln('File ' + destFile.cyan + ' created.');
