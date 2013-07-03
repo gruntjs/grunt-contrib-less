@@ -106,6 +106,7 @@ less: {
 
 ## Release History
 
+ * 2013-07-03   v0.6.2   support syncImport
  * 2013-06-12   v0.6.1   Support ieCompat
  * 2013-06-09   v0.6.0   Bump less to 1.4.0
  * 2013-05-23   v0.5.2   Improve error handling.
@@ -122,4 +123,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Wed Jun 12 2013 11:22:31.*
+*This file was generated on Wed Jul 03 2013 14:55:40.*

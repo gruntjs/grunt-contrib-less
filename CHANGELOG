@@ -1,3 +1,7 @@
+v0.6.2:
+  date: 2013-07-03
+  changes:
+    - support syncImport
 v0.6.1:
   date: 2013-06-12
   changes:
