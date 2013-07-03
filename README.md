@@ -66,6 +66,12 @@ Default: False
 
 Force evaluation of imports.
 
+#### syncImport
+Type: `Boolean`
+Default: False
+
+Read @import'ed files synchronously from disk.
+
 #### dumpLineNumbers
 Type: `String`
 Default: false
