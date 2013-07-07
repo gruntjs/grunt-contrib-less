@@ -120,6 +120,7 @@ less: {
 
 ## Release History
 
+ * 2013-07-06   v0.6.3   Add report option for minification and gzip results
  * 2013-07-03   v0.6.2   support syncImport
  * 2013-06-12   v0.6.1   Support ieCompat
  * 2013-06-09   v0.6.0   Bump less to 1.4.0
@@ -137,4 +138,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Wed Jul 03 2013 14:55:40.*
+*This file was generated on Sat Jul 06 2013 20:52:15.*
