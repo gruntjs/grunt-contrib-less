@@ -2,7 +2,7 @@
  * grunt-contrib-less
  * http://gruntjs.com/
  *
- * Copyright (c) 2012 Tyler Kellen, contributors
+ * Copyright (c) 2013 Tyler Kellen, contributors
  * Licensed under the MIT license.
  */
 
