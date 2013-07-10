@@ -126,6 +126,7 @@ less: {
 
 ## Release History
 
+ * 2013-07-09   v0.6.4   Support relativeUrls option
  * 2013-07-06   v0.6.3   Add report option for minification and gzip results
  * 2013-07-03   v0.6.2   support syncImport
  * 2013-06-12   v0.6.1   Support ieCompat
@@ -144,4 +145,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Sat Jul 06 2013 20:52:15.*
+*This file was generated on Tue Jul 09 2013 22:00:30.*
