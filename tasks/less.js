@@ -54,7 +54,11 @@ module.exports = function(grunt) {
         return nextFileObj();
       }
 
-      var compiledMax = [], compiledMin = [banner];
+      var compiledMax = [], compiledMin = [], minFileNum = 1;
+      if (banner) {
+        compiledMin.push(banner);
+        ++minFileNum;
+      }
       grunt.util.async.concatSeries(files, function(file, next) {
         compileLess(file, options, function(css, err) {
           if (!err) {
@@ -68,7 +72,7 @@ module.exports = function(grunt) {
           }
         });
       }, function() {
-        if (compiledMin.length < 2) {
+        if (compiledMin.length < minFileNum) {
           grunt.log.warn('Destination not written because compiled files were empty.');
         } else {
           var min = compiledMin.join(options.yuicompress ? '' : grunt.util.normalizelf(grunt.util.linefeed));
