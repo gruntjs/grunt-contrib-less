@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     grunt.verbose.writeflags(options, 'Options');
 
     if (this.files.length < 1) {
-      grunt.log.warn('Destination not written because no source files were provided.');
+      grunt.verbose.warn('Destination not written because no source files were provided.');
     }
 
     grunt.util.async.forEachSeries(this.files, function(f, nextFileObj) {
