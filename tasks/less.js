@@ -17,7 +17,7 @@ module.exports = function(grunt) {
   var less = require('less');
 
   var lessOptions = {
-    parse: ['paths', 'optimization', 'filename', 'strictImports', 'syncImport', 'dumpLineNumbers', 'relativeUrls'],
+    parse: ['paths', 'optimization', 'filename', 'strictImports', 'syncImport', 'dumpLineNumbers', 'relativeUrls', 'rootpath'],
     render: ['compress', 'yuicompress', 'ieCompat']
   };
 
