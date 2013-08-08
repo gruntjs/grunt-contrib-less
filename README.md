@@ -126,6 +126,7 @@ less: {
 
 ## Release History
 
+ * 2013-08-08   v0.6.5   Support strictMath option Support rootpath parse option
  * 2013-07-09   v0.6.4   Support relativeUrls option
  * 2013-07-06   v0.6.3   Add report option for minification and gzip results
  * 2013-07-03   v0.6.2   support syncImport
@@ -145,4 +146,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Tue Jul 09 2013 22:00:30.*
+*This file was generated on Thu Aug 08 2013 09:12:41.*

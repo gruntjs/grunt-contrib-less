@@ -1,3 +1,8 @@
+v0.6.5:
+  date: 2013-08-08
+  changes:
+    - Support strictMath option
+    - Support rootpath parse option
 v0.6.4:
   date: 2013-07-09
   changes:
