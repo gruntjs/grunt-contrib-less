@@ -1,3 +1,7 @@
+v0.7.0:
+  date: 2013-08-08
+  changes:
+    - Downgrade no source files warning to only in verbose mode
 v0.6.5:
   date: 2013-08-08
   changes:

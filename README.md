@@ -126,6 +126,7 @@ less: {
 
 ## Release History
 
+ * 2013-08-08   v0.7.0   Downgrade no source files warning to only in verbose mode
  * 2013-08-08   v0.6.5   Support strictMath option Support rootpath parse option
  * 2013-07-09   v0.6.4   Support relativeUrls option
  * 2013-07-06   v0.6.3   Add report option for minification and gzip results
@@ -146,4 +147,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Thu Aug 08 2013 09:12:41.*
+*This file was generated on Thu Aug 08 2013 10:17:41.*
