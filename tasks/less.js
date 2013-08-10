@@ -96,7 +96,7 @@ module.exports = function(grunt) {
 
     parser.parse(srcCode, function(parse_err, tree) {
       if (parse_err) {
-        lessError(parse_err);
+        lessError(parse_err, srcFile);
         callback('',true);
       }
 
@@ -104,7 +104,7 @@ module.exports = function(grunt) {
         css = minify(tree, grunt.util._.pick(options, lessOptions.render));
         callback(css, null);
       } catch (e) {
-        lessError(e);
+        lessError(e, srcFile);
         callback(css, true);
       }
     });
@@ -115,11 +115,11 @@ module.exports = function(grunt) {
     return e.filename + ': ' + pos + ' ' + e.message;
   };
 
-  var lessError = function(e) {
+  var lessError = function(e, file) {
     var message = less.formatError ? less.formatError(e) : formatLessError(e);
 
     grunt.log.error(message);
-    grunt.fail.warn('Error compiling LESS.');
+    grunt.fail.warn('Error compiling '+file);
   };
 
   var minify = function (tree, options) {
