@@ -24,7 +24,8 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
     var done = this.async();
 
-    var options = this.options();
+    var options = this.options(),
+        banner  = options.banner || '';
     grunt.verbose.writeflags(options, 'Options');
 
     if (this.files.length < 1) {
@@ -53,7 +54,11 @@ module.exports = function(grunt) {
         return nextFileObj();
       }
 
-      var compiledMax = [], compiledMin = [];
+      var compiledMax = [], compiledMin = [], minFileNum = 1;
+      if (banner) {
+        compiledMin.push(banner);
+        ++minFileNum;
+      }
       grunt.util.async.concatSeries(files, function(file, next) {
         compileLess(file, options, function(css, err) {
           if (!err) {
@@ -67,7 +72,7 @@ module.exports = function(grunt) {
           }
         });
       }, function() {
-        if (compiledMin.length < 1) {
+        if (compiledMin.length < minFileNum) {
           grunt.log.warn('Destination not written because compiled files were empty.');
         } else {
           var min = compiledMin.join(options.yuicompress ? '' : grunt.util.normalizelf(grunt.util.linefeed));
