@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 
   var lessOptions = {
     parse: ['paths', 'optimization', 'filename', 'strictImports', 'syncImport', 'dumpLineNumbers', 'relativeUrls', 'rootpath'],
-    render: ['compress', 'yuicompress', 'ieCompat', 'strictMath']
+    render: ['compress', 'yuicompress', 'ieCompat', 'strictMath', 'strictUnits']
   };
 
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
