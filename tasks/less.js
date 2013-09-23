@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 
   var lessOptions = {
     parse: ['paths', 'optimization', 'filename', 'strictImports', 'syncImport', 'dumpLineNumbers', 'relativeUrls', 'rootpath'],
-    render: ['compress', 'yuicompress', 'ieCompat', 'strictMath']
+    render: ['compress', 'yuicompress', 'ieCompat', 'strictMath', 'banner']
   };
 
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
@@ -71,6 +71,11 @@ module.exports = function(grunt) {
           grunt.log.warn('Destination not written because compiled files were empty.');
         } else {
           var min = compiledMin.join(options.yuicompress ? '' : grunt.util.normalizelf(grunt.util.linefeed));
+
+          if(options.banner && options.banner.length > 0) {
+            min = options.banner + min;
+          }
+
           grunt.file.write(destFile, min);
           grunt.log.writeln('File ' + destFile.cyan + ' created.');
 
