@@ -100,6 +100,13 @@ module.exports = function(grunt) {
         callback('',true);
       }
 
+      // Load custom functions
+      if(options.customFunctions) {
+        Object.keys(options.customFunctions).forEach(function(name) {
+          registerCustomFunctionInLess(less.tree, name.toLowerCase(), options.customFunctions[name]);
+        });
+      }
+
       try {
         css = minify(tree, grunt.util._.pick(options, lessOptions.render));
         callback(css, null);
@@ -130,5 +137,32 @@ module.exports = function(grunt) {
       result.max = tree.toCSS();
     }
     return result;
+  };
+
+  var registerCustomFunctionInLess = function(tree, name, fn) {
+    // tree.functions[name] = fn;
+
+    if (!tree.TextOutput) {
+      tree.TextOutput = function (value) {
+          this.value = value;
+      };
+      tree.TextOutput.prototype = {
+          type: "TextOutput",
+          toCSS: function (env) {
+              return this.value;
+          },
+          genCSS: function (env, output) {
+              output.add(this.toCSS(env));
+          },
+          eval: function () { return this }
+      };  
+    }
+
+    tree.functions[name] = function () {
+      var args = [].slice.call(arguments);
+
+      var returnOutput = fn.apply(this, args);
+      return new tree.TextOutput(returnOutput);
+    }; 
   };
 };

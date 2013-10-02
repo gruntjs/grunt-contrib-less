@@ -86,6 +86,13 @@ Default: false
 
 Rewrite urls to be relative. False: do not modify urls.
 
+#### customFunctions
+Type: `object`
+Default: none
+
+Define custom functions to be available within your LESS stylesheets. The function's name must be lowercase and 
+return a primitive type (not an object or array);
+
 #### report
 Choices: `false` `'min'` `'gzip'`
 Default: `false`
@@ -115,7 +122,13 @@ less: {
   production: {
     options: {
       paths: ["assets/css"],
-      yuicompress: true
+      yuicompress: true,
+      customFuntions: {
+        'my-func': function(arg1, arg2) {
+          // See LESS documentation for more information on the syntax of the arguments passed
+          return (((arg1.value * 1) + (arg2.value))) + arg1.unit.numerator[0];
+        }
+      }
     },
     files: {
       "path/to/result.css": "path/to/source.less"

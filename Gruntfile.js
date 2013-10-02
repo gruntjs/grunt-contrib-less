@@ -104,6 +104,21 @@ module.exports = function(grunt) {
         files: {
           'tmp/yuicompressReport.css': ['test/fixtures/style.less', 'test/fixtures/style2.less', 'test/fixtures/style3.less']
         }
+      },
+      testCustomFunctions: {
+        options: {
+          customFunctions: {
+            'get-color': function(color) {
+              return 'red';
+            },
+            'multiple-args': function(arg1, arg2) {
+              return (((arg1.value * 1) + (arg2.value))) + arg1.unit.numerator[0];
+            }
+          }
+        },
+        files: {
+          'tmp/customFunctions.css': ['test/fixtures/customFunctions.less']
+        }
       }
     },
 
