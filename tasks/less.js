@@ -100,6 +100,17 @@ module.exports = function(grunt) {
         callback('',true);
       }
 
+      // Load custom functions
+      if (options.customFunctions) {
+        Object.keys(options.customFunctions).forEach(function(name) {
+          less.tree.functions[name.toLowerCase()] = function() {
+            var args = [].slice.call(arguments);
+            args.unshift(less);
+            return new less.tree.Anonymous(options.customFunctions[name].apply(this, args));
+          };
+        });
+      }
+
       try {
         css = minify(tree, grunt.util._.pick(options, lessOptions.render));
         callback(css, null);

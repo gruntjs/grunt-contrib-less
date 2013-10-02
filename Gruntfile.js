@@ -116,6 +116,24 @@ module.exports = function(grunt) {
         src: 'test/fixtures/style3.less',
         dest: 'tmp/sourceMap.css',
       },
+      testCustomFunctions: {
+        options: {
+          customFunctions: {
+            'get-color': function(less, color) {
+              return 'red';
+            },
+            'multiple-args': function(less, arg1, arg2) {
+              return (((arg1.value * 1) + (arg2.value))) + arg1.unit.numerator[0];
+            },
+            'string-result': function(less, arg1) {
+                return "\"Hello\"";
+            }
+          }
+        },
+        files: {
+          'tmp/customFunctions.css': ['test/fixtures/customFunctions.less']
+        }
+      },
     },
 
     // Unit tests.

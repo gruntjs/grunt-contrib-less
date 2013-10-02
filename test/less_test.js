@@ -92,4 +92,17 @@ exports.less = {
     test.ok(actual.indexOf('/*# sourceMappingURL=') !== -1, 'compiled file should include a source map.');
     test.done();
   },
+  customFunctions: function(test) {
+    'use strict';
+
+    var actual, expected;
+
+    test.expect(1);
+    
+    actual = grunt.file.read('tmp/customFunctions.css');
+    expected = grunt.file.read('test/expected/customFunctions.css');
+    test.equal(expected, actual, 'should execute custom functions');
+
+    test.done();
+  }
 };
