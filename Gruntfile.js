@@ -108,10 +108,10 @@ module.exports = function(grunt) {
       testCustomFunctions: {
         options: {
           customFunctions: {
-            'get-color': function(color) {
+            'get-color': function(less, color) {
               return 'red';
             },
-            'multiple-args': function(arg1, arg2) {
+            'multiple-args': function(less, arg1, arg2) {
               return (((arg1.value * 1) + (arg2.value))) + arg1.unit.numerator[0];
             }
           }

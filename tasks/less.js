@@ -139,8 +139,9 @@ module.exports = function(grunt) {
     return result;
   };
 
+  // Taken from https://github.com/royriojas/grunt-ez-frontend
+  // Copyright (c) 2013 Roy Riojas - MIT License
   var registerCustomFunctionInLess = function(tree, name, fn) {
-    // tree.functions[name] = fn;
 
     if (!tree.TextOutput) {
       tree.TextOutput = function (value) {
@@ -160,6 +161,7 @@ module.exports = function(grunt) {
 
     tree.functions[name] = function () {
       var args = [].slice.call(arguments);
+      args.unshift(less);
 
       var returnOutput = fn.apply(this, args);
       return new tree.TextOutput(returnOutput);
