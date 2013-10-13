@@ -113,6 +113,9 @@ module.exports = function(grunt) {
             },
             'multiple-args': function(less, arg1, arg2) {
               return (((arg1.value * 1) + (arg2.value))) + arg1.unit.numerator[0];
+            },
+            'string-result': function(less, arg1) {
+                return "\"Hello\"";
             }
           }
         },
