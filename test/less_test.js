@@ -39,20 +39,20 @@ exports.less = {
 
     test.done();
   },
-  yuicompress: function(test) {
+  cleancss: function(test) {
     'use strict';
 
     var actual, expected;
 
     test.expect(2);
 
-    actual = grunt.file.read('tmp/yuicompress.css');
-    expected = grunt.file.read('test/expected/yuicompress.css');
-    test.equal(expected, actual, 'should yuicompress output when yuicompress option is true');
+    actual = grunt.file.read('tmp/cleancss.css');
+    expected = grunt.file.read('test/expected/cleancss.css');
+    test.equal(expected, actual, 'should cleancss output when cleancss option is true');
 
-    actual = grunt.file.read('tmp/yuicompressReport.css');
-    expected = grunt.file.read('test/expected/yuicompressReport.css');
-    test.equal(expected, actual, 'should yuicompress output when yuicompress option is true and concating is enable');
+    actual = grunt.file.read('tmp/cleancssReport.css');
+    expected = grunt.file.read('test/expected/cleancssReport.css');
+    test.equal(expected, actual, 'should cleancss output when cleancss option is true and concating is enable');
 
     test.done();
   },

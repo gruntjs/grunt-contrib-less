@@ -53,13 +53,13 @@ module.exports = function(grunt) {
           'tmp/nopaths.css': ['test/fixtures/nopaths.less']
         }
       },
-      yuicompress: {
+      cleancss: {
         options: {
           paths: ['test/fixtures/include'],
-          yuicompress: true
+          cleancss: true
         },
         files: {
-          'tmp/yuicompress.css': ['test/fixtures/style.less']
+          'tmp/cleancss.css': ['test/fixtures/style.less']
         }
       },
       ieCompatTrue: {
@@ -95,14 +95,14 @@ module.exports = function(grunt) {
           'tmp/compressReport.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
         }
       },
-      yuicompressReport: {
+      cleancssReport: {
         options: {
           paths: ['test/fixtures/include'],
-          yuicompress: true,
+          cleancss: true,
           report: 'gzip'
         },
         files: {
-          'tmp/yuicompressReport.css': ['test/fixtures/style.less', 'test/fixtures/style2.less', 'test/fixtures/style3.less']
+          'tmp/cleancssReport.css': ['test/fixtures/style.less', 'test/fixtures/style2.less', 'test/fixtures/style3.less']
         }
       }
     },
