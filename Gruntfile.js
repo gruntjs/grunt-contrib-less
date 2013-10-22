@@ -104,6 +104,24 @@ module.exports = function(grunt) {
         files: {
           'tmp/cleancssReport.css': ['test/fixtures/style.less', 'test/fixtures/style2.less', 'test/fixtures/style3.less']
         }
+      },
+      testCustomFunctions: {
+        options: {
+          customFunctions: {
+            'get-color': function(less, color) {
+              return 'red';
+            },
+            'multiple-args': function(less, arg1, arg2) {
+              return (((arg1.value * 1) + (arg2.value))) + arg1.unit.numerator[0];
+            },
+            'string-result': function(less, arg1) {
+                return "\"Hello\"";
+            }
+          }
+        },
+        files: {
+          'tmp/customFunctions.css': ['test/fixtures/customFunctions.less']
+        }
       }
     },
 
