@@ -12,11 +12,11 @@ Default: False
 
 Compress output by removing some whitespaces.
 
-## yuicompress
+## cleancss
 Type: `Boolean`
 Default: False
 
-Compress output using cssmin.js
+Compress output using [clean-css](https://npmjs.org/package/clean-css).
 
 ## ieCompat
 Type: `Boolean`
@@ -37,6 +37,18 @@ Type: `Boolean`
 Default: False
 
 Force evaluation of imports.
+
+## strictMath
+Type: `Boolean`
+Default: False
+
+When enabled, math is required to be in parenthesis.
+
+## strictUnits
+Type: `Boolean`
+Default: False
+
+When enabled, less will validate the units used (e.g. 4px/2px = 2, not 2px and 4em/2px throws an error).
 
 ## syncImport
 Type: `Boolean`
