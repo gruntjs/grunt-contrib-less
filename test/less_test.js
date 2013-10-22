@@ -72,5 +72,18 @@ exports.less = {
     test.equal(expected, actual, 'should generate data-uris only when under the 32KB mark for Internet Explorer 8');
 
     test.done();
+  },
+  variablesAsLess: function(test) {
+    'use strict';
+
+    var actual, expected;
+
+    test.expect(1);
+
+    actual = grunt.file.read('tmp/variablesAsLess.css');
+    expected = grunt.file.read('test/expected/variablesAsLess.css');
+    test.equal(expected, actual, 'should process css files imported less files');
+
+    test.done();
   }
 };

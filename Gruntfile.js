@@ -104,7 +104,12 @@ module.exports = function(grunt) {
         files: {
           'tmp/cleancssReport.css': ['test/fixtures/style.less', 'test/fixtures/style2.less', 'test/fixtures/style3.less']
         }
-      }
+      },
+      variablesAsLess: {
+        files: {
+          'tmp/variablesAsLess.css': ['test/fixtures/variablesAsLess.less']
+        },
+      },
     },
 
     // Unit tests.
