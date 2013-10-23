@@ -85,5 +85,11 @@ exports.less = {
     test.equal(expected, actual, 'should process css files imported less files');
 
     test.done();
-  }
+  },
+  sourceMap: function(test) {
+    test.expect(1);
+    var actual = grunt.file.read('tmp/sourceMap.css');
+    test.ok(actual.indexOf('/*# sourceMappingURL=') !== -1, 'compiled file should include a source map.');
+    test.done();
+  },
 };

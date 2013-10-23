@@ -83,3 +83,9 @@ Original: 198444 bytes.
 Minified: 101615 bytes.
 Gzipped:  20084 bytes.
 ```
+
+## sourceMap
+Type: `Boolean`
+Default: False
+
+Enable source maps.

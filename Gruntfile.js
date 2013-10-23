@@ -106,9 +106,15 @@ module.exports = function(grunt) {
         }
       },
       variablesAsLess: {
-        files: {
-          'tmp/variablesAsLess.css': ['test/fixtures/variablesAsLess.less']
+        src: 'test/fixtures/variablesAsLess.less',
+        dest: 'tmp/variablesAsLess.css',
+      },
+      sourceMap: {
+        options: {
+          sourceMap: true,
         },
+        src: 'test/fixtures/style3.less',
+        dest: 'tmp/sourceMap.css',
       },
     },
 
