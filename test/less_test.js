@@ -1,10 +1,10 @@
+'use strict';
+
 var grunt = require('grunt');
 var fs = require('fs');
 
 exports.less = {
   compile: function(test) {
-    'use strict';
-
     test.expect(2);
 
     var actual = grunt.file.read('tmp/less.css');
@@ -18,8 +18,6 @@ exports.less = {
     test.done();
   },
   compress: function(test) {
-    'use strict';
-
     test.expect(1);
 
     var actual = grunt.file.read('tmp/compress.css');
@@ -29,8 +27,6 @@ exports.less = {
     test.done();
   },
   nopaths: function(test) {
-    'use strict';
-
     test.expect(1);
 
     var actual = grunt.file.read('tmp/nopaths.css');
@@ -40,14 +36,10 @@ exports.less = {
     test.done();
   },
   cleancss: function(test) {
-    'use strict';
-
-    var actual, expected;
-
     test.expect(2);
 
-    actual = grunt.file.read('tmp/cleancss.css');
-    expected = grunt.file.read('test/expected/cleancss.css');
+    var actual = grunt.file.read('tmp/cleancss.css');
+    var expected = grunt.file.read('test/expected/cleancss.css');
     test.equal(expected, actual, 'should cleancss output when cleancss option is true');
 
     actual = grunt.file.read('tmp/cleancssReport.css');
@@ -57,14 +49,10 @@ exports.less = {
     test.done();
   },
   ieCompat: function(test) {
-    'use strict';
-
-    var actual, expected;
-
     test.expect(2);
 
-    actual = grunt.file.read('tmp/ieCompatFalse.css');
-    expected = grunt.file.read('test/expected/ieCompatFalse.css');
+    var actual = grunt.file.read('tmp/ieCompatFalse.css');
+    var expected = grunt.file.read('test/expected/ieCompatFalse.css');
     test.equal(expected, actual, 'should generate data-uris no matter the size when ieCompat option is true');
 
     actual = grunt.file.read('tmp/ieCompatTrue.css');
@@ -74,33 +62,27 @@ exports.less = {
     test.done();
   },
   variablesAsLess: function(test) {
-    'use strict';
-
-    var actual, expected;
-
     test.expect(1);
 
-    actual = grunt.file.read('tmp/variablesAsLess.css');
-    expected = grunt.file.read('test/expected/variablesAsLess.css');
+    var actual = grunt.file.read('tmp/variablesAsLess.css');
+    var expected = grunt.file.read('test/expected/variablesAsLess.css');
     test.equal(expected, actual, 'should process css files imported less files');
 
     test.done();
   },
   sourceMap: function(test) {
     test.expect(1);
+
     var actual = grunt.file.read('tmp/sourceMap.css');
     test.ok(actual.indexOf('/*# sourceMappingURL=') !== -1, 'compiled file should include a source map.');
+
     test.done();
   },
   customFunctions: function(test) {
-    'use strict';
-
-    var actual, expected;
-
     test.expect(1);
-    
-    actual = grunt.file.read('tmp/customFunctions.css');
-    expected = grunt.file.read('test/expected/customFunctions.css');
+
+    var actual = grunt.file.read('tmp/customFunctions.css');
+    var expected = grunt.file.read('test/expected/customFunctions.css');
     test.equal(expected, actual, 'should execute custom functions');
 
     test.done();
