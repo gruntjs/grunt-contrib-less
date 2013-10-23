@@ -1,4 +1,4 @@
-# grunt-contrib-less [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
+# grunt-contrib-less v0.8.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
 
 > Compile LESS files to CSS.
 
@@ -29,65 +29,77 @@ Task targets, files and options may be specified according to the grunt [Configu
 ### Options
 
 #### paths
-Type: `String|Array`
+Type: `String|Array`  
 Default: Directory of input file.
 
 Specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
 
 #### compress
-Type: `Boolean`
-Default: False
+Type: `Boolean`  
+Default: `false`
 
 Compress output by removing some whitespaces.
 
-#### yuicompress
-Type: `Boolean`
-Default: False
+#### cleancss
+Type: `Boolean`  
+Default: `false`
 
-Compress output using cssmin.js
+Compress output using [clean-css](https://npmjs.org/package/clean-css).
 
 #### ieCompat
-Type: `Boolean`
-Default: true
+Type: `Boolean`  
+Default: `true`
 
 Enforce the css output is compatible with Internet Explorer 8.
 
 For example, the [data-uri](https://github.com/cloudhead/less.js/pull/1086) function encodes a file in base64 encoding and embeds it into the generated CSS files as a data-URI. Because Internet Explorer 8 limits `data-uri`s to 32KB, the [ieCompat](https://github.com/cloudhead/less.js/pull/1190) option prevents `less` from exceeding this.
 
 #### optimization
-Type: `Integer`
-Default: null
+Type: `Integer`  
+Default: `null`
 
 Set the parser's optimization level. The lower the number, the less nodes it will create in the tree. This could matter for debugging, or if you want to access the individual nodes in the tree.
 
 #### strictImports
-Type: `Boolean`
-Default: False
+Type: `Boolean`  
+Default: `false`
 
 Force evaluation of imports.
 
+#### strictMath
+Type: `Boolean`  
+Default: `false`
+
+When enabled, math is required to be in parenthesis.
+
+#### strictUnits
+Type: `Boolean`  
+Default: `false`
+
+When enabled, less will validate the units used (e.g. 4px/2px = 2, not 2px and 4em/2px throws an error).
+
 #### syncImport
-Type: `Boolean`
-Default: False
+Type: `Boolean`  
+Default: `false`
 
 Read @import'ed files synchronously from disk.
 
 #### dumpLineNumbers
-Type: `String`
-Default: false
+Type: `String`  
+Default: `false`
 
 Configures -sass-debug-info support.
 
 Accepts following values: `comments`, `mediaquery`, `all`.
 
 #### relativeUrls
-Type: `boolean`
-Default: false
+Type: `Boolean`  
+Default: `false`
 
-Rewrite urls to be relative. False: do not modify urls.
+Rewrite urls to be relative. false: do not modify urls.
 
 #### customFunctions
-Type: `object`
+Type: `Object`  
 Default: none
 
 Define custom functions to be available within your LESS stylesheets. The function's name must be lowercase and 
@@ -96,7 +108,7 @@ object, and subsequent arguments are from the less function call. Values passed 
 primitive types, rather types defined within less. See the LESS documentation for more information on the available types.
 
 #### report
-Choices: `false` `'min'` `'gzip'`
+Choices: `false` `'min'` `'gzip'`  
 Default: `false`
 
 Either do not report anything, report only minification result, or report minification and gzip results. This is useful to see exactly how well Less is performing, but using `'gzip'` can add 5-10x runtime task execution.
@@ -108,6 +120,12 @@ Original: 198444 bytes.
 Minified: 101615 bytes.
 Gzipped:  20084 bytes.
 ```
+
+#### sourceMap
+Type: `Boolean`  
+Default: `false`
+
+Enable source maps.
 
 ### Usage Examples
 
@@ -124,13 +142,7 @@ less: {
   production: {
     options: {
       paths: ["assets/css"],
-      yuicompress: true,
-      customFunctions: {
-        'my-func': function(less, arg1, arg2) {
-          // See LESS documentation for more information on the syntax of the arguments passed
-          return ((arg1.value * 1) + (arg2.value * 1)) + arg1.unit.numerator[0];
-        }
-      }
+      yuicompress: true
     },
     files: {
       "path/to/result.css": "path/to/source.less"
@@ -141,6 +153,7 @@ less: {
 
 ## Release History
 
+ * 2013-10-22   v0.8.0   Upgrade to LESS 1.5 Support strictUnits option Support sourceMap option Add customFunctions option for defining custom functions within LESS Output the source file name on error
  * 2013-08-08   v0.7.0   Downgrade no source files warning to only in verbose mode
  * 2013-08-08   v0.6.5   Support strictMath option Support rootpath parse option
  * 2013-07-09   v0.6.4   Support relativeUrls option
@@ -162,4 +175,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Thu Aug 08 2013 10:17:41.*
+*This file was generated on Tue Oct 22 2013 21:13:27.*

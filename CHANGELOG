@@ -1,3 +1,11 @@
+v0.8.0:
+  date: 2013-10-22
+  changes:
+    - Upgrade to LESS 1.5
+    - Support strictUnits option
+    - Support sourceMap option
+    - Add customFunctions option for defining custom functions within LESS
+    - Output the source file name on error
 v0.7.0:
   date: 2013-08-08
   changes:
