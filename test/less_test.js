@@ -78,6 +78,30 @@ exports.less = {
 
     test.done();
   },
+  sourceMapFilename: function(test) {
+    test.expect(1);
+
+    var sourceMap = grunt.file.readJSON('tmp/sourceMapFilename.css.map');
+    test.equal(sourceMap.sources[0], 'test/fixtures/style3.less', 'should generate a sourceMap with the less file reference.');
+
+    test.done();
+  },
+  sourceMapBasepath: function(test) {
+    test.expect(1);
+
+    var sourceMap = grunt.file.readJSON('tmp/sourceMapBasepath.css.map');
+    test.equal(sourceMap.sources[0], 'style3.less', 'should use the basepath for the less file references in the generated sourceMap.');
+
+    test.done();
+  },
+  sourceMapRootpath: function(test) {
+    test.expect(1);
+
+    var sourceMap = grunt.file.readJSON('tmp/sourceMapRootpath.css.map');
+    test.equal(sourceMap.sources[0], 'http://example.org/test/fixtures/style3.less', 'should use the rootpath for the less file references in the generated sourceMap.');
+
+    test.done();
+  },
   customFunctions: function(test) {
     test.expect(1);
 
