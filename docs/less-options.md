@@ -98,3 +98,21 @@ Type: `Boolean`
 Default: `false`
 
 Enable source maps.
+
+## sourceMapFilename
+Type: `String`  
+Default: none
+
+Write the source map to a separate file with the given filename.
+
+## sourceMapBasepath
+Type: `String`  
+Default: none
+
+Sets the base path for the less file paths in the source map.
+
+## sourceMapRootpath
+Type: `String`  
+Default: none
+
+Adds this path onto the less file paths in the source map.
