@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 
   var lessOptions = {
     parse: ['paths', 'optimization', 'filename', 'strictImports', 'syncImport', 'dumpLineNumbers', 'relativeUrls', 'rootpath'],
-    render: ['compress', 'cleancss', 'ieCompat', 'strictMath', 'strictUnits', 'sourceMap']
+    render: ['compress', 'cleancss', 'ieCompat', 'strictMath', 'strictUnits', 'sourceMap', 'sourceMapFilename', 'sourceMapBasepath', 'sourceMapRootpath']
   };
 
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
@@ -65,6 +65,9 @@ module.exports = function(grunt) {
           } else {
             nextFileObj(err);
           }
+        }, function (sourceMapContent) {
+          grunt.file.write(options.sourceMapFilename, sourceMapContent);
+          grunt.log.writeln('File ' + options.sourceMapFilename.cyan + ' created.');
         });
       }, function() {
         if (compiledMin.length < 1) {
@@ -85,7 +88,7 @@ module.exports = function(grunt) {
     }, done);
   });
 
-  var compileLess = function(srcFile, options, callback) {
+  var compileLess = function(srcFile, options, callback, sourceMapCallback) {
     options = grunt.util._.extend({filename: srcFile}, options);
     options.paths = options.paths || [path.dirname(srcFile)];
 
@@ -111,8 +114,14 @@ module.exports = function(grunt) {
         });
       }
 
+      var minifyOptions = grunt.util._.pick(options, lessOptions.render);
+
+      if (minifyOptions.sourceMapFilename) {
+        minifyOptions.writeSourceMap = sourceMapCallback;
+      }
+
       try {
-        css = minify(tree, grunt.util._.pick(options, lessOptions.render));
+        css = minify(tree, minifyOptions);
         callback(css, null);
       } catch (e) {
         lessError(e, srcFile);
