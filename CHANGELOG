@@ -1,3 +1,7 @@
+v0.8.1:
+  date: 2013-10-24
+  changes:
+    - Support sourceMapFilename, sourceMapBasepath and sourceMapRootpath
 v0.8.0:
   date: 2013-10-22
   changes:

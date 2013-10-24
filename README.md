@@ -1,4 +1,4 @@
-# grunt-contrib-less v0.8.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
+# grunt-contrib-less v0.8.1 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
 
 > Compile LESS files to CSS.
 
@@ -127,6 +127,24 @@ Default: `false`
 
 Enable source maps.
 
+#### sourceMapFilename
+Type: `String`  
+Default: none
+
+Write the source map to a separate file with the given filename.
+
+#### sourceMapBasepath
+Type: `String`  
+Default: none
+
+Sets the base path for the less file paths in the source map.
+
+#### sourceMapRootpath
+Type: `String`  
+Default: none
+
+Adds this path onto the less file paths in the source map.
+
 ### Usage Examples
 
 ```js
@@ -153,6 +171,7 @@ less: {
 
 ## Release History
 
+ * 2013-10-24   v0.8.1   Support sourceMapFilename, sourceMapBasepath and sourceMapRootpath
  * 2013-10-22   v0.8.0   Upgrade to LESS 1.5 Support strictUnits option Support sourceMap option Add customFunctions option for defining custom functions within LESS Output the source file name on error
  * 2013-08-08   v0.7.0   Downgrade no source files warning to only in verbose mode
  * 2013-08-08   v0.6.5   Support strictMath option Support rootpath parse option
@@ -175,4 +194,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Thu Oct 24 2013 13:57:51.*
+*This file was generated on Thu Oct 24 2013 17:08:43.*
