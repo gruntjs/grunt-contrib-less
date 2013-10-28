@@ -160,7 +160,7 @@ less: {
   production: {
     options: {
       paths: ["assets/css"],
-      yuicompress: true
+      cleancss: true
     },
     files: {
       "path/to/result.css": "path/to/source.less"
@@ -169,10 +169,11 @@ less: {
 }
 ```
 
+
 ## Release History
 
  * 2013-10-24   v0.8.1   Support sourceMapFilename, sourceMapBasepath and sourceMapRootpath
- * 2013-10-22   v0.8.0   Upgrade to LESS 1.5 Support strictUnits option Support sourceMap option Add customFunctions option for defining custom functions within LESS Output the source file name on error
+ * 2013-10-22   v0.8.0   Upgrade to LESS 1.5 Support strictUnits option Support sourceMap option Add customFunctions option for defining custom functions within LESS Output the source file name on error yuicompress option now cleancss (Less changed underlying dependency)
  * 2013-08-08   v0.7.0   Downgrade no source files warning to only in verbose mode
  * 2013-08-08   v0.6.5   Support strictMath option Support rootpath parse option
  * 2013-07-09   v0.6.4   Support relativeUrls option
@@ -194,4 +195,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Thu Oct 24 2013 17:08:43.*
+*This file was generated on Mon Oct 28 2013 09:38:04.*

@@ -13,7 +13,7 @@ less: {
   production: {
     options: {
       paths: ["assets/css"],
-      yuicompress: true
+      cleancss: true
     },
     files: {
       "path/to/result.css": "path/to/source.less"
