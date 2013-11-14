@@ -102,6 +102,15 @@ exports.less = {
 
     test.done();
   },
+  sourceMapLessInline: function(test) {
+    test.expect(1);
+
+    var expected = grunt.file.read('test/fixtures/style3.less');
+    var sourceMap = grunt.file.readJSON('tmp/sourceMapLessInline.css.map');
+    test.equal(sourceMap.sourcesContent[0], expected, 'should put the less file into the generated sourceMap instead of referencing them.');
+
+    test.done();
+  },
   customFunctions: function(test) {
     test.expect(1);
 
