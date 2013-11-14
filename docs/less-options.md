@@ -116,9 +116,12 @@ Enable source maps.
 ## sourceMapFilename
 Type: `String`
 
-Default: none
+Default: none (source map is appended to output file)
 
 Write the source map to a separate file with the given filename.
+
+Token `{}` in given filename is replaced with CSS output filename,
+which is useful namely when generating [multiple files](http://gruntjs.com/configuring-tasks#files-object-format) in single task.
 
 ## sourceMapBasepath
 Type: `String`

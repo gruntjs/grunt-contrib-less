@@ -67,8 +67,9 @@ module.exports = function(grunt) {
             nextFileObj(err);
           }
         }, function (sourceMapContent) {
-          grunt.file.write(options.sourceMapFilename, sourceMapContent);
-          grunt.log.writeln('File ' + options.sourceMapFilename.cyan + ' created.');
+          var sourceMapFilename = options.sourceMapFilename.replace('{}', destFile);
+          grunt.file.write(sourceMapFilename, sourceMapContent);
+          grunt.log.writeln('File ' + sourceMapFilename.cyan + ' created.');
         });
       }, function() {
         if (compiledMin.length < 1) {

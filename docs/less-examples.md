@@ -5,6 +5,10 @@ less: {
   development: {
     options: {
       paths: ["assets/css"]
+      cleancss: true,
+      sourceMap: true,
+      sourceMapFilename: '{}.map',
+      outputSourceFiles: true
     },
     files: {
       "path/to/result.css": "path/to/source.less"

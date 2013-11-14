@@ -78,11 +78,27 @@ exports.less = {
 
     test.done();
   },
-  sourceMapFilename: function(test) {
+  sourceMapFilenameDefault1: function(test) {
     test.expect(1);
 
-    var sourceMap = grunt.file.readJSON('tmp/sourceMapFilename.css.map');
-    test.equal(sourceMap.sources[0], 'test/fixtures/style3.less', 'should generate a sourceMap with the less file reference.');
+    var sourceMap = grunt.file.readJSON('tmp/sourceMapFilenameDefault1.css.map');
+    test.equal(sourceMap.sources[0], 'test/fixtures/style3.less', 'should generate a sourceMap with default name and the less file reference.');
+
+    test.done();
+  },
+  sourceMapFilenameDefault2: function(test) {
+    test.expect(1);
+
+    var sourceMap = grunt.file.readJSON('tmp/sourceMapFilenameDefault2.css.map');
+    test.equal(sourceMap.sources[0], 'test/fixtures/style4.less', 'should generate a sourceMap with default name and the less file reference.');
+
+    test.done();
+  },
+  sourceMapFilenameCustom: function(test) {
+    test.expect(1);
+
+    var sourceMap = grunt.file.readJSON('tmp/sourceMapFilenameCustomXXX.css.map');
+    test.equal(sourceMap.sources[0], 'test/fixtures/style3.less', 'should generate a sourceMap with custom name and the less file reference.');
 
     test.done();
   },

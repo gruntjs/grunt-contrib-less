@@ -144,9 +144,12 @@ Enable source maps.
 #### sourceMapFilename
 Type: `String`
 
-Default: none
+Default: none (source map is appended to output file)
 
 Write the source map to a separate file with the given filename.
+
+Token `{}` in given filename is replaced with CSS output filename,
+which is useful namely when generating [multiple files](http://gruntjs.com/configuring-tasks#files-object-format) in single task.
 
 #### sourceMapBasepath
 Type: `String`
@@ -176,6 +179,10 @@ less: {
   development: {
     options: {
       paths: ["assets/css"]
+      cleancss: true,
+      sourceMap: true,
+      sourceMapFilename: '{}.map',
+      outputSourceFiles: true
     },
     files: {
       "path/to/result.css": "path/to/source.less"
@@ -220,4 +227,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Thu Nov 14 2013 19:06:55.*
+*This file was generated on Thu Nov 14 2013 21:27:05.*
