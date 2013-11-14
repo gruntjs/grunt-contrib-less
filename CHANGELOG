@@ -1,3 +1,7 @@
+v0.8.2:
+  date: 2013-11-14
+  changes:
+    - Support outputSourceFiles
 v0.8.1:
   date: 2013-10-24
   changes:

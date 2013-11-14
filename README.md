@@ -1,4 +1,4 @@
-# grunt-contrib-less v0.8.1 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
+# grunt-contrib-less v0.8.2 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
 
 > Compile LESS files to CSS.
 
@@ -178,6 +178,7 @@ less: {
 
 ## Release History
 
+ * 2013-11-14   v0.8.2   Support outputSourceFiles
  * 2013-10-24   v0.8.1   Support sourceMapFilename, sourceMapBasepath and sourceMapRootpath
  * 2013-10-22   v0.8.0   Upgrade to LESS 1.5 Support strictUnits option Support sourceMap option Add customFunctions option for defining custom functions within LESS Output the source file name on error yuicompress option now cleancss (Less changed underlying dependency)
  * 2013-08-08   v0.7.0   Downgrade no source files warning to only in verbose mode
@@ -201,4 +202,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Thu Nov 14 2013 15:19:03.*
+*This file was generated on Thu Nov 14 2013 09:29:34.*
