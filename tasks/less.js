@@ -129,7 +129,8 @@ module.exports = function(grunt) {
           less.tree.functions[name.toLowerCase()] = function() {
             var args = [].slice.call(arguments);
             args.unshift(less);
-            return new less.tree.Anonymous(options.customFunctions[name].apply(this, args));
+            var res = options.customFunctions[name].apply(this, args);
+            return typeof res === "object" ? res : new less.tree.Anonymous(res);
           };
         });
       }
