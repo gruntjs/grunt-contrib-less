@@ -142,11 +142,12 @@ Default: `false`
 Enable source maps.
 
 #### sourceMapFilename
-Type: `String`
+Type: `String`, or `Boolean`
 
-Default: none
+Default: none (source map is appended to output file)
 
-Write the source map to a separate file with the given filename.
+Write the source map to a separate file with the given filename,
+or the output filename with `.map` extension appended if `true` is given.
 
 #### sourceMapBasepath
 Type: `String`
@@ -220,4 +221,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Thu Nov 14 2013 19:06:55.*
+*This file was generated on Thu Nov 14 2013 20:18:26.*

@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 
       var compiledMax = [], compiledMin = [];
       grunt.util.async.concatSeries(files, function(file, next) {
-        compileLess(file, options, function(css, err) {
+        compileLess(file, destFile, options, function(css, err) {
           if (!err) {
             if (css.max) {
               compiledMax.push(css.max);
@@ -67,8 +67,12 @@ module.exports = function(grunt) {
             nextFileObj(err);
           }
         }, function (sourceMapContent) {
-          grunt.file.write(options.sourceMapFilename, sourceMapContent);
-          grunt.log.writeln('File ' + options.sourceMapFilename.cyan + ' created.');
+          var sourceMapFilename = options.sourceMapFilename;
+          if (sourceMapFilename === true) {
+            sourceMapFilename = destFile + '.map';
+          }
+          grunt.file.write(sourceMapFilename, sourceMapContent);
+          grunt.log.writeln('File ' + sourceMapFilename.cyan + ' created.');
         });
       }, function() {
         if (compiledMin.length < 1) {
@@ -89,7 +93,7 @@ module.exports = function(grunt) {
     }, done);
   });
 
-  var compileLess = function(srcFile, options, callback, sourceMapCallback) {
+  var compileLess = function(srcFile, destFile, options, callback, sourceMapCallback) {
     options = grunt.util._.extend({filename: srcFile}, options);
     options.paths = options.paths || [path.dirname(srcFile)];
 
@@ -117,6 +121,9 @@ module.exports = function(grunt) {
 
       var minifyOptions = grunt.util._.pick(options, lessOptions.render);
 
+      if (minifyOptions.sourceMap && minifyOptions.sourceMapFilename === true) {
+        minifyOptions.sourceMapFilename = destFile + '.map';
+      }
       if (minifyOptions.sourceMapFilename) {
         minifyOptions.writeSourceMap = sourceMapCallback;
       }
