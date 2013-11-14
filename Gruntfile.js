@@ -10,6 +10,9 @@
 
 module.exports = function(grunt) {
 
+  // Make tests that read generated files run on any platform, including Windows.
+  grunt.util.linefeed = '\n';
+
   // Project configuration.
   grunt.initConfig({
     jshint: {
