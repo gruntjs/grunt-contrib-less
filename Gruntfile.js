@@ -142,6 +142,15 @@ module.exports = function(grunt) {
         src: 'test/fixtures/style3.less',
         dest: 'tmp/sourceMapRootpath.css',
       },
+      sourceMapLessInline: {
+        options: {
+          sourceMap: true,
+          sourceMapFilename: 'tmp/sourceMapLessInline.css.map',
+          outputSourceFiles: true,
+        },
+        src: 'test/fixtures/style3.less',
+        dest: 'tmp/sourceMapLessInline.css',
+      },
       testCustomFunctions: {
         options: {
           customFunctions: {
