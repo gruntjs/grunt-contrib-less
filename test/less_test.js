@@ -73,29 +73,33 @@ exports.less = {
   sourceMap: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/sourceMap.css');
-    test.ok(actual.indexOf('/*# sourceMappingURL=') !== -1, 'compiled file should include a source map.');
+    var css = grunt.file.read('tmp/sourceMap.css');
+    test.ok(css.indexOf('/*# sourceMappingURL=data:application/json') !== -1, 'compiled file should include a source map.');
 
     test.done();
   },
-  sourceMapFilenameDefault1: function(test) {
-    test.expect(1);
+  sourceMapFilenameDefault: function(test) {
+    test.expect(4);
 
-    var sourceMap = grunt.file.readJSON('tmp/sourceMapFilenameDefault1.css.map');
-    test.equal(sourceMap.sources[0], 'test/fixtures/style3.less', 'should generate a sourceMap with default name and the less file reference.');
+    var css1 = grunt.file.read('tmp/sourceMapFilenameDefault1.css');
+    test.ok(css1.indexOf('/*# sourceMappingURL=tmp/sourceMapFilenameDefault1.css.map') !== -1, 'compiled file should include a reference to default source map.');
 
-    test.done();
-  },
-  sourceMapFilenameDefault2: function(test) {
-    test.expect(1);
+    var sourceMap1 = grunt.file.readJSON('tmp/sourceMapFilenameDefault1.css.map');
+    test.equal(sourceMap1.sources[0], 'test/fixtures/style3.less', 'should generate a sourceMap with default name and the less file reference.');
 
-    var sourceMap = grunt.file.readJSON('tmp/sourceMapFilenameDefault2.css.map');
-    test.equal(sourceMap.sources[0], 'test/fixtures/style4.less', 'should generate a sourceMap with default name and the less file reference.');
+    var css2 = grunt.file.read('tmp/sourceMapFilenameDefault2.css');
+    test.ok(css2.indexOf('/*# sourceMappingURL=tmp/sourceMapFilenameDefault2.css.map') !== -1, 'compiled file should include a reference to default source map.');
+
+    var sourceMap2 = grunt.file.readJSON('tmp/sourceMapFilenameDefault2.css.map');
+    test.equal(sourceMap2.sources[0], 'test/fixtures/style4.less', 'should generate a sourceMap with default name and the less file reference.');
 
     test.done();
   },
   sourceMapFilenameCustom: function(test) {
-    test.expect(1);
+    test.expect(2);
+
+    var css = grunt.file.read('tmp/sourceMapFilenameCustom.css');
+    test.ok(css.indexOf('/*# sourceMappingURL=tmp/sourceMapFilenameCustomXXX.css.map') !== -1, 'compiled file should include a reference to custom source map.');
 
     var sourceMap = grunt.file.readJSON('tmp/sourceMapFilenameCustomXXX.css.map');
     test.equal(sourceMap.sources[0], 'test/fixtures/style3.less', 'should generate a sourceMap with custom name and the less file reference.');
