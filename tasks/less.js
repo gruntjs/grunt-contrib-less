@@ -32,6 +32,13 @@ module.exports = function(grunt) {
       grunt.verbose.warn('Destination not written because no source files were provided.');
     }
 
+    if (options.sourceMapFilename) {
+      var sourceMapFilenameToken = new RegExp('{}([^/\\' + path.sep + ']*)$');  // Match both '/' and '\\' on Windows.
+      var sourceMapFilenameReplace = function(sourceMapFilename, destFile) {
+          return sourceMapFilename.replace(sourceMapFilenameToken, destFile.replace(/\$/g, '$$$$') + '$1');
+      };
+    }
+
     grunt.util.async.forEachSeries(this.files, function(f, nextFileObj) {
       var destFile = f.dest;
 
@@ -67,7 +74,7 @@ module.exports = function(grunt) {
             nextFileObj(err);
           }
         }, function (sourceMapContent) {
-          var sourceMapFilename = options.sourceMapFilename.replace('{}', destFile);
+          var sourceMapFilename = sourceMapFilenameReplace(options.sourceMapFilename, destFile);
           grunt.file.write(sourceMapFilename, sourceMapContent);
           grunt.log.writeln('File ' + sourceMapFilename.cyan + ' created.');
         });

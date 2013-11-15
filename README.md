@@ -148,8 +148,9 @@ Default: none (source map is appended to output file)
 
 Write the source map to a separate file with the given filename.
 
-Token `{}` in given filename is replaced with CSS output filename,
-which is useful namely when generating [multiple files](http://gruntjs.com/configuring-tasks#files-object-format) in single task.
+The last occurence of `{}` in given filename, that isn't followed by a path separator,
+is replaced with CSS output filename. This is useful e.g. when generating
+[multiple CSS and source map files](http://gruntjs.com/configuring-tasks#files-object-format) in single task.
 
 #### sourceMapBasepath
 Type: `String`
@@ -227,4 +228,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Thu Nov 14 2013 21:27:05.*
+*This file was generated on Fri Nov 15 2013 09:14:43.*
