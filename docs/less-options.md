@@ -120,8 +120,22 @@ Default: none (source map is appended to output file)
 
 Write the source map to a separate file with the given filename.
 
-The last occurence of `{}` in given filename, that isn't followed by a path separator,
-is replaced with CSS output filename. This is useful e.g. when generating
+The given filename string is processed as a [LoDash template](http://lodash.com/docs#template)
+with available objects:
+* `cssFile`: Generated CSS full path.
+* `cssName`: Generated CSS file name.
+* `cssDir`: Generated CSS directory.
+* `isLink`: True when used to link from generated CSS, false otherwise.
+* `auto`: CSS file name when used to link, full path otherwise.
+* `path`: Node.js [path module](http://nodejs.org/api/path.html).
+* `grunt`: Grunt module.
+
+To avoid processing by Grunt [config](http://gruntjs.com/api/grunt.config#grunt.config.init),
+the filename template uses `less` set of delimiters that defaults to `<<`/`>>`.
+The delimiters can be customized using Grunt template [addDelimiters method](http://gruntjs.com/api/grunt.template#grunt.template.adddelimiters):
+`grunt.template.addDelimiters('less', '{{', '}}');`.
+
+This is useful e.g. when generating
 [multiple CSS and source map files](http://gruntjs.com/configuring-tasks#files-object-format) in single task.
 
 ## sourceMapBasepath

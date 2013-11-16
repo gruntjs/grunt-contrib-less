@@ -22,6 +22,8 @@ module.exports = function(grunt) {
        'sourceMap', 'sourceMapFilename', 'sourceMapBasepath', 'sourceMapRootpath', 'outputSourceFiles']
   };
 
+  grunt.template.addDelimiters('less', '<<', '>>');
+
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
     var done = this.async();
 
@@ -32,12 +34,25 @@ module.exports = function(grunt) {
       grunt.verbose.warn('Destination not written because no source files were provided.');
     }
 
-    var sourceMapFilenameTemplate = options.sourceMapFilename;
-    if (sourceMapFilenameTemplate) {
-      var sourceMapFilenameToken = new RegExp('{}([^/\\' + path.sep + ']*)$');
-          // Match both '/' and '\\' on Windows.
-      var generateSourceMapFilename = function(destFile) {
-          return sourceMapFilenameTemplate.replace(sourceMapFilenameToken, destFile.replace(/\$/g, '$$$$') + '$1');
+    if (options.sourceMapFilename) {
+      var sourceMapFilenameTemplate = options.sourceMapFilename;
+      var generateSourceMapFilename = function(cssFile, isLink) {
+          var cssDir = path.dirname(cssFile);
+          var cssName = path.basename(cssFile);
+          var mapName = grunt.template.process(sourceMapFilenameTemplate, {
+              data: {
+                  path: path,
+                  isLink: isLink,
+                  cssDir:  cssDir,
+                  cssName: cssName,
+                  cssFile: cssFile,
+                  auto: isLink ? cssName : cssFile,
+              },
+              delimiters: 'less',
+          });
+          grunt.log.debug([cssDir, cssName, isLink && 'link' || 'file',
+              sourceMapFilenameTemplate, mapName].join(': '));
+          return mapName;
       };
     }
 
@@ -63,8 +78,8 @@ module.exports = function(grunt) {
         return nextFileObj();
       }
 
-      if (sourceMapFilenameTemplate) {
-        options.sourceMapFilename = generateSourceMapFilename(destFile);
+      if (options.sourceMapFilename) {
+        options.sourceMapFilename = generateSourceMapFilename(destFile, true);
       }
 
       var compiledMax = [], compiledMin = [];
@@ -80,6 +95,7 @@ module.exports = function(grunt) {
             nextFileObj(err);
           }
         }, function (sourceMapContent) {
+          options.sourceMapFilename = generateSourceMapFilename(destFile);
           grunt.file.write(options.sourceMapFilename, sourceMapContent);
           grunt.log.writeln('File ' + options.sourceMapFilename.cyan + ' created.');
         });

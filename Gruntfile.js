@@ -119,7 +119,7 @@ module.exports = function(grunt) {
       sourceMapFilenameDefault: {
         options: {
           sourceMap: true,
-          sourceMapFilename: '{}.map',
+          sourceMapFilename: '<<= auto >>.map',
         },
         files: {
           'tmp/sourceMapFilenameDefault1.css': 'test/fixtures/style3.less',

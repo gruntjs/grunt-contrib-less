@@ -7,7 +7,7 @@ less: {
       paths: ["assets/css"]
       cleancss: true,
       sourceMap: true,
-      sourceMapFilename: '{}.map',
+      sourceMapFilename: '<<= auto >>.map',
       outputSourceFiles: true
     },
     files: {
