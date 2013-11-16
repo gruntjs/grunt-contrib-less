@@ -116,13 +116,23 @@ module.exports = function(grunt) {
         src: 'test/fixtures/style3.less',
         dest: 'tmp/sourceMap.css',
       },
-      sourceMapFilename: {
+      sourceMapFilenameDefault: {
         options: {
           sourceMap: true,
-          sourceMapFilename: 'tmp/sourceMapFilename.css.map'
+          sourceMapFilename: '<<= auto >>.map',
+        },
+        files: {
+          'tmp/sourceMapFilenameDefault1.css': 'test/fixtures/style3.less',
+          'tmp/sourceMapFilenameDefault2.css': 'test/fixtures/style4.less',
+        },
+      },
+      sourceMapFilenameCustom: {
+        options: {
+          sourceMap: true,
+          sourceMapFilename: 'tmp/sourceMapFilenameCustomXXX.css.map'
         },
         src: 'test/fixtures/style3.less',
-        dest: 'tmp/sourceMapFilename.css',
+        dest: 'tmp/sourceMapFilenameCustom.css',
       },
       sourceMapBasepath: {
         options: {

@@ -144,9 +144,27 @@ Enable source maps.
 #### sourceMapFilename
 Type: `String`
 
-Default: none
+Default: none (source map is appended to output file)
 
 Write the source map to a separate file with the given filename.
+
+The given filename string is processed as a [LoDash template](http://lodash.com/docs#template)
+with available objects:
+* `cssFile`: Generated CSS full path.
+* `cssName`: Generated CSS file name.
+* `cssDir`: Generated CSS directory.
+* `isLink`: True when used to link from generated CSS, false otherwise.
+* `auto`: CSS file name when used to link, full path otherwise.
+* `path`: Node.js [path module](http://nodejs.org/api/path.html).
+* `grunt`: Grunt module.
+
+To avoid processing by Grunt [config](http://gruntjs.com/api/grunt.config#grunt.config.init),
+the filename template uses `less` set of delimiters that defaults to `<<`/`>>`.
+The delimiters can be customized using Grunt template [addDelimiters method](http://gruntjs.com/api/grunt.template#grunt.template.adddelimiters):
+`grunt.template.addDelimiters('less', '{{', '}}');`.
+
+This is useful e.g. when generating
+[multiple CSS and source map files](http://gruntjs.com/configuring-tasks#files-object-format) in single task.
 
 #### sourceMapBasepath
 Type: `String`
@@ -176,6 +194,10 @@ less: {
   development: {
     options: {
       paths: ["assets/css"]
+      cleancss: true,
+      sourceMap: true,
+      sourceMapFilename: '<<= auto >>.map',
+      outputSourceFiles: true
     },
     files: {
       "path/to/result.css": "path/to/source.less"
@@ -220,4 +242,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Thu Nov 14 2013 19:06:55.*
+*This file was generated on Sat Nov 16 2013 11:44:34.*

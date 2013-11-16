@@ -22,6 +22,8 @@ module.exports = function(grunt) {
        'sourceMap', 'sourceMapFilename', 'sourceMapBasepath', 'sourceMapRootpath', 'outputSourceFiles']
   };
 
+  grunt.template.addDelimiters('less', '<<', '>>');
+
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
     var done = this.async();
 
@@ -30,6 +32,28 @@ module.exports = function(grunt) {
 
     if (this.files.length < 1) {
       grunt.verbose.warn('Destination not written because no source files were provided.');
+    }
+
+    if (options.sourceMapFilename) {
+      var sourceMapFilenameTemplate = options.sourceMapFilename;
+      var generateSourceMapFilename = function(cssFile, isLink) {
+          var cssDir = path.dirname(cssFile);
+          var cssName = path.basename(cssFile);
+          var mapName = grunt.template.process(sourceMapFilenameTemplate, {
+              data: {
+                  path: path,
+                  isLink: isLink,
+                  cssDir:  cssDir,
+                  cssName: cssName,
+                  cssFile: cssFile,
+                  auto: isLink ? cssName : cssFile,
+              },
+              delimiters: 'less',
+          });
+          grunt.log.debug([cssDir, cssName, isLink && 'link' || 'file',
+              sourceMapFilenameTemplate, mapName].join(': '));
+          return mapName;
+      };
     }
 
     grunt.util.async.forEachSeries(this.files, function(f, nextFileObj) {
@@ -54,6 +78,10 @@ module.exports = function(grunt) {
         return nextFileObj();
       }
 
+      if (options.sourceMapFilename) {
+        options.sourceMapFilename = generateSourceMapFilename(destFile, true);
+      }
+
       var compiledMax = [], compiledMin = [];
       grunt.util.async.concatSeries(files, function(file, next) {
         compileLess(file, options, function(css, err) {
@@ -67,6 +95,7 @@ module.exports = function(grunt) {
             nextFileObj(err);
           }
         }, function (sourceMapContent) {
+          options.sourceMapFilename = generateSourceMapFilename(destFile);
           grunt.file.write(options.sourceMapFilename, sourceMapContent);
           grunt.log.writeln('File ' + options.sourceMapFilename.cyan + ' created.');
         });
