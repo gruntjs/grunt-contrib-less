@@ -120,6 +120,13 @@ Default: none
 
 Write the source map to a separate file with the given filename.
 
+## sourceMapURL
+Type: `String`
+
+Default: none
+
+Override the default url that points to the sourcemap from the compiled css file.
+
 ## sourceMapBasepath
 Type: `String`
 

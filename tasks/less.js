@@ -19,7 +19,7 @@ module.exports = function(grunt) {
   var lessOptions = {
     parse: ['paths', 'optimization', 'filename', 'strictImports', 'syncImport', 'dumpLineNumbers', 'relativeUrls', 'rootpath'],
     render: ['compress', 'cleancss', 'ieCompat', 'strictMath', 'strictUnits',
-       'sourceMap', 'sourceMapFilename', 'sourceMapBasepath', 'sourceMapRootpath', 'outputSourceFiles']
+       'sourceMap', 'sourceMapFilename', 'sourceMapURL', 'sourceMapBasepath', 'sourceMapRootpath', 'outputSourceFiles']
   };
 
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {

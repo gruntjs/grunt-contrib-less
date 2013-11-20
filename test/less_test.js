@@ -86,6 +86,13 @@ exports.less = {
 
     test.done();
   },
+  sourceMapURL: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/sourceMapWithCustomURL.css');
+    test.ok(actual.indexOf('/*# sourceMappingURL=custom/url/for/sourceMap.css.map') !== -1, 'compiled file should have a custom source map URL.');
+    test.done();
+  },
   sourceMapBasepath: function(test) {
     test.expect(1);
 
