@@ -26,7 +26,6 @@ module.exports = function(grunt) {
     var done = this.async();
 
     var options = this.options();
-    grunt.verbose.writeflags(options, 'Options');
 
     if (this.files.length < 1) {
       grunt.verbose.warn('Destination not written because no source files were provided.');
