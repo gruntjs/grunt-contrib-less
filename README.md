@@ -35,6 +35,13 @@ Default: Directory of input file.
 
 Specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
 
+### rootpath
+Type: `String`
+
+Default: `""`
+
+A path to add on to the start of every url resource.
+
 #### compress
 Type: `Boolean`
 
@@ -228,4 +235,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Fri Dec 06 2013 08:39:01.*
+*This file was generated on Sat Dec 07 2013 18:27:39.*
