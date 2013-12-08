@@ -35,7 +35,7 @@ Default: Directory of input file.
 
 Specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
 
-### rootpath
+#### rootpath
 Type: `String`
 
 Default: `""`
@@ -235,4 +235,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Sat Dec 07 2013 18:27:39.*
+*This file was generated on Sat Dec 07 2013 18:40:24.*
