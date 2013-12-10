@@ -8,11 +8,11 @@ exports.less = {
     test.expect(2);
 
     var actual = grunt.file.read('tmp/less.css');
-    var expected = grunt.file.read('test/expected/less.css');
+    var expected = grunt.util.normalizelf(grunt.file.read('test/expected/less.css'));
     test.equal(expected, actual, 'should compile less, with the ability to handle imported files from alternate include paths');
 
     actual = grunt.file.read('tmp/concat.css');
-    expected = grunt.file.read('test/expected/concat.css');
+    expected = grunt.util.normalizelf(grunt.file.read('test/expected/concat.css'));
     test.equal(expected, actual, 'should concat output when passed an array');
 
     test.done();
@@ -21,7 +21,7 @@ exports.less = {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/compress.css');
-    var expected = grunt.file.read('test/expected/compress.css');
+    var expected = grunt.util.normalizelf(grunt.file.read('test/expected/compress.css'));
     test.equal(expected, actual, 'should compress output when compress option is true');
 
     test.done();
@@ -30,7 +30,7 @@ exports.less = {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/nopaths.css');
-    var expected = grunt.file.read('test/expected/nopaths.css');
+    var expected = grunt.util.normalizelf(grunt.file.read('test/expected/nopaths.css'));
     test.equal(expected, actual, 'should default paths to the dirname of the less file');
 
     test.done();
@@ -39,11 +39,11 @@ exports.less = {
     test.expect(2);
 
     var actual = grunt.file.read('tmp/cleancss.css');
-    var expected = grunt.file.read('test/expected/cleancss.css');
+    var expected = grunt.util.normalizelf(grunt.file.read('test/expected/cleancss.css'));
     test.equal(expected, actual, 'should cleancss output when cleancss option is true');
 
     actual = grunt.file.read('tmp/cleancssReport.css');
-    expected = grunt.file.read('test/expected/cleancssReport.css');
+    expected = grunt.util.normalizelf(grunt.file.read('test/expected/cleancssReport.css'));
     test.equal(expected, actual, 'should cleancss output when cleancss option is true and concating is enable');
 
     test.done();
@@ -52,11 +52,11 @@ exports.less = {
     test.expect(2);
 
     var actual = grunt.file.read('tmp/ieCompatFalse.css');
-    var expected = grunt.file.read('test/expected/ieCompatFalse.css');
+    var expected = grunt.util.normalizelf(grunt.file.read('test/expected/ieCompatFalse.css'));
     test.equal(expected, actual, 'should generate data-uris no matter the size when ieCompat option is true');
 
     actual = grunt.file.read('tmp/ieCompatTrue.css');
-    expected = grunt.file.read('test/expected/ieCompatTrue.css');
+    expected = grunt.util.normalizelf(grunt.file.read('test/expected/ieCompatTrue.css'));
     test.equal(expected, actual, 'should generate data-uris only when under the 32KB mark for Internet Explorer 8');
 
     test.done();
@@ -65,7 +65,7 @@ exports.less = {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/variablesAsLess.css');
-    var expected = grunt.file.read('test/expected/variablesAsLess.css');
+    var expected = grunt.util.normalizelf(grunt.file.read('test/expected/variablesAsLess.css'));
     test.equal(expected, actual, 'should process css files imported less files');
 
     test.done();
@@ -122,7 +122,7 @@ exports.less = {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/customFunctions.css');
-    var expected = grunt.file.read('test/expected/customFunctions.css');
+    var expected = grunt.util.normalizelf(grunt.file.read('test/expected/customFunctions.css'));
     test.equal(expected, actual, 'should execute custom functions');
 
     test.done();

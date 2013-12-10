@@ -73,7 +73,7 @@ module.exports = function(grunt) {
         if (compiledMin.length < 1) {
           grunt.log.warn('Destination not written because compiled files were empty.');
         } else {
-          var min = compiledMin.join(options.cleancss ? '' : grunt.util.normalizelf(grunt.util.linefeed));
+          var min = grunt.util.normalizelf(compiledMin.join(options.cleancss ? '' : '\n'));
           grunt.file.write(destFile, min);
           grunt.log.writeln('File ' + destFile.cyan + ' created.');
 
