@@ -14,6 +14,7 @@ module.exports = function(grunt) {
   var contrib = require('grunt-lib-contrib').init(grunt);
 
   var path = require('path');
+  var chalk = require('chalk');
   var less = require('less');
 
   var lessOptions = {
@@ -67,7 +68,7 @@ module.exports = function(grunt) {
           }
         }, function (sourceMapContent) {
           grunt.file.write(options.sourceMapFilename, sourceMapContent);
-          grunt.log.writeln('File ' + options.sourceMapFilename.cyan + ' created.');
+          grunt.log.writeln('File ' + chalk.cyan(options.sourceMapFilename) + ' created.');
         });
       }, function() {
         if (compiledMin.length < 1) {
@@ -75,7 +76,7 @@ module.exports = function(grunt) {
         } else {
           var min = compiledMin.join(options.cleancss ? '' : grunt.util.normalizelf(grunt.util.linefeed));
           grunt.file.write(destFile, min);
-          grunt.log.writeln('File ' + destFile.cyan + ' created.');
+          grunt.log.writeln('File ' + chalk.cyan(destFile) + ' created.');
 
           // ...and report some size information.
           if (options.report) {
