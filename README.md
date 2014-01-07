@@ -1,4 +1,4 @@
-# grunt-contrib-less v0.8.3 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
+# grunt-contrib-less v0.9.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
 
 > Compile LESS files to CSS.
 
@@ -210,6 +210,7 @@ less: {
 
 ## Release History
 
+ * 2014-01-07   v0.9.0   Bump to less 1.6
  * 2013-12-06   v0.8.3   Support sourceMapURL
  * 2013-11-14   v0.8.2   Support outputSourceFiles
  * 2013-10-24   v0.8.1   Support sourceMapFilename, sourceMapBasepath and sourceMapRootpath
@@ -235,4 +236,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Sat Dec 07 2013 18:40:24.*
+*This file was generated on Tue Jan 07 2014 14:32:15.*
