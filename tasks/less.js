@@ -140,7 +140,6 @@ module.exports = function(grunt) {
 
       try {
         css = minify(tree, minifyOptions);
-        console.log(css);
         callback(css, null);
       } catch (e) {
         lessError(e, srcFile);
