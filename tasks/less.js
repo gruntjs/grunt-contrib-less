@@ -20,7 +20,7 @@ module.exports = function(grunt) {
   var lessOptions = {
     parse: ['paths', 'optimization', 'filename', 'strictImports', 'syncImport', 'dumpLineNumbers', 'relativeUrls', 'rootpath'],
     render: ['compress', 'cleancss', 'ieCompat', 'strictMath', 'strictUnits',
-       'sourceMap', 'sourceMapFilename', 'sourceMapURL', 'sourceMapBasepath', 'sourceMapRootpath', 'outputSourceFiles']
+       'sourceMap', 'sourceMapAsFile', 'sourceMapFilename', 'sourceMapURL', 'sourceMapBasepath', 'sourceMapRootpath', 'outputSourceFiles']
   };
 
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
@@ -32,8 +32,14 @@ module.exports = function(grunt) {
       grunt.verbose.warn('Destination not written because no source files were provided.');
     }
 
+    if (options.sourceMapAsFile && options.sourceMapFilename) {
+      grunt.verbose.warn('Option sourceMapAsFile takes precedence over sourceMapFilename. All sourceMap filenames will be generated based on the original filename.');
+    }
+
     grunt.util.async.forEachSeries(this.files, function(f, nextFileObj) {
       var destFile = f.dest;
+      var destDir = destFile.substr(0, destFile.lastIndexOf('/') + 1);
+      var destFilename = destFile.substr(destFile.lastIndexOf('/') + 1);
 
       var files = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
@@ -54,6 +60,11 @@ module.exports = function(grunt) {
         return nextFileObj();
       }
 
+      // generate sourceMapFilename
+      if (options.sourceMapAsFile) {
+        options.sourceMapFilename = destFilename + '.map';
+      }
+
       var compiledMax = [], compiledMin = [];
       grunt.util.async.concatSeries(files, function(file, next) {
         compileLess(file, options, function(css, err) {
@@ -67,8 +78,14 @@ module.exports = function(grunt) {
             nextFileObj(err);
           }
         }, function (sourceMapContent) {
-          grunt.file.write(options.sourceMapFilename, sourceMapContent);
-          grunt.log.writeln('File ' + chalk.cyan(options.sourceMapFilename) + ' created.');
+          var srcMapFile = options.sourceMapFilename;
+
+          if (options.sourceMapAsFile) {
+            srcMapFile = destFile + '.map';
+          }
+
+          grunt.file.write(srcMapFile, sourceMapContent);
+          grunt.log.writeln('File ' + chalk.cyan(srcMapFile) + ' created.');
         });
       }, function() {
         if (compiledMin.length < 1) {
