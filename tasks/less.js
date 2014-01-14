@@ -98,6 +98,12 @@ module.exports = function(grunt) {
 
     var parser = new less.Parser(grunt.util._.pick(options, lessOptions.parse));
 
+    // Equivalent to --modify-vars option.
+    // Properties under options.modifyVars are appended as less variables
+    // to override global variables.
+    var modifyVarsOutput = parseVariableOptions(options['modifyVars']);
+    srcCode += modifyVarsOutput;
+
     parser.parse(srcCode, function(parse_err, tree) {
       if (parse_err) {
         lessError(parse_err, srcFile);
@@ -129,6 +135,15 @@ module.exports = function(grunt) {
         callback(css, true);
       }
     });
+  };
+
+  var parseVariableOptions = function(options) {
+    var pairs = grunt.util._.pairs(options);
+    var output = '';
+    grunt.util._.forEach(pairs, function(pair) {
+      output += '@' + pair[0] + ':' + pair[1] + ';';
+    });
+    return output;
   };
 
   var formatLessError = function(e) {
