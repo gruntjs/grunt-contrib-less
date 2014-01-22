@@ -93,6 +93,16 @@ module.exports = function(grunt) {
     options = grunt.util._.extend({filename: srcFile}, options);
     options.paths = options.paths || [path.dirname(srcFile)];
 
+    if (typeof options.sourceMapBasepath === 'function') {
+      try {
+        options.sourceMapBasepath = options.sourceMapBasepath(srcFile);
+      } catch (e) {
+        var err = new Error('Generating sourceMapBasepath failed.');
+        err.origError = e;
+        grunt.fail.warn(err);
+      }
+    }
+
     var css;
     var srcCode = grunt.file.read(srcFile);
 
