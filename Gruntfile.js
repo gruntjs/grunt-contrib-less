@@ -178,6 +178,18 @@ module.exports = function(grunt) {
           'tmp/customFunctions.css': ['test/fixtures/customFunctions.less']
         }
       },
+      modifyVars: {
+        options: {
+          modifyVars: {
+            // Note the double quotes in 'imgPath'
+            imgPath: '"/somewhere/else"',
+            customPadding: '20px'
+          }
+        },
+        files: {
+          'tmp/modifyVars.css': ['test/fixtures/modifyVars.less']
+        }
+      },
     },
 
     // Unit tests.
