@@ -1,7 +1,6 @@
 # grunt-contrib-less v0.9.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
 
-> Compile LESS files to CSS.
-
+> Compile LESS files to CSS. Is used by Bootstrap as their LESS compiler of choice.
 
 
 ## Getting Started
