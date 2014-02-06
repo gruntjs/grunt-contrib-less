@@ -62,7 +62,7 @@ module.exports = function(grunt) {
               compiledMax.push(css.max);
             }
             compiledMin.push(css.min);
-            next();
+            process.nextTick(next);
           } else {
             nextFileObj(err);
           }
