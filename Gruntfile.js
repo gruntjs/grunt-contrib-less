@@ -107,14 +107,14 @@ module.exports = function(grunt) {
       },
       variablesAsLess: {
         src: 'test/fixtures/variablesAsLess.less',
-        dest: 'tmp/variablesAsLess.css',
+        dest: 'tmp/variablesAsLess.css'
       },
       sourceMap: {
         options: {
           sourceMap: true,
         },
         src: 'test/fixtures/style3.less',
-        dest: 'tmp/sourceMap.css',
+        dest: 'tmp/sourceMap.css'
       },
       sourceMapFilename: {
         options: {
@@ -122,7 +122,7 @@ module.exports = function(grunt) {
           sourceMapFilename: 'tmp/sourceMapFilename.css.map'
         },
         src: 'test/fixtures/style3.less',
-        dest: 'tmp/sourceMapFilename.css',
+        dest: 'tmp/sourceMapFilename.css'
       },
       sourceMapURL: {
         options: {
@@ -131,7 +131,7 @@ module.exports = function(grunt) {
           sourceMapURL: 'custom/url/for/sourceMap.css.map'
         },
         src: 'test/fixtures/style3.less',
-        dest: 'tmp/sourceMapWithCustomURL.css',
+        dest: 'tmp/sourceMapWithCustomURL.css'
       },
       sourceMapBasepath: {
         options: {
@@ -140,7 +140,7 @@ module.exports = function(grunt) {
           sourceMapBasepath: 'test/fixtures/'
         },
         src: 'test/fixtures/style3.less',
-        dest: 'tmp/sourceMapBasepath.css',
+        dest: 'tmp/sourceMapBasepath.css'
       },
       sourceMapRootpath: {
         options: {
@@ -149,7 +149,7 @@ module.exports = function(grunt) {
           sourceMapRootpath: 'http://example.org/'
         },
         src: 'test/fixtures/style3.less',
-        dest: 'tmp/sourceMapRootpath.css',
+        dest: 'tmp/sourceMapRootpath.css'
       },
       sourceMapLessInline: {
         options: {
@@ -158,7 +158,7 @@ module.exports = function(grunt) {
           outputSourceFiles: true,
         },
         src: 'test/fixtures/style3.less',
-        dest: 'tmp/sourceMapLessInline.css',
+        dest: 'tmp/sourceMapLessInline.css'
       },
       testCustomFunctions: {
         options: {
@@ -170,7 +170,7 @@ module.exports = function(grunt) {
               return (((arg1.value * 1) + (arg2.value))) + arg1.unit.numerator[0];
             },
             'string-result': function(less, arg1) {
-                return "\"Hello\"";
+              return "\"Hello\"";
             }
           }
         },
