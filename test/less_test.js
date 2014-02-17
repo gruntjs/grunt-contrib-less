@@ -75,6 +75,15 @@ exports.less = {
 
     test.done();
   },
+  modifyVars: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/modifyVars.css');
+    var expected = grunt.file.read('test/expected/modifyVars.css');
+    test.equal(expected, actual, 'should override global variables');
+
+    test.done();
+  },
   sourceMap: function(test) {
     test.expect(1);
 

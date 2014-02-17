@@ -154,3 +154,10 @@ Type: `Boolean`
 Default: false
 
 Puts the less files into the map instead of referencing them.
+
+## modifyVars
+Type: `Object`
+
+Default: none
+
+Overrides global variables. Equivalent to ```--modify-vars='VAR=VALUE'``` option in less.

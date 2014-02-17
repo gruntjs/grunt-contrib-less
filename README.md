@@ -183,6 +183,13 @@ Default: false
 
 Puts the less files into the map instead of referencing them.
 
+## modifyVars
+Type: `Object`
+
+Default: none
+
+Overrides global variables. Equivalent to ```--modify-vars='VAR=VALUE'``` option in less.
+
 ### Usage Examples
 
 ```js
@@ -198,7 +205,11 @@ less: {
   production: {
     options: {
       paths: ["assets/css"],
-      cleancss: true
+      cleancss: true,
+      modifyVars: {
+        imgPath: '"http://mycdn.com/path/to/images"',
+        bgColor: 'red'
+      }
     },
     files: {
       "path/to/result.css": "path/to/source.less"
