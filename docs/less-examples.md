@@ -13,7 +13,11 @@ less: {
   production: {
     options: {
       paths: ["assets/css"],
-      cleancss: true
+      cleancss: true,
+      modifyVars: {
+        imgPath: '"http://mycdn.com/path/to/images"',
+        bgColor: 'red'
+      }
     },
     files: {
       "path/to/result.css": "path/to/source.less"

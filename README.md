@@ -1,4 +1,4 @@
-# grunt-contrib-less v0.9.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
+# grunt-contrib-less v0.10.0-pre [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
 
 > Compile LESS files to CSS.
 
@@ -183,13 +183,12 @@ Default: false
 
 Puts the less files into the map instead of referencing them.
 
-## modifyVars
+#### modifyVars
 Type: `Object`
 
 Default: none
 
 Overrides global variables. Equivalent to ```--modify-vars='VAR=VALUE'``` option in less.
-
 ### Usage Examples
 
 ```js
@@ -247,4 +246,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Tue Jan 07 2014 14:32:15.*
+*This file was generated on Mon Feb 17 2014 14:09:34.*
