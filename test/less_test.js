@@ -115,6 +115,14 @@ exports.less = {
 
     test.done();
   },
+  sourceMapBasepathFunction: function(test) {
+    test.expect(1);
+
+    var sourceMap = grunt.file.readJSON('tmp/sourceMapBasepath.css.map');
+    test.equal(sourceMap.sources[0], 'style3.less', 'should use the basepath for the less file references in the generated sourceMap.');
+
+    test.done();
+  },
   sourceMapRootpath: function(test) {
     test.expect(1);
 
