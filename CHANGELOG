@@ -1,3 +1,15 @@
+v0.10.0:
+  date: 2014-03-01
+  changes:
+    - sourceMapBasepath accepts a function.
+    - Update copyright to 2014.
+    - Update .gitattributes.
+    - Update less.js to v1.7.0.
+    - Prevent CRLF in the repo.
+    - Adds modify-vars option.
+    - Changed to async stack call.
+    - Fixes data-uri test.
+    - Normalize line endings on tests.
 v0.9.0:
   date: 2014-01-07
   changes:

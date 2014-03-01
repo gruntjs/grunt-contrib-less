@@ -1,4 +1,4 @@
-# grunt-contrib-less v0.10.0-pre [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
+# grunt-contrib-less v0.10.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
 
 > Compile LESS files to CSS.
 
@@ -163,11 +163,11 @@ Default: none
 Override the default url that points to the sourcemap from the compiled css file.
 
 #### sourceMapBasepath
-Type: `String|Function`
+Type: `String`
 
 Default: none
 
-Sets the base path for the less file paths in the source map. If a function is provided, the source file is passed as the argument and the return value will be used as the base path.
+Sets the base path for the less file paths in the source map.
 
 #### sourceMapRootpath
 Type: `String`
@@ -220,6 +220,7 @@ less: {
 
 ## Release History
 
+ * 2014-03-01   v0.10.0   sourceMapBasepath accepts a function. Update copyright to 2014. Update .gitattributes. Update less.js to v1.7.0. Prevent CRLF in the repo. Adds modify-vars option. Changed to async stack call. Fixes data-uri test. Normalize line endings on tests.
  * 2014-01-07   v0.9.0   Bump to less 1.6
  * 2013-12-06   v0.8.3   Support sourceMapURL
  * 2013-11-14   v0.8.2   Support outputSourceFiles
@@ -246,4 +247,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Mon Feb 17 2014 14:09:34.*
+*This file was generated on Sat Mar 01 2014 13:06:40.*
