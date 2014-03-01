@@ -163,11 +163,11 @@ Default: none
 Override the default url that points to the sourcemap from the compiled css file.
 
 #### sourceMapBasepath
-Type: `String`
+Type: `String|Function`
 
 Default: none
 
-Sets the base path for the less file paths in the source map.
+Sets the base path for the less file paths in the source map. If a function is provided, the source file is passed as the argument and the return value will be used as the base path.
 
 #### sourceMapRootpath
 Type: `String`
