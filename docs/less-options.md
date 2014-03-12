@@ -1,11 +1,13 @@
 # Options
 
 ## paths
-Type: `String|Array|Function`
+Type: `String` `Array` `Function`
 
 Default: Directory of input file.
 
 Specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
+
+If you specify a function the source filepath will be the first argument. You can return either a string or an array of paths to be used.
 
 ## rootpath
 Type: `String`
