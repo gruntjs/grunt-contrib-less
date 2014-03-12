@@ -1,7 +1,7 @@
 # Options
 
 ## paths
-Type: `String|Array`
+Type: `String|Array|Function`
 
 Default: Directory of input file.
 

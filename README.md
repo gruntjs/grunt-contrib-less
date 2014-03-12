@@ -1,4 +1,4 @@
-# grunt-contrib-less v0.10.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
+# grunt-contrib-less v0.11.0-pre [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less)
 
 > Compile LESS files to CSS.
 
@@ -29,7 +29,7 @@ Task targets, files and options may be specified according to the grunt [Configu
 ### Options
 
 #### paths
-Type: `String|Array`
+Type: `String|Array|Function`
 
 Default: Directory of input file.
 
@@ -247,4 +247,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Sat Mar 01 2014 13:06:40.*
+*This file was generated on Wed Mar 12 2014 09:02:30.*
