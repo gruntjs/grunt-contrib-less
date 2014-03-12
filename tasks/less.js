@@ -93,13 +93,19 @@ module.exports = function(grunt) {
     options = grunt.util._.extend({filename: srcFile}, options);
     options.paths = options.paths || [path.dirname(srcFile)];
 
+    if (typeof options.paths === 'function') {
+      try {
+        options.paths = options.paths(srcFile);
+      } catch (e) {
+        grunt.fail.warn(wrapError(e, 'Generating @import paths failed.'));
+      }
+    }
+
     if (typeof options.sourceMapBasepath === 'function') {
       try {
         options.sourceMapBasepath = options.sourceMapBasepath(srcFile);
       } catch (e) {
-        var err = new Error('Generating sourceMapBasepath failed.');
-        err.origError = e;
-        grunt.fail.warn(err);
+        grunt.fail.warn(wrapError(e, 'Generating sourceMapBasepath failed.'));
       }
     }
 
@@ -166,6 +172,12 @@ module.exports = function(grunt) {
 
     grunt.log.error(message);
     grunt.fail.warn('Error compiling ' + file);
+  };
+
+  var wrapError = function (e, message) {
+    var err = new Error(message);
+    err.origError = e;
+    return err;
   };
 
   var minify = function (tree, options) {

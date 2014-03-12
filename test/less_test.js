@@ -40,6 +40,14 @@ exports.less = {
 
     test.done();
   },
+  pathsFunction: function(test) {
+    test.expect(1);
+
+    var actual = read('tmp/pathsFunction.css');
+    var expected = read('test/expected/pathsFunction.css');
+    test.equal(expected, actual, 'should accept function that returns paths');
+    test.done();
+  },
   cleancss: function(test) {
     test.expect(2);
 

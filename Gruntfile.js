@@ -53,6 +53,17 @@ module.exports = function(grunt) {
           'tmp/nopaths.css': ['test/fixtures/nopaths.less']
         }
       },
+      pathsFunction: {
+        options: {
+          paths: function(srcFile) {
+            var path = require('path');
+            return [path.dirname(srcFile) + '/include'];
+          }
+        },
+        files: {
+          'tmp/pathsFunction.css': ['test/fixtures/pathsFunction.less']
+        }
+      },
       cleancss: {
         options: {
           paths: ['test/fixtures/include'],
