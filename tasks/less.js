@@ -9,6 +9,8 @@
 'use strict';
 
 var path = require('path');
+var _ = require('lodash');
+var async = require('async');
 var chalk = require('chalk');
 var maxmin = require('maxmin');
 var less = require('less');
@@ -31,7 +33,7 @@ module.exports = function(grunt) {
       grunt.verbose.warn('Destination not written because no source files were provided.');
     }
 
-    grunt.util.async.forEachSeries(this.files, function(f, nextFileObj) {
+    async.eachSeries(this.files, function(f, nextFileObj) {
       var destFile = f.dest;
 
       var files = f.src.filter(function(filepath) {
@@ -54,7 +56,7 @@ module.exports = function(grunt) {
       }
 
       var compiledMax = [], compiledMin = [];
-      grunt.util.async.concatSeries(files, function(file, next) {
+      async.concatSeries(files, function(file, next) {
         compileLess(file, options, function(css, err) {
           if (!err) {
             if (css.max) {
@@ -85,7 +87,7 @@ module.exports = function(grunt) {
   });
 
   var compileLess = function(srcFile, options, callback, sourceMapCallback) {
-    options = grunt.util._.extend({filename: srcFile}, options);
+    options = _.assign({filename: srcFile}, options);
     options.paths = options.paths || [path.dirname(srcFile)];
 
     if (typeof options.paths === 'function') {
@@ -107,7 +109,7 @@ module.exports = function(grunt) {
     var css;
     var srcCode = grunt.file.read(srcFile);
 
-    var parser = new less.Parser(grunt.util._.pick(options, lessOptions.parse));
+    var parser = new less.Parser(_.pick(options, lessOptions.parse));
 
     // Equivalent to --modify-vars option.
     // Properties under options.modifyVars are appended as less variables
@@ -132,7 +134,7 @@ module.exports = function(grunt) {
         });
       }
 
-      var minifyOptions = grunt.util._.pick(options, lessOptions.render);
+      var minifyOptions = _.pick(options, lessOptions.render);
 
       if (minifyOptions.sourceMapFilename) {
         minifyOptions.writeSourceMap = sourceMapCallback;
@@ -149,9 +151,9 @@ module.exports = function(grunt) {
   };
 
   var parseVariableOptions = function(options) {
-    var pairs = grunt.util._.pairs(options);
+    var pairs = _.pairs(options);
     var output = '';
-    grunt.util._.forEach(pairs, function(pair) {
+    pairs.forEach(function(pair) {
       output += '@' + pair[0] + ':' + pair[1] + ';';
     });
     return output;
@@ -179,7 +181,7 @@ module.exports = function(grunt) {
     var result = {
       min: tree.toCSS(options)
     };
-    if (!grunt.util._.isEmpty(options)) {
+    if (!_.isEmpty(options)) {
       result.max = tree.toCSS();
     }
     return result;
