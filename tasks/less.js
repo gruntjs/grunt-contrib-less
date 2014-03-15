@@ -8,15 +8,12 @@
 
 'use strict';
 
+var path = require('path');
+var chalk = require('chalk');
+var maxmin = require('maxmin');
+var less = require('less');
+
 module.exports = function(grunt) {
-
-  // Internal lib.
-  var contrib = require('grunt-lib-contrib').init(grunt);
-
-  var path = require('path');
-  var chalk = require('chalk');
-  var less = require('less');
-
   var lessOptions = {
     parse: ['paths', 'optimization', 'filename', 'strictImports', 'syncImport', 'dumpLineNumbers', 'relativeUrls', 'rootpath'],
     render: ['compress', 'cleancss', 'ieCompat', 'strictMath', 'strictUnits',
@@ -26,7 +23,9 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
     var done = this.async();
 
-    var options = this.options();
+    var options = this.options({
+      report: 'min'
+    });
 
     if (this.files.length < 1) {
       grunt.verbose.warn('Destination not written because no source files were provided.');
@@ -74,14 +73,10 @@ module.exports = function(grunt) {
         if (compiledMin.length < 1) {
           grunt.log.warn('Destination not written because compiled files were empty.');
         } else {
+          var max = compiledMax.join(grunt.util.normalizelf(grunt.util.linefeed));
           var min = compiledMin.join(options.cleancss ? '' : grunt.util.normalizelf(grunt.util.linefeed));
           grunt.file.write(destFile, min);
-          grunt.log.writeln('File ' + chalk.cyan(destFile) + ' created.');
-
-          // ...and report some size information.
-          if (options.report) {
-            contrib.minMaxInfo(min, compiledMax.join(grunt.util.normalizelf(grunt.util.linefeed)), options.report);
-          }
+          grunt.log.writeln('File ' + chalk.cyan(destFile) + ' created: ' + maxmin(max, min, options.report === 'gzip'));
         }
         nextFileObj();
       });

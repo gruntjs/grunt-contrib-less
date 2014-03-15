@@ -101,19 +101,11 @@ object, and subsequent arguments are from the less function call. Values passed 
 primitive types, rather types defined within less. See the LESS documentation for more information on the available types.
 
 ## report
-Choices: `false` `'min'` `'gzip'`
+Choices: `'min'`, `'gzip'`  
+Default: `'min'`
 
-Default: `false`
-
-Either do not report anything, report only minification result, or report minification and gzip results. This is useful to see exactly how well Less is performing, but using `'gzip'` can add 5-10x runtime task execution.
-
-Example ouput using `'gzip'`:
-
-```
-Original: 198444 bytes.
-Minified: 101615 bytes.
-Gzipped:  20084 bytes.
-```
+Either report only minification result or report minification and gzip results.
+This is useful to see exactly how well clean-css is performing but using `'gzip'` will make the task take 5-10x longer to complete. [Example output](https://github.com/sindresorhus/maxmin#readme).
 
 ## sourceMap
 Type: `Boolean`
