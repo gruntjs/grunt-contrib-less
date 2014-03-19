@@ -95,10 +95,10 @@ Type: `Object`
 
 Default: none
 
-Define custom functions to be available within your LESS stylesheets. The function's name must be lowercase and
-return a primitive type (not an object or array). In the function definition, the first argument is the less
-object, and subsequent arguments are from the less function call. Values passed to the function are not simple
-primitive types, rather types defined within less. See the LESS documentation for more information on the available types.
+Define custom functions to be available within your LESS stylesheets. The function's name must be lowercase.
+In the definition, the first argument is the less object, and subsequent arguments are from the less function call.
+Values passed to the function are types defined within less, the return value may be either one of them or primitive.
+See the LESS documentation for more information on the available types.
 
 ## report
 Choices: `'min'`, `'gzip'`  
