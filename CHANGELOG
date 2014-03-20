@@ -1,3 +1,10 @@
+v0.11.0:
+  date: 2014-03-19
+  changes:
+    - Custom functions can return types defined by less
+    - paths option now accepts a function
+    - Replaced deprecated grunt.util methods
+    - Removes deprecated grunt.lib.contrib
 v0.10.0:
   date: 2014-03-01
   changes:
