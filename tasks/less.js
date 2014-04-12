@@ -155,7 +155,7 @@ module.exports = function(grunt) {
     var pairs = _.pairs(options);
     var output = '';
     pairs.forEach(function(pair) {
-      output += '@' + pair[0] + ':' + pair[1] + ';';
+      output += '@' + pair[0] + ': "' + pair[1] + '";';
     });
     return output;
   };
