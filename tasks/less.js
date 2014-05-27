@@ -115,7 +115,10 @@ module.exports = function(grunt) {
     // Properties under options.modifyVars are appended as less variables
     // to override global variables.
     var modifyVarsOutput = parseVariableOptions(options['modifyVars']);
-    srcCode += modifyVarsOutput;
+    if (modifyVarsOutput) {
+      srcCode += '\n';
+      srcCode += modifyVarsOutput;
+    }
 
     parser.parse(srcCode, function(parse_err, tree) {
       if (parse_err) {
