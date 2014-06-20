@@ -10,10 +10,14 @@ var read = function(src) {
 
 exports.less = {
   compile: function(test) {
-    test.expect(2);
+    test.expect(3);
 
     var actual = read('tmp/less.css');
-    var expected = read('test/expected/less.css');
+    var expected = read('test/expected/string.css');
+    test.equal(expected, actual, 'should compile less with a string configuration');
+
+    actual = read('tmp/less.css');
+    expected = read('test/expected/less.css');
     test.equal(expected, actual, 'should compile less, with the ability to handle imported files from alternate include paths');
 
     actual = read('tmp/concat.css');

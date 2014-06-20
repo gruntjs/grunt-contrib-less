@@ -1,4 +1,4 @@
-# grunt-contrib-less v0.11.2 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-less"><img src="https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master" alt="Build Status: Windows" height="18" /></a>
+# grunt-contrib-less v0.11.3 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-less"><img src="https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master" alt="Build Status: Windows" height="18" /></a>
 
 > Compile LESS files to CSS.
 
@@ -215,6 +215,8 @@ less: {
 
 ## Release History
 
+ * 2014-06-20   v0.11.3   Update to Less ~1.7.2.
+ * 2014-06-01   v0.11.2   Lock to less 1.7.0.
  * 2014-05-26   v0.11.1   Fix `modifyVars` to work when less file ends with a comment.
  * 2014-03-19   v0.11.0   Custom functions can return types defined by less paths option now accepts a function Replaced deprecated grunt.util methods Removes deprecated grunt.lib.contrib
  * 2014-03-01   v0.10.0   sourceMapBasepath accepts a function. Update copyright to 2014. Update .gitattributes. Update less.js to v1.7.0. Prevent CRLF in the repo. Adds modify-vars option. Changed to async stack call. Fixes data-uri test. Normalize line endings on tests.
@@ -244,4 +246,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Fri Jun 13 2014 07:52:49.*
+*This file was generated on Fri Jun 20 2014 13:09:28.*

@@ -35,6 +35,7 @@ module.exports = function(grunt) {
           paths: ['test/fixtures/include']
         },
         files: {
+          'tmp/string.css': 'test/fixtures/style.less',
           'tmp/less.css': ['test/fixtures/style.less'],
           'tmp/concat.css': ['test/fixtures/style.less', 'test/fixtures/style2.less', 'test/fixtures/style3.less']
         }

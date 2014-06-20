@@ -1,3 +1,11 @@
+v0.11.3:
+  date: 2014-06-20
+  changes:
+    - Update to Less ~1.7.2.
+v0.11.2:
+  date: 2014-06-01
+  changes:
+    - Lock to less 1.7.0.
 v0.11.1:
   date: 2014-05-26
   changes:
