@@ -54,6 +54,15 @@ module.exports = function(grunt) {
           'tmp/nopaths.css': ['test/fixtures/nopaths.less']
         }
       },
+      banner: {
+        options: {
+          banner: "/* banner */\n"
+        },
+        files: {
+          'tmp/banner.css': 'test/fixtures/style3.less',
+          'tmp/banner2.css': 'test/fixtures/style4.less'
+        }
+      },
       pathsFunction: {
         options: {
           paths: function(srcFile) {

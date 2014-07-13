@@ -1,3 +1,7 @@
+v0.11.4-pre:
+  date: ----------
+  changes:
+    - Add 'banner' option to pass to LESS.
 v0.11.3:
   date: 2014-06-20
   changes:

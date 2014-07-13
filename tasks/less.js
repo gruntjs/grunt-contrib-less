@@ -17,7 +17,8 @@ var less = require('less');
 
 module.exports = function(grunt) {
   var lessOptions = {
-    parse: ['paths', 'optimization', 'filename', 'strictImports', 'syncImport', 'dumpLineNumbers', 'relativeUrls', 'rootpath'],
+    parse: ['paths', 'optimization', 'filename', 'strictImports', 'syncImport', 'dumpLineNumbers', 'relativeUrls',
+      'rootpath'],
     render: ['compress', 'cleancss', 'ieCompat', 'strictMath', 'strictUnits',
        'sourceMap', 'sourceMapFilename', 'sourceMapURL', 'sourceMapBasepath', 'sourceMapRootpath', 'outputSourceFiles']
   };
@@ -26,7 +27,8 @@ module.exports = function(grunt) {
     var done = this.async();
 
     var options = this.options({
-      report: 'min'
+      report: 'min',
+      banner: ''
     });
 
     if (this.files.length < 1) {
@@ -110,6 +112,9 @@ module.exports = function(grunt) {
     var srcCode = grunt.file.read(srcFile);
 
     var parser = new less.Parser(_.pick(options, lessOptions.parse));
+    var additionalData = {
+      banner: options.banner
+    };
 
     // Equivalent to --modify-vars option.
     // Properties under options.modifyVars are appended as less variables
@@ -151,7 +156,7 @@ module.exports = function(grunt) {
         lessError(e, srcFile);
         callback(css, true);
       }
-    });
+    }, additionalData);
   };
 
   var parseVariableOptions = function(options) {

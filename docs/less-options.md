@@ -155,3 +155,8 @@ Type: `Object`
 Default: none
 
 Overrides global variables. Equivalent to ```--modify-vars='VAR=VALUE'``` option in less.
+
+## banner
+Type: `String`
+
+Default: none

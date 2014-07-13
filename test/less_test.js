@@ -160,5 +160,18 @@ exports.less = {
     test.equal(expected, actual, 'should execute custom functions');
 
     test.done();
+  },
+  banner: function(test) {
+    test.expect(2);
+
+    var actual = read('tmp/banner.css');
+    var expected = read('test/expected/banner.css');
+    test.equal(expected, actual, 'should add a banner');
+
+    actual = read('tmp/banner2.css');
+    expected = read('test/expected/banner2.css');
+    test.equal(expected, actual, 'should add a banner to the second file');
+
+    test.done();
   }
 };
