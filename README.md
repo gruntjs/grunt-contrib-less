@@ -220,7 +220,7 @@ less: {
 
 ## Release History
 
- * ----------   v0.11.4   Fix 'banner', 'urlArgs' LESS options Fixes npm 2 peerDependencies issues
+ * 2014-07-29   v0.11.4   Fix 'banner', 'urlArgs' LESS options Fixes npm 2 peerDependencies issues
  * 2014-06-20   v0.11.3   Update to Less ~1.7.2.
  * 2014-06-01   v0.11.2   Lock to less 1.7.0.
  * 2014-05-26   v0.11.1   Fix `modifyVars` to work when less file ends with a comment.
@@ -252,4 +252,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Tue Jul 29 2014 14:43:30.*
+*This file was generated on Tue Jul 29 2014 14:47:01.*
