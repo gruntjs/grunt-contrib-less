@@ -1,7 +1,8 @@
-v0.11.4-pre:
-  date: ----------
+v0.11.4:
+  date: 2014-07-29
   changes:
-    - Add 'banner' option to pass to LESS.
+    - Fix 'banner', 'urlArgs' LESS options
+    - Fixes npm 2 peerDependencies issues
 v0.11.3:
   date: 2014-06-20
   changes:

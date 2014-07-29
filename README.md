@@ -1,11 +1,11 @@
-# grunt-contrib-less v0.11.4-pre [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-less"><img src="https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master" alt="Build Status: Windows" height="18" /></a>
+# grunt-contrib-less v0.11.4 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-less"><img src="https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master" alt="Build Status: Windows" height="18" /></a>
 
 > Compile LESS files to CSS.
 
 
 
 ## Getting Started
-This plugin requires Grunt `^0.4.0`
+This plugin requires Grunt `~0.4.0`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -220,7 +220,7 @@ less: {
 
 ## Release History
 
- * ----------   v0.11.4-pre   Add 'banner' option to pass to LESS.
+ * ----------   v0.11.4   Fix 'banner', 'urlArgs' LESS options Fixes npm 2 peerDependencies issues
  * 2014-06-20   v0.11.3   Update to Less ~1.7.2.
  * 2014-06-01   v0.11.2   Lock to less 1.7.0.
  * 2014-05-26   v0.11.1   Fix `modifyVars` to work when less file ends with a comment.
@@ -252,4 +252,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Sat Jul 12 2014 17:34:50.*
+*This file was generated on Tue Jul 29 2014 14:43:30.*
