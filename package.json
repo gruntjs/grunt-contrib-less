@@ -42,7 +42,7 @@
     "grunt-cli": "^0.1.13"
   },
   "peerDependencies": {
-    "grunt": "^0.4.0"
+    "grunt": "~0.4.0"
   },
   "keywords": [
     "gruntplugin"
