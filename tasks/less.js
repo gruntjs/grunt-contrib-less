@@ -58,14 +58,12 @@ module.exports = function(grunt) {
       }
 
       var compiledMax = [], compiledMin = [];
-      var index = 0;
+      var i = 0;
 
       async.concatSeries(files, function(file, next) {
-        if (index > 0) {
-          options.banner = ''
+        if (i++ > 0) {
+          options.banner = '';
         }
-
-        index++;
 
         compileLess(file, options, function(css, err) {
           if (!err) {
