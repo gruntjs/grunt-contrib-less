@@ -64,9 +64,9 @@ module.exports = function(grunt) {
           if(!css){
               grunt.log.warn('Destination not written because compiled files were empty.');
           } else {
-            var max = css.max;
-            var min = css.min;
-            grunt.file.write(destFile, min);
+            var max = css.max||'';
+            var min = css.min||'';
+            grunt.file.write(destFile, css.min);
             grunt.log.writeln('File ' + chalk.cyan(destFile) + ' created: ' + maxmin(max, min, options.report === 'gzip'));
           }
 
