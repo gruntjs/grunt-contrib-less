@@ -57,40 +57,33 @@ module.exports = function(grunt) {
         return nextFileObj();
       }
 
-      var compiledMax = [], compiledMin = [];
-      async.concatSeries(files, function(file, next) {
-        compileLess(file, options, function(css, err) {
-          if (!err) {
-            if (css.max) {
-              compiledMax.push(css.max);
-            }
-            compiledMin.push(css.min);
-            process.nextTick(next);
-          } else {
+        compileLess(files, options, function(css, err) {
+          if (err) {
             nextFileObj(err);
           }
+          if(!css){
+              grunt.log.warn('Destination not written because compiled files were empty.');
+          } else {
+            var max = css.max;
+            var min = css.min;
+            grunt.file.write(destFile, min);
+            grunt.log.writeln('File ' + chalk.cyan(destFile) + ' created: ' + maxmin(max, min, options.report === 'gzip'));
+          }
+
+          nextFileObj();
+
         }, function (sourceMapContent) {
           grunt.file.write(options.sourceMapFilename, sourceMapContent);
           grunt.log.writeln('File ' + chalk.cyan(options.sourceMapFilename) + ' created.');
         });
-      }, function() {
-        if (compiledMin.length < 1) {
-          grunt.log.warn('Destination not written because compiled files were empty.');
-        } else {
-          var max = compiledMax.join(grunt.util.normalizelf(grunt.util.linefeed));
-          var min = compiledMin.join(options.cleancss ? '' : grunt.util.normalizelf(grunt.util.linefeed));
-          grunt.file.write(destFile, min);
-          grunt.log.writeln('File ' + chalk.cyan(destFile) + ' created: ' + maxmin(max, min, options.report === 'gzip'));
-        }
-        nextFileObj();
-      });
 
+      // done();
     }, done);
   });
 
   var compileLess = function(srcFile, options, callback, sourceMapCallback) {
-    options = _.assign({filename: srcFile}, options);
-    options.paths = options.paths || [path.dirname(srcFile)];
+    options = _.assign({filename: srcFile.join()}, options);
+    options.paths = options.paths || srcFile.map(function(file){return path.dirname(file)});
 
     if (typeof options.paths === 'function') {
       try {
@@ -109,7 +102,7 @@ module.exports = function(grunt) {
     }
 
     var css;
-    var srcCode = grunt.file.read(srcFile);
+    var srcCode = srcFile.map(function(file){return grunt.file.read(file)}).join('\n');
 
     var parser = new less.Parser(_.pick(options, lessOptions.parse));
     var additionalData = {
@@ -130,7 +123,6 @@ module.exports = function(grunt) {
         lessError(parse_err, srcFile);
         callback('',true);
       }
-
       // Load custom functions
       if (options.customFunctions) {
         Object.keys(options.customFunctions).forEach(function(name) {
