@@ -223,6 +223,20 @@ module.exports = function(grunt) {
           'tmp/modifyVars.css': ['test/fixtures/modifyVars.less']
         }
       },
+      preprocess: {
+        options: {
+          preprocess: function (src, path) {
+            if(path.indexOf('preprocess.less') >= 0) {
+                return src.replace(/background:\s*@devColor/gim, 'background-color: @productionColor');
+            } else {
+                return src;
+            }
+          }
+        },
+        files: {
+          'tmp/preprocess.css': ['test/fixtures/preprocess.less']
+        }
+      }
     },
 
     // Unit tests.

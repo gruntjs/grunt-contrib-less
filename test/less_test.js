@@ -173,5 +173,14 @@ exports.less = {
     test.equal(expected, actual, 'should add a banner to the second file');
 
     test.done();
+  },
+  preprocess: function(test) {
+      test.expect(1);
+
+      var actual = read('tmp/preprocess.css');
+      var expected = read('test/expected/preprocess.css');
+      test.equal(expected, actual, 'should preprocess source file');
+
+      test.done();
   }
 };
