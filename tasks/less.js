@@ -58,7 +58,13 @@ module.exports = function(grunt) {
       }
 
       var compiledMax = [], compiledMin = [];
+      var i = 0;
+
       async.concatSeries(files, function(file, next) {
+        if (i++ > 0) {
+          options.banner = '';
+        }
+
         compileLess(file, options, function(css, err) {
           if (!err) {
             if (css.max) {
