@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 
       if (files.length === 0) {
         if (f.src.length < 1) {
-          grunt.log.warn('Destination not written because no source files were found.');
+          grunt.log.warn('Destination ' + chalk.cyan(destFile) + ' not written because no source files were found.');
         }
 
         // No src files, goto next target. Warn would have been issued above.
@@ -81,7 +81,7 @@ module.exports = function(grunt) {
         });
       }, function() {
         if (compiledMin.length < 1) {
-          grunt.log.warn('Destination not written because compiled files were empty.');
+          grunt.log.warn('Destination ' + chalk.cyan(destFile) + ' not written because compiled files were empty.');
         } else {
           var max = compiledMax.join(grunt.util.normalizelf(grunt.util.linefeed));
           var min = compiledMin.join(options.cleancss ? '' : grunt.util.normalizelf(grunt.util.linefeed));
