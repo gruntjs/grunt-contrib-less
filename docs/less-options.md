@@ -30,6 +30,11 @@ Default: `false`
 
 Compress output using [clean-css](https://npmjs.org/package/clean-css).
 
+## cleancssOptions
+Type: `Object`
+
+Default: none
+
 ## ieCompat
 Type: `Boolean`
 

@@ -83,6 +83,16 @@ module.exports = function(grunt) {
           'tmp/cleancss.css': ['test/fixtures/style.less']
         }
       },
+      cleancssOptions: {
+        options: {
+          paths: ['test/fixtures/include'],
+          cleancss: true,
+          cleancssOptions: {keepSpecialComments: 0}
+        },
+        files: {
+          'tmp/cleancssOptions.css': ['test/fixtures/cleancssOptions.less']
+        }
+      },
       ieCompatTrue: {
         options: {
           paths: ['test/fixtures/include'],

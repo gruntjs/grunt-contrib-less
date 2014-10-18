@@ -19,7 +19,7 @@ module.exports = function(grunt) {
   var lessOptions = {
     parse: ['paths', 'optimization', 'filename', 'strictImports', 'syncImport', 'dumpLineNumbers', 'relativeUrls',
       'rootpath'],
-    render: ['compress', 'cleancss', 'ieCompat', 'strictMath', 'strictUnits', 'urlArgs',
+    render: ['compress', 'cleancss', 'cleancssOptions', 'ieCompat', 'strictMath', 'strictUnits', 'urlArgs',
        'sourceMap', 'sourceMapFilename', 'sourceMapURL', 'sourceMapBasepath', 'sourceMapRootpath', 'outputSourceFiles']
   };
 
