@@ -53,7 +53,7 @@ exports.less = {
     test.done();
   },
   cleancss: function(test) {
-    test.expect(2);
+    test.expect(3);
 
     var actual = read('tmp/cleancss.css');
     var expected = read('test/expected/cleancss.css');
@@ -62,6 +62,10 @@ exports.less = {
     actual = read('tmp/cleancssReport.css');
     expected = read('test/expected/cleancssReport.css');
     test.equal(expected, actual, 'should cleancss output when cleancss option is true and concating is enable');
+
+    actual = read('tmp/cleancssOptions.css');
+    expected = read('test/expected/cleancssOptions.css');
+    test.equal(expected, actual, 'should cleancss output when cleancss option is true and keepSpecialComments is disable');
 
     test.done();
   },
