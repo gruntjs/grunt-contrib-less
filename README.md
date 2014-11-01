@@ -48,15 +48,11 @@ Default: `false`
 
 Compress output by removing some whitespaces.
 
-#### cleancss
-Type: `Boolean`  
-Default: `false`
+#### plugins
+Type: `Array`  
+Default: `null`
 
-Compress output using [clean-css](https://npmjs.org/package/clean-css).
-
-#### cleancssOptions
-Type: `Object`  
-Default: none
+Allows passing plugins
 
 #### ieCompat
 Type: `Boolean`  
@@ -64,7 +60,7 @@ Default: `true`
 
 Enforce the CSS output is compatible with Internet Explorer 8.
 
-For example, the [data-uri](https://github.com/cloudhead/less.js/pull/1086) function encodes a file in base64 encoding and embeds it into the generated CSS files as a data-URI. Because Internet Explorer 8 limits `data-uri`s to 32KB, the [ieCompat](https://github.com/cloudhead/less.js/pull/1190) option prevents `less` from exceeding this.
+For example, the [data-uri](http://lesscss.org/functions/#misc-functions-data-uri) function encodes a file in base64 encoding and embeds it into the generated CSS files as a data-URI. Because Internet Explorer 8 limits `data-uri`s to 32KB, the ieCompat option prevents `less` from exceeding this.
 
 #### optimization
 Type: `Integer`  
@@ -187,7 +183,10 @@ less: {
   production: {
     options: {
       paths: ["assets/css"],
-      cleancss: true,
+      plugins: [
+        new require('less-plugin-autoprefix')({browsers: ["last 2 versions"]}),
+        new require('less-plugin-clean-css')(cleanCssOptions)
+      ],
       modifyVars: {
         imgPath: '"http://mycdn.com/path/to/images"',
         bgColor: 'red'
@@ -236,4 +235,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Fri Nov 21 2014 23:15:09.*
+*This file was generated on Sun Nov 23 2014 10:04:29.*
