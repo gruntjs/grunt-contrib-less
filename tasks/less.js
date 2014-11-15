@@ -76,8 +76,9 @@ module.exports = function(grunt) {
             nextFileObj(err);
           }
         }, function (sourceMapContent) {
-          grunt.file.write(options.sourceMapFilename, sourceMapContent);
-          grunt.log.writeln('File ' + chalk.cyan(options.sourceMapFilename) + ' created.');
+          var sourceMapPath = (options.sourceMapFilename) ? options.sourceMapFilename : destFile + '.map';
+          grunt.file.write(sourceMapPath, sourceMapContent);
+          grunt.log.writeln('File ' + chalk.cyan(sourceMapPath) + ' created.');
         });
       }, function() {
         if (compiledMin.length < 1) {
@@ -151,8 +152,12 @@ module.exports = function(grunt) {
 
       var minifyOptions = _.pick(options, lessOptions.render);
 
-      if (minifyOptions.sourceMapFilename) {
+      if (minifyOptions.sourceMap) {
         minifyOptions.writeSourceMap = sourceMapCallback;
+
+        if (!options.sourceMapFilename) {
+          minifyOptions.sourceMapFilename = path.basename(srcFile) + '.map';
+        }
       }
 
       try {
