@@ -1,7 +1,6 @@
 'use strict';
 
 var grunt = require('grunt');
-var fs = require('fs');
 
 var read = function(src) {
   return grunt.util.normalizelf(grunt.file.read(src));
