@@ -8,6 +8,13 @@ Specifies directories to scan for @import directives when parsing. Default value
 
 If you specify a function the source filepath will be the first argument. You can return either a string or an array of paths to be used.
 
+## preprocess
+Type: `Function`
+
+Default: `null`
+
+Preprocess source file before it will be parsed with a custom function that receives source file content and source file path as arguments.
+
 ## rootpath
 Type: `String`  
 Default: `""`

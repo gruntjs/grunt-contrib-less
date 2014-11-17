@@ -132,6 +132,12 @@ module.exports = function(grunt) {
       srcCode += modifyVarsOutput;
     }
 
+    // Preprocess file before parsing
+    var preprocess = options['preprocess'];
+    if (typeof preprocess === 'function') {
+      srcCode = preprocess(srcCode, srcFile);
+    }
+
     parser.parse(srcCode, function(parse_err, tree) {
       if (parse_err) {
         lessError(parse_err, srcFile);
