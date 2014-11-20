@@ -132,9 +132,9 @@ module.exports = function(grunt) {
       srcCode += modifyVarsOutput;
     }
 
-    parser.parse(srcCode, function(parse_err, tree) {
-      if (parse_err) {
-        lessError(parse_err, srcFile);
+    parser.parse(srcCode, function(parseErr, tree) {
+      if (parseErr) {
+        lessError(parseErr, srcFile);
         callback('',true);
       }
 
@@ -145,7 +145,7 @@ module.exports = function(grunt) {
             var args = [].slice.call(arguments);
             args.unshift(less);
             var res = options.customFunctions[name].apply(this, args);
-            return typeof res === "object" ? res : new less.tree.Anonymous(res);
+            return typeof res === 'object' ? res : new less.tree.Anonymous(res);
           };
         });
       }
