@@ -1,4 +1,4 @@
-# grunt-contrib-less v0.12.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-less"><img src="https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master" alt="Build Status: Windows" height="18" /></a>
+# grunt-contrib-less v0.12.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-less/branch/master)
 
 > Compile LESS files to CSS.
 
@@ -236,4 +236,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Fri Oct 24 2014 14:17:20.*
+*This file was generated on Fri Nov 21 2014 23:15:09.*
