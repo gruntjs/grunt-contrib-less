@@ -115,13 +115,6 @@ In the definition, the first argument is the less object, and subsequent argumen
 Values passed to the function are types defined within less, the return value may be either one of them or primitive.
 See the LESS documentation for more information on the available types.
 
-#### report
-Choices: `'min'`, `'gzip'`  
-Default: `'min'`
-
-Either report only minification result or report minification and gzip results.
-This is useful to see exactly how well clean-css is performing but using `'gzip'` will make the task take 5-10x longer to complete. [Example output](https://github.com/sindresorhus/maxmin#readme).
-
 #### sourceMap
 Type: `Boolean`  
 Default: `false`
@@ -235,4 +228,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Sun Nov 23 2014 10:04:29.*
+*This file was generated on Sun Nov 23 2014 13:38:48.*

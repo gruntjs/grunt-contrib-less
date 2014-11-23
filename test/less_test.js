@@ -56,11 +56,11 @@ exports.less = {
 
     var actual = read('tmp/plugins.css');
     var expected = read('test/expected/plugins.css');
-    test.equal(expected, actual, 'using cleancss plugin, it should cleancss output when cleancss option is true and keepSpecialComments is disable');
+    test.equal(expected, actual, 'using cleancss plugin, it should cleancss output when cleancss plugin is used and keepSpecialComments is disabled');
 
-    actual = read('tmp/pluginCleancssReport.css');
-    expected = read('test/expected/pluginCleancssReport.css');
-    test.equal(expected, actual, 'should cleancss output when cleancss option is true and concating is enabled and the report is on');
+    actual = read('tmp/pluginCleancss.css');
+    expected = read('test/expected/pluginCleancss.css');
+    test.equal(expected, actual, 'should cleancss output when cleancss option is true and concating is enabled');
 
     test.done();
   },

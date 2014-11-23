@@ -12,7 +12,6 @@ var path = require('path');
 var _ = require('lodash');
 var async = require('async');
 var chalk = require('chalk');
-var maxmin = require('maxmin');
 var less = require('less');
 
 module.exports = function(grunt) {
@@ -20,7 +19,6 @@ module.exports = function(grunt) {
     var done = this.async();
 
     var options = this.options({
-      report: 'min',
       banner: ''
     });
 
@@ -80,7 +78,7 @@ module.exports = function(grunt) {
         } else {
           var allCss = compiled.join(options.compress ? '' : grunt.util.normalizelf(grunt.util.linefeed));
           grunt.file.write(destFile, allCss);
-          grunt.log.writeln('File ' + chalk.cyan(destFile) + ' created: ' + maxmin(allCss, allCss, options.report === 'gzip'));
+          grunt.log.writeln('File ' + chalk.cyan(destFile) + ' created');
         }
         nextFileObj();
       });

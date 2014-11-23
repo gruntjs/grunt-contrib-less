@@ -108,25 +108,23 @@ module.exports = function(grunt) {
           'tmp/nomatchedfiles.css' : 'test/nonexistent/*.less'
         }
       },
-      compressReport: {
+      compressMultipleSource: {
         options: {
           paths: ['test/fixtures/include'],
-          compress: true,
-          report: 'min'
+          compress: true
         },
         files: {
-          'tmp/compressReport.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
+          'tmp/compressMultipleSource.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
         }
       },
-      pluginCleancssReport: {
+      pluginCleancss: {
         options: {
           paths: ['test/fixtures/include'],
           plugins: [new (require("less-plugin-clean-css"))()],
-          compress: true,
-          report: 'gzip'
+          compress: true
         },
         files: {
-          'tmp/pluginCleancssReport.css': ['test/fixtures/style.less', 'test/fixtures/style2.less', 'test/fixtures/style3.less']
+          'tmp/pluginCleancss.css': ['test/fixtures/style.less', 'test/fixtures/style2.less', 'test/fixtures/style3.less']
         }
       },
       variablesAsLess: {
