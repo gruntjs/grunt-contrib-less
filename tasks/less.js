@@ -65,7 +65,9 @@ module.exports = function(grunt) {
           options.banner = '';
         }
 
-        compileLess(file, options, function(css, err) {
+        var sourceMapPath = (options.sourceMapFilename) ? options.sourceMapFilename : destFile + '.map';
+
+        compileLess(file, sourceMapPath, options, function(css, err) {
           if (!err) {
             if (css.max) {
               compiledMax.push(css.max);
@@ -76,7 +78,6 @@ module.exports = function(grunt) {
             nextFileObj(err);
           }
         }, function (sourceMapContent) {
-          var sourceMapPath = (options.sourceMapFilename) ? options.sourceMapFilename : destFile + '.map';
           grunt.file.write(sourceMapPath, sourceMapContent);
           grunt.log.writeln('File ' + chalk.cyan(sourceMapPath) + ' created.');
         });
@@ -95,7 +96,7 @@ module.exports = function(grunt) {
     }, done);
   });
 
-  var compileLess = function(srcFile, options, callback, sourceMapCallback) {
+  var compileLess = function(srcFile, sourceMapPath, options, callback, sourceMapCallback) {
     options = _.assign({filename: srcFile}, options);
     options.paths = options.paths || [path.dirname(srcFile)];
 
@@ -154,10 +155,7 @@ module.exports = function(grunt) {
 
       if (minifyOptions.sourceMap) {
         minifyOptions.writeSourceMap = sourceMapCallback;
-
-        if (!options.sourceMapFilename) {
-          minifyOptions.sourceMapFilename = path.basename(srcFile) + '.map';
-        }
+        minifyOptions.sourceMapFilename = path.basename(sourceMapPath);
       }
 
       try {
