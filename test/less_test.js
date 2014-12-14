@@ -51,20 +51,16 @@ exports.less = {
     test.equal(expected, actual, 'should accept function that returns paths');
     test.done();
   },
-  cleancss: function(test) {
-    test.expect(3);
+  plugins: function(test) {
+    test.expect(2);
 
-    var actual = read('tmp/cleancss.css');
-    var expected = read('test/expected/cleancss.css');
-    test.equal(expected, actual, 'should cleancss output when cleancss option is true');
+    var actual = read('tmp/plugins.css');
+    var expected = read('test/expected/plugins.css');
+    test.equal(expected, actual, 'using cleancss plugin, it should cleancss output when cleancss plugin is used and keepSpecialComments is disabled');
 
-    actual = read('tmp/cleancssReport.css');
-    expected = read('test/expected/cleancssReport.css');
-    test.equal(expected, actual, 'should cleancss output when cleancss option is true and concating is enable');
-
-    actual = read('tmp/cleancssOptions.css');
-    expected = read('test/expected/cleancssOptions.css');
-    test.equal(expected, actual, 'should cleancss output when cleancss option is true and keepSpecialComments is disable');
+    actual = read('tmp/pluginCleancss.css');
+    expected = read('test/expected/pluginCleancss.css');
+    test.equal(expected, actual, 'should cleancss output when cleancss option is true and concating is enabled');
 
     test.done();
   },

@@ -74,23 +74,13 @@ module.exports = function(grunt) {
           'tmp/pathsFunction.css': ['test/fixtures/pathsFunction.less']
         }
       },
-      cleancss: {
+      plugins: {
         options: {
           paths: ['test/fixtures/include'],
-          cleancss: true
+          plugins: [new (require("less-plugin-clean-css"))({keepSpecialComments: 0})]
         },
         files: {
-          'tmp/cleancss.css': ['test/fixtures/style.less']
-        }
-      },
-      cleancssOptions: {
-        options: {
-          paths: ['test/fixtures/include'],
-          cleancss: true,
-          cleancssOptions: {keepSpecialComments: 0}
-        },
-        files: {
-          'tmp/cleancssOptions.css': ['test/fixtures/cleancssOptions.less']
+          'tmp/plugins.css': ['test/fixtures/plugins.less']
         }
       },
       ieCompatTrue: {
@@ -118,24 +108,23 @@ module.exports = function(grunt) {
           'tmp/nomatchedfiles.css' : 'test/nonexistent/*.less'
         }
       },
-      compressReport: {
+      compressMultipleSource: {
         options: {
           paths: ['test/fixtures/include'],
-          compress: true,
-          report: 'min'
+          compress: true
         },
         files: {
-          'tmp/compressReport.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
+          'tmp/compressMultipleSource.css': ['test/fixtures/style.less', 'test/fixtures/style2.less']
         }
       },
-      cleancssReport: {
+      pluginCleancss: {
         options: {
           paths: ['test/fixtures/include'],
-          cleancss: true,
-          report: 'gzip'
+          plugins: [new (require("less-plugin-clean-css"))()],
+          compress: true
         },
         files: {
-          'tmp/cleancssReport.css': ['test/fixtures/style.less', 'test/fixtures/style2.less', 'test/fixtures/style3.less']
+          'tmp/pluginCleancss.css': ['test/fixtures/style.less', 'test/fixtures/style2.less', 'test/fixtures/style3.less']
         }
       },
       variablesAsLess: {

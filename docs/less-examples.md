@@ -13,7 +13,10 @@ less: {
   production: {
     options: {
       paths: ["assets/css"],
-      cleancss: true,
+      plugins: [
+        new require('less-plugin-autoprefix')({browsers: ["last 2 versions"]}),
+        new require('less-plugin-clean-css')(cleanCssOptions)
+      ],
       modifyVars: {
         imgPath: '"http://mycdn.com/path/to/images"',
         bgColor: 'red'
