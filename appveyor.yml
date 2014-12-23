@@ -4,7 +4,7 @@
 # Build version format
 version: "{build}"
 
-# Fix line endings in Windows
+# Fix line endings on Windows
 init:
   - git config --global core.autocrlf true
 
@@ -12,6 +12,7 @@ init:
 environment:
   matrix:
     - nodejs_version: 0.10
+    - nodejs_version: 0.11
 
 install:
   - ps: Install-Product node $env:nodejs_version
@@ -24,6 +25,11 @@ test_script:
   - node --version && npm --version
   - npm test
 
+matrix:
+  fast_finish: true
+  allow_failures:
+    - nodejs_version: 0.11
+
 cache:
-  - node_modules                                        # local npm modules
   - C:\Users\appveyor\AppData\Roaming\npm\node_modules  # global npm modules
+  - node_modules                                        # local npm modules
