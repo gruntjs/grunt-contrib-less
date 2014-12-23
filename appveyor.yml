@@ -1,6 +1,5 @@
 # AppVeyor file
 # http://www.appveyor.com/docs/appveyor-yml
-project_id: "e3aa4d07xe4w4u05"
 
 # Build version format
 version: "{build}"
