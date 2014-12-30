@@ -146,6 +146,8 @@ module.exports = function(grunt) {
       });
     }
 
+    options.filename = path.resolve(options.filename);
+    
     return less.render(srcCode, options)
       .catch(function(err) {
         lessError(err, srcFile);
