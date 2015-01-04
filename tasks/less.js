@@ -122,6 +122,22 @@ module.exports = function(grunt) {
         sourceMapFileInline: options.sourceMapFileInline
       };
     }
+    
+    if (options.plugins && grunt.util.kindOf(options.plugins) !== "array") {
+      var plugins = Object.keys(options.plugins)
+        .map(function(key) {
+          var pluginRequireName = "less-plugin-" + key,
+            PluginConstructor;
+          try {
+            PluginConstructor = require(pluginRequireName);
+          }
+          catch(e) {
+            grunt.fail.warn(wrapError(e, 'Failed to require ' + pluginRequireName + '.'));
+          }
+          return new PluginConstructor(options.plugins[key]);
+        });
+      options.plugins = plugins;
+    }
 
     var srcCode = grunt.file.read(srcFile);
 

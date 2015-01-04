@@ -77,7 +77,7 @@ module.exports = function(grunt) {
       plugins: {
         options: {
           paths: ['test/fixtures/include'],
-          plugins: [new (require("less-plugin-clean-css"))({keepSpecialComments: 0})]
+          plugins: { "clean-css": {keepSpecialComments: 0}}
         },
         files: {
           'tmp/plugins.css': ['test/fixtures/plugins.less']

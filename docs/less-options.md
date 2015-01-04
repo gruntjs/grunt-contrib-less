@@ -21,10 +21,10 @@ Default: `false`
 Compress output by removing some whitespaces.
 
 ## plugins
-Type: `Array`  
+Type: `Array` or `Object`  
 Default: `null`
 
-Allows passing plugins
+Allows passing plugins. Either pass an array of initialised plugin objects, or an object where the key is the plugin name, without the 'less-plugin-' prefix and the value is the plugin options.
 
 ## ieCompat
 Type: `Boolean`  
