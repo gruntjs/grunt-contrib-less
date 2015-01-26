@@ -125,15 +125,6 @@ module.exports = function(grunt) {
 
     var srcCode = grunt.file.read(srcFile);
 
-    // Equivalent to --modify-vars option.
-    // Properties under options.modifyVars are appended as less variables
-    // to override global variables.
-    var modifyVarsOutput = parseVariableOptions(options['modifyVars']);
-    if (modifyVarsOutput) {
-      srcCode += '\n';
-      srcCode += modifyVarsOutput;
-    }
-
     // Load custom functions
     if (options.customFunctions) {
       Object.keys(options.customFunctions).forEach(function(name) {
