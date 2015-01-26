@@ -151,11 +151,19 @@ Default: false
 
 Puts the less files into the map instead of referencing them.
 
+#### globalVars
+Type: `JSON Object`  
+Default: none
+
+Defines variables that can be referenced by the file. Equivalent to `--global-vars='VAR=VALUE'` option in less.
+Example: `globalVars: {"color":"red","string":"\"some text\""}`
+
 #### modifyVars
-Type: `Object`  
+Type: `JSON Object`  
 Default: none
 
 Overrides global variables. Equivalent to `--modify-vars='VAR=VALUE'` option in less.
+Example: `modifyVars: {"color":"red","string":"\"some text\""}`
 
 #### banner
 Type: `String`  
