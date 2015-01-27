@@ -65,7 +65,7 @@ module.exports = function(grunt) {
                 sourceMapFilename = destFile + '.map';
               }
               grunt.file.write(sourceMapFilename, output.map);
-              grunt.log.writeln('File ' + chalk.cyan(options.sourceMapFilename) + ' created.');
+              grunt.log.writeln('File ' + chalk.cyan(sourceMapFilename) + ' created.');
             }
             process.nextTick(next);
           },
@@ -98,7 +98,7 @@ module.exports = function(grunt) {
       }
     }
 
-    if (options.sourceMap && !options.sourceMapFilename) {
+    if (options.sourceMap && !options.sourceMapFileInline && !options.sourceMapFilename) {
       options.sourceMapFilename = destFile + '.map';
     }
 
