@@ -143,15 +143,6 @@ module.exports = function(grunt) {
       });
   };
 
-  var parseVariableOptions = function(options) {
-    var pairs = _.pairs(options);
-    var output = '';
-    pairs.forEach(function(pair) {
-      output += '@' + pair[0] + ':' + pair[1] + ';';
-    });
-    return output;
-  };
-
   var formatLessError = function(e) {
     var pos = '[' + 'L' + e.line + ':' + ('C' + e.column) + ']';
     return e.filename + ': ' + pos + ' ' + e.message;
