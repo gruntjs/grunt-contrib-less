@@ -223,6 +223,14 @@ module.exports = function(grunt) {
         files: {
           'tmp/modifyVars.css': ['test/fixtures/modifyVars.less']
         }
+      },
+      combineSourceFiles: {
+        options: {
+          combineSourceFiles: true
+        },
+        files: {
+          "tmp/combineSourceFiles.css": ['test/fixtures/include/variables.less','test/fixtures/combineSourceFiles*.less'],
+        }
       }
     },
 

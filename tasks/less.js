@@ -17,6 +17,7 @@ var less = require('less');
 module.exports = function(grunt) {
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
     var done = this.async();
+    var tempFileName;
 
     var options = this.options({
       banner: ''
@@ -51,6 +52,23 @@ module.exports = function(grunt) {
       var compiled = [];
       var i = 0;
 
+      if(_.isBoolean(options.combineSourceFiles) && options.combineSourceFiles){
+        var compound = "";
+        tempFileName = (function() {
+          var name = "x";
+          while(grunt.file.exists(name+".less")){
+            name += "x";
+          }
+          return name+".less";
+        }());
+
+        files.forEach(function(el) {
+          compound += "@import \""+el+"\";\n";
+        });
+        grunt.file.write(tempFileName, compound);
+        files = [tempFileName];
+      }
+
       async.concatSeries(files, function(file, next) {
         if (i++ > 0) {
           options.banner = '';
@@ -83,7 +101,12 @@ module.exports = function(grunt) {
         nextFileObj();
       });
 
-    }, done);
+    }, function(){
+      if(options.combineSourceFiles){
+        grunt.file.delete(tempFileName);
+      }
+      done();
+    });
   });
 
   var compileLess = function(srcFile, destFile, options) {
