@@ -1,0 +1,10 @@
+#bob {
+  /** @color defined in include/variables.less **/
+  color: #ffffff;
+}
+#harold {
+  /** @color defined in include/variables.less **/
+  color: #ffffff;
+  background-color: #ffffff;
+  border: solid 3px blue;
+}

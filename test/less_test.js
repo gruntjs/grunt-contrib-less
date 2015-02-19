@@ -160,6 +160,15 @@ exports.less = {
 
     test.done();
   },
+  combineSourceFiles: function(test) {
+    test.expect(1);
+
+    var actual = read('tmp/combineSourceFiles.css');
+    var expected = read('test/expected/combineSourceFiles.css');
+    test.equal(expected, actual, 'should combine sources to share variables and mixins');
+
+    test.done();
+  },
   banner: function(test) {
     test.expect(2);
 

@@ -132,3 +132,9 @@ Overrides global variables. Equivalent to `--modify-vars='VAR=VALUE'` option in 
 ## banner
 Type: `String`  
 Default: none
+
+## combineSourceFiles
+Type: `Boolean`  
+Default: false
+
+Combine source files into one 'main' less file before compiling. Used to share variables and mixins across sources and to build an accurate source map across multiple sources.

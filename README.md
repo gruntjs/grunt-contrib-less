@@ -145,12 +145,6 @@ Default: none
 
 Adds this path onto the less file paths in the source map.
 
-#### sourceMapFileInline
-Type: `Boolean`  
-Default: false
-
-Puts the map (and any less files) as a base64 data uri into the output css file.      .
-
 #### outputSourceFiles
 Type: `Boolean`  
 Default: false
@@ -166,6 +160,12 @@ Overrides global variables. Equivalent to `--modify-vars='VAR=VALUE'` option in 
 #### banner
 Type: `String`  
 Default: none
+
+#### combineSourceFiles
+Type: `Boolean`  
+Default: false
+
+Combine source files into one 'main' less file before compiling. Used to share variables and mixins across sources and to build an accurate source map across multiple sources.
 
 ### Usage Examples
 
@@ -235,4 +235,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Tue Dec 23 2014 14:52:06.*
+*This file was generated on Tue Jan 27 2015 10:10:39.*
