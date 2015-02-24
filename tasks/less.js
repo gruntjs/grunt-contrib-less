@@ -59,6 +59,7 @@ module.exports = function(grunt) {
         compileLess(file, destFile, options)
           .then(function(output) {
             compiled.push(output.css);
+            grunt.event.emit('less.compiled', output);
             if (options.sourceMap && !options.sourceMapFileInline) {
               var sourceMapFilename = options.sourceMapFilename;
               if (!sourceMapFilename) {
@@ -70,12 +71,15 @@ module.exports = function(grunt) {
             process.nextTick(next);
           },
           function(err) {
+            grunt.event.emit('less.error', err);
             nextFileObj(err);
           });
       }, function() {
         if (compiled.length < 1) {
+          grunt.event.emit('less.destempty', destFile);
           grunt.log.warn('Destination ' + chalk.cyan(destFile) + ' not written because compiled files were empty.');
         } else {
+          grunt.event.emit('less.writing', compiled);
           var allCss = compiled.join(options.compress ? '' : grunt.util.normalizelf(grunt.util.linefeed));
           grunt.file.write(destFile, allCss);
           grunt.log.writeln('File ' + chalk.cyan(destFile) + ' created');
