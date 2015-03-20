@@ -26,6 +26,11 @@ module.exports = function(grunt) {
       grunt.verbose.warn('Destination not written because no source files were provided.');
     }
 
+    var tally = {
+      sheets: 0,
+      maps: 0
+    };
+
     async.eachSeries(this.files, function(f, nextFileObj) {
       var destFile = f.dest;
 
@@ -65,7 +70,8 @@ module.exports = function(grunt) {
                 sourceMapFilename = destFile + '.map';
               }
               grunt.file.write(sourceMapFilename, output.map);
-              grunt.log.writeln('File ' + chalk.cyan(sourceMapFilename) + ' created.');
+              grunt.verbose.writeln('File ' + chalk.cyan(sourceMapFilename) + ' created.');
+              tally.maps++;
             }
             process.nextTick(next);
           },
@@ -78,12 +84,23 @@ module.exports = function(grunt) {
         } else {
           var allCss = compiled.join(options.compress ? '' : grunt.util.normalizelf(grunt.util.linefeed));
           grunt.file.write(destFile, allCss);
-          grunt.log.writeln('File ' + chalk.cyan(destFile) + ' created');
+          grunt.verbose.writeln('File ' + chalk.cyan(destFile) + ' created');
+          tally.sheets++;
         }
         nextFileObj();
       });
 
-    }, done);
+    }, function () {
+      if (tally.sheets) {
+        grunt.log.ok(tally.sheets + ' ' + grunt.util.pluralize(tally.sheets, 'stylesheet/stylesheets') + ' created.');
+      }
+
+      if (tally.maps) {
+        grunt.log.ok(tally.maps + ' ' + grunt.util.pluralize(tally.maps, 'sourcemap/sourcemaps') + ' created.');
+      }
+
+      done();
+    });
   });
 
   var compileLess = function(srcFile, destFile, options) {
