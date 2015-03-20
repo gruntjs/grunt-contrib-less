@@ -65,7 +65,7 @@ module.exports = function(grunt) {
                 sourceMapFilename = destFile + '.map';
               }
               grunt.file.write(sourceMapFilename, output.map);
-              grunt.log.writeln('File ' + chalk.cyan(sourceMapFilename) + ' created.');
+              grunt.verbose.writeln('File ' + chalk.cyan(sourceMapFilename) + ' created.');
             }
             process.nextTick(next);
           },
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
         } else {
           var allCss = compiled.join(options.compress ? '' : grunt.util.normalizelf(grunt.util.linefeed));
           grunt.file.write(destFile, allCss);
-          grunt.log.writeln('File ' + chalk.cyan(destFile) + ' created');
+          grunt.verbose.writeln('File ' + chalk.cyan(destFile) + ' created');
         }
         nextFileObj();
       });
