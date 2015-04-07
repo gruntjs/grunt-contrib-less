@@ -1,4 +1,4 @@
-# grunt-contrib-less v1.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-less/branch/master)
+# grunt-contrib-less v1.0.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-less/branch/master)
 
 > Compile LESS files to CSS.
 
@@ -195,6 +195,7 @@ less: {
 
 ## Release History
 
+ * 2015-04-07   v1.0.1   Fix backwards compat, lock to ~2.4
  * 2014-12-23   v1.0.0   Update to less 2.1.0
  * 2014-10-23   v0.12.0   Added cleancssOptions as a option. When possible, includes filename for failed writes. Ensure banner only outputs on the first file in a series.
  * 2014-07-29   v0.11.4   Fix 'banner', 'urlArgs' LESS options Fixes npm 2 peerDependencies issues
@@ -229,4 +230,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Tue Dec 23 2014 14:52:06.*
+*This file was generated on Tue Apr 07 2015 15:04:23.*
