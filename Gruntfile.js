@@ -77,7 +77,7 @@ module.exports = function(grunt) {
       plugins: {
         options: {
           paths: ['test/fixtures/include'],
-          plugins: [new (require("less-plugin-clean-css"))({keepSpecialComments: 0})]
+          plugins: [new (require('less-plugin-clean-css'))({keepSpecialComments: 0})]
         },
         files: {
           'tmp/plugins.css': ['test/fixtures/plugins.less']
@@ -105,7 +105,7 @@ module.exports = function(grunt) {
       },
       nomatchedfiles: {
         files: {
-          'tmp/nomatchedfiles.css' : 'test/nonexistent/*.less'
+          'tmp/nomatchedfiles.css': 'test/nonexistent/*.less'
         }
       },
       compressMultipleSource: {
@@ -120,7 +120,7 @@ module.exports = function(grunt) {
       pluginCleancss: {
         options: {
           paths: ['test/fixtures/include'],
-          plugins: [new (require("less-plugin-clean-css"))()],
+          plugins: [new (require('less-plugin-clean-css'))()],
           compress: true
         },
         files: {

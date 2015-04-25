@@ -39,9 +39,8 @@ module.exports = function(grunt) {
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
           return false;
-        } else {
-          return true;
         }
+        return true;
       });
 
       if (files.length === 0) {
@@ -145,10 +144,9 @@ module.exports = function(grunt) {
     // Equivalent to --modify-vars option.
     // Properties under options.modifyVars are appended as less variables
     // to override global variables.
-    var modifyVarsOutput = parseVariableOptions(options['modifyVars']);
+    var modifyVarsOutput = parseVariableOptions(options.modifyVars);
     if (modifyVarsOutput) {
-      srcCode += '\n';
-      srcCode += modifyVarsOutput;
+      srcCode += '\n' + modifyVarsOutput;
     }
 
     // Load custom functions
