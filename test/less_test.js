@@ -86,6 +86,15 @@ exports.less = {
 
     test.done();
   },
+  globalVars: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/globalVars.css');
+    var expected = grunt.file.read('test/expected/globalVars.css');
+    test.equal(expected, actual, 'should define global variables');
+
+    test.done();
+  },
   modifyVars: function(test) {
     test.expect(1);
 
