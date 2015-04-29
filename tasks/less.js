@@ -141,14 +141,6 @@ module.exports = function(grunt) {
 
     var srcCode = grunt.file.read(srcFile);
 
-    // Equivalent to --modify-vars option.
-    // Properties under options.modifyVars are appended as less variables
-    // to override global variables.
-    var modifyVarsOutput = parseVariableOptions(options.modifyVars);
-    if (modifyVarsOutput) {
-      srcCode += '\n' + modifyVarsOutput;
-    }
-
     // Load custom functions
     if (options.customFunctions) {
       Object.keys(options.customFunctions).forEach(function(name) {
@@ -165,15 +157,6 @@ module.exports = function(grunt) {
       .catch(function(err) {
         lessError(err, srcFile);
       });
-  };
-
-  var parseVariableOptions = function(options) {
-    var pairs = _.pairs(options);
-    var output = '';
-    pairs.forEach(function(pair) {
-      output += '@' + pair[0] + ':' + pair[1] + ';';
-    });
-    return output;
   };
 
   var formatLessError = function(e) {
