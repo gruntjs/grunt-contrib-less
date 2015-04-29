@@ -149,7 +149,7 @@ Adds this path onto the less file paths in the source map.
 Type: `Boolean`  
 Default: false
 
-Puts the map (and any less files) as a base64 data uri into the output css file.      .
+Puts the map (and any less files) as a base64 data uri into the output css file.
 
 #### outputSourceFiles
 Type: `Boolean`  
@@ -157,11 +157,35 @@ Default: false
 
 Puts the less files into the map instead of referencing them.
 
+#### globalVars
+Type: `Object`  
+Default: none
+
+Defines global variables. Equivalent to `--global-vars='VAR=VALUE'` option in less.
+
+##### Example
+
+```js
+globalVars: {
+  color: 'red',
+  string: '"some text"'
+}
+```
+
 #### modifyVars
 Type: `Object`  
 Default: none
 
 Overrides global variables. Equivalent to `--modify-vars='VAR=VALUE'` option in less.
+
+##### Example
+
+```js
+modifyVars: {
+  color: 'red',
+  string: '"some text"'
+}
+```
 
 #### banner
 Type: `String`  
