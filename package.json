@@ -1,6 +1,6 @@
 {
   "name": "grunt-contrib-less",
-  "description": "Compile LESS files to CSS.",
+  "description": "Compile LESS files to CSS",
   "version": "1.0.0",
   "author": {
     "name": "Grunt Team",
