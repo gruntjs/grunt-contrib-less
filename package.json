@@ -17,7 +17,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "chalk": "^1.0.0",
-    "less": "~2.5.0",
+    "less": "~2.5.1",
     "lodash": "^3.2.0"
   },
   "devDependencies": {
@@ -25,7 +25,7 @@
     "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-internal": "^0.4.12",
-    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-jshint": "^0.11.2",
     "grunt-contrib-nodeunit": "^0.4.1",
     "less-plugin-clean-css": "^1.5.0"
   },
