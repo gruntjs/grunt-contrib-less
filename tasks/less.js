@@ -161,8 +161,20 @@ module.exports = function(grunt) {
       });
     }
 
+    if (options.listeners) {
+      less.logger.addListener(options.listeners);
+    }
+
     return less.render(srcCode, options)
-      .catch(function(err) {
+      .then(function(result) {
+        if (options.listeners) {
+          less.logger.removeListener(options.listeners);
+        }
+        return result;
+      }, function(err) {
+        if (options.listeners) {
+          less.logger.removeListener(options.listeners);
+        }
         lessError(err, srcFile);
       });
   };
