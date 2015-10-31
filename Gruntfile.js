@@ -104,9 +104,6 @@ module.exports = function(grunt) {
       nofiles: {
       },
       nomatchedfiles: {
-        files: {
-          'tmp/nomatchedfiles.css': 'test/nonexistent/*.less'
-        }
       },
       compressMultipleSource: {
         options: {
