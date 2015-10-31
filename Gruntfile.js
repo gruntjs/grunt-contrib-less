@@ -103,6 +103,8 @@ module.exports = function(grunt) {
       },
       nofiles: {
       },
+      nomatchedfiles: {
+      },
       compressMultipleSource: {
         options: {
           paths: ['test/fixtures/include'],
