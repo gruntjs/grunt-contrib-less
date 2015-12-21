@@ -52,7 +52,7 @@ Compress output by removing some whitespaces.
 Type: `Array`  
 Default: `null`
 
-Allows passing plugins
+Allows passing plugins.
 
 #### ieCompat
 Type: `Boolean`  
