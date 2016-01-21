@@ -196,8 +196,11 @@ less: {
     }
   }
 }
+
+grunt.registerTask('less-task', ['less:production']);
 ```
 
+**Refer to [this issue](https://github.com/gruntjs/grunt-contrib-less/issues/279#issuecomment-105737304) and [Grunt Doc](http://gruntjs.com/frequently-asked-questions#why-am-i-getting-a-maximum-call-stack-size-exceeded-error) on renaming the task**
 
 ## Release History
 
