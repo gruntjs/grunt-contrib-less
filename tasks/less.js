@@ -13,14 +13,28 @@ var _ = require('lodash');
 var async = require('async');
 var chalk = require('chalk');
 var less = require('less');
+var Promise = require('promise');
+
+var fs = require('fs');
 
 module.exports = function(grunt) {
+  var lessCache = {};
+
   grunt.registerMultiTask('less', 'Compile LESS files to CSS', function() {
     var done = this.async();
 
     var options = this.options({
       banner: ''
     });
+
+    options.cache = Boolean(options.cache || options.cacheFile);
+    if (options.cacheFile) {
+      try {
+        lessCache = grunt.file.readJSON(options.cacheFile);
+      } catch (e) {
+        lessCache = {};
+      }
+    }
 
     if (this.files.length < 1) {
       grunt.verbose.warn('Destination not written because no source files were provided.');
@@ -54,8 +68,10 @@ module.exports = function(grunt) {
 
       var compiled = [];
       var i = 0;
+      var startCompileTime;
 
       async.concatSeries(files, function(file, next) {
+        startCompileTime = Date.now();
         if (i++ > 0) {
           options.banner = '';
         }
@@ -84,6 +100,8 @@ module.exports = function(grunt) {
           var allCss = compiled.join(options.compress ? '' : grunt.util.normalizelf(grunt.util.linefeed));
           grunt.file.write(destFile, allCss);
           grunt.verbose.writeln('File ' + chalk.cyan(destFile) + ' created');
+          var diffTime = ((Date.now() - startCompileTime) / 1000).toFixed(2) + ' ms';
+          grunt.verbose.writeln('Compile time: ' + chalk.cyan(diffTime));
           tally.sheets++;
         }
         nextFileObj();
@@ -98,11 +116,25 @@ module.exports = function(grunt) {
         grunt.log.ok(tally.maps + ' ' + grunt.util.pluralize(tally.maps, 'sourcemap/sourcemaps') + ' created.');
       }
 
+      if (options.cacheFile) {
+        try {
+          grunt.file.write(options.cacheFile, JSON.stringify(lessCache));
+        } catch (e) {
+          grunt.log.warn('Failed to write cache file.');
+        }
+      }
       done();
     });
   });
 
   var compileLess = function(srcFile, destFile, options) {
+    if (options.cache) {
+      var cachePromise = getCachePromise(srcFile);
+      if (cachePromise) {
+        return cachePromise;
+      }
+    }
+
     options = _.assign({filename: srcFile}, options);
     options.paths = options.paths || [path.dirname(srcFile)];
 
@@ -161,10 +193,17 @@ module.exports = function(grunt) {
       });
     }
 
-    return less.render(srcCode, options)
+    var compilePromise = less.render(srcCode, options)
       .catch(function(err) {
         lessError(err, srcFile);
       });
+
+    if (options.cache) {
+      return cachingFilePromise(srcFile, compilePromise);
+    }
+    else {
+      return compilePromise;
+    }
   };
 
   var parseVariableOptions = function(options) {
@@ -192,5 +231,44 @@ module.exports = function(grunt) {
     var err = new Error(message);
     err.origError = e;
     return err;
+  };
+
+  var getCachePromise = function (srcFile) {
+    var cache = lessCache[srcFile];
+    if (cache) {
+      var stat = fs.statSync(srcFile);
+      var output = cache.output;
+      if (
+        stat.size === cache.size &&
+        stat.mtime.getTime() === cache.mtime &&
+        output
+      ) {
+        return new Promise(function(resolve) {
+          resolve(output);
+        });
+      }
+      else {
+        // Invalidate cache
+        delete lessCache[srcFile];
+      }
+    }
+  };
+
+  var cachingFilePromise = function (srcFile, promise) {
+    return new Promise(function(resolve, reject) {
+      promise
+        .then(function(output) {
+          var stat = fs.statSync(srcFile);
+          lessCache[srcFile] = {
+            size  : stat.size,
+            mtime : stat.mtime.getTime(),
+            output: output
+          };
+          return resolve(output);
+        },
+        function(err) {
+          return reject(err);
+        });
+    });
   };
 };
