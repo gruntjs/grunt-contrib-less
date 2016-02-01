@@ -5,7 +5,6 @@
 
 
 ## Getting Started
-This plugin requires Grunt `>=0.4.0`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -196,14 +195,12 @@ less: {
     }
   }
 }
-
-grunt.registerTask('less-task', ['less:production']);
 ```
 
-**Refer to [this issue](https://github.com/gruntjs/grunt-contrib-less/issues/279#issuecomment-105737304) and [Grunt Doc](http://gruntjs.com/frequently-asked-questions#why-am-i-getting-a-maximum-call-stack-size-exceeded-error) on renaming the task**
 
 ## Release History
 
+ * 2016-02-01   v1.2.0   Update to less ~2.6.0 removed peerDependency from package.json
  * 2015-11-09   v1.1.0   Update to less ~2.5.0
  * 2014-12-23   v1.0.0   Update to less 2.1.0
  * 2014-10-23   v0.12.0   Added cleancssOptions as a option. When possible, includes filename for failed writes. Ensure banner only outputs on the first file in a series.
@@ -239,4 +236,4 @@ grunt.registerTask('less-task', ['less:production']);
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Mon Nov 09 2015 14:27:10.*
+*This file was generated on Mon Feb 01 2016 10:53:58.*

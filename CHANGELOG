@@ -1,3 +1,8 @@
+v1.2.0:
+  date: 2016-02-01
+  changes:
+    - Update to less ~2.6.0
+    - removed peerDependency from package.json
 v1.1.0:
   date: 2015-11-09
   changes:
