@@ -31,7 +31,7 @@ Task targets, files and options may be specified according to the grunt [Configu
 Type: `String` `Array` `Function`  
 Default: Directory of input file.
 
-Specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
+Specifies directories to scan for `@import` directives when parsing. Default value is the directory of the source, which is probably what you want.
 
 If you specify a function the source filepath will be the first argument. You can return either a string or an array of paths to be used.
 
@@ -59,13 +59,13 @@ Default: `true`
 
 Enforce the CSS output is compatible with Internet Explorer 8.
 
-For example, the [data-uri](http://lesscss.org/functions/#misc-functions-data-uri) function encodes a file in base64 encoding and embeds it into the generated CSS files as a data-URI. Because Internet Explorer 8 limits `data-uri`s to 32KB, the ieCompat option prevents `less` from exceeding this.
+For example, the [data-uri](http://lesscss.org/functions/#misc-functions-data-uri) function encodes a file in Base64 encoding and embeds it into the generated CSS files as a data URI. Because Internet Explorer 8 limits data URIs to 32KB, the `ieCompat` option prevents LESS from exceeding this.
 
 #### optimization
 Type: `Integer`  
 Default: `null`
 
-Set the parser's optimization level. The lower the number, the less nodes it will create in the tree. This could matter for debugging, or if you want to access the individual nodes in the tree.
+Set the parser's optimization level. The lower the number, the LESS nodes it will create in the tree. This could matter for debugging, or if you want to access the individual nodes in the tree.
 
 #### strictImports
 Type: `Boolean`  
@@ -83,19 +83,19 @@ When enabled, math is required to be in parenthesis.
 Type: `Boolean`  
 Default: `false`
 
-When enabled, less will validate the units used (e.g. 4px/2px = 2, not 2px and 4em/2px throws an error).
+When enabled, LESS will validate the units used (e.g. `4px/2px = 2`, not `2px`, and `4em/2px` throws an error).
 
 #### syncImport
 Type: `Boolean`  
 Default: `false`
 
-Read @import'ed files synchronously from disk.
+Read `@import`'ed files synchronously from disk.
 
 #### dumpLineNumbers
 Type: `String`  
 Default: `false`
 
-Configures -sass-debug-info support.
+Configures `-sass-debug-info` support.
 
 Accepts following values: `comments`, `mediaquery`, `all`.
 
@@ -103,15 +103,15 @@ Accepts following values: `comments`, `mediaquery`, `all`.
 Type: `Boolean`  
 Default: `false`
 
-Rewrite URLs to be relative. false: do not modify URLs.
+Rewrite URLs to be relative. `false`: do not modify URLs.
 
 #### customFunctions
 Type: `Object`  
 Default: none
 
 Define custom functions to be available within your LESS stylesheets. The function's name must be lowercase.
-In the definition, the first argument is the less object, and subsequent arguments are from the less function call.
-Values passed to the function are types defined within less, the return value may be either one of them or primitive.
+In the definition, the first argument is the LESS object, and subsequent arguments are from the LESS function call.
+Values passed to the function are types defined within LESS, the return value may be either one of them or primitive.
 See the LESS documentation for more information on the available types.
 
 #### sourceMap
@@ -136,31 +136,31 @@ Override the default URL that points to the source map from the compiled CSS fil
 Type: `String`  
 Default: none
 
-Sets the base path for the less file paths in the source map.
+Sets the base path for the LESS file paths in the source map.
 
 #### sourceMapRootpath
 Type: `String`  
 Default: none
 
-Adds this path onto the less file paths in the source map.
+Adds this path onto the LESS file paths in the source map.
 
 #### sourceMapFileInline
 Type: `Boolean`  
-Default: false
+Default: `false`
 
-Puts the map (and any less files) as a base64 data uri into the output css file.
+Puts the map (and any LESS files) as a Base64 data URI into the output css file.
 
 #### outputSourceFiles
 Type: `Boolean`  
-Default: false
+Default: `false`
 
-Puts the less files into the map instead of referencing them.
+Puts the LESS files into the map instead of referencing them.
 
 #### modifyVars
 Type: `Object`  
 Default: none
 
-Overrides global variables. Equivalent to `--modify-vars='VAR=VALUE'` option in less.
+Overrides global variables. Equivalent to `--modify-vars='VAR=VALUE'` option in LESS.
 
 #### banner
 Type: `String`  
