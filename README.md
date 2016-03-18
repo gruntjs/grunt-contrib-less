@@ -31,7 +31,7 @@ Task targets, files and options may be specified according to the grunt [Configu
 Type: `String` `Array` `Function`  
 Default: Directory of input file.
 
-Specifies directories to scan for `@import` directives when parsing. Default value is the directory of the source, which is probably what you want.
+Specifies directories to scan for @import directives when parsing. Default value is the directory of the source, which is probably what you want.
 
 If you specify a function the source filepath will be the first argument. You can return either a string or an array of paths to be used.
 
@@ -59,13 +59,13 @@ Default: `true`
 
 Enforce the CSS output is compatible with Internet Explorer 8.
 
-For example, the [data-uri](http://lesscss.org/functions/#misc-functions-data-uri) function encodes a file in Base64 encoding and embeds it into the generated CSS files as a data URI. Because Internet Explorer 8 limits data URIs to 32KB, the `ieCompat` option prevents LESS from exceeding this.
+For example, the [data-uri](http://lesscss.org/functions/#misc-functions-data-uri) function encodes a file in base64 encoding and embeds it into the generated CSS files as a data-URI. Because Internet Explorer 8 limits `data-uri`s to 32KB, the ieCompat option prevents `less` from exceeding this.
 
 #### optimization
 Type: `Integer`  
 Default: `null`
 
-Set the parser's optimization level. The lower the number, the LESS nodes it will create in the tree. This could matter for debugging, or if you want to access the individual nodes in the tree.
+Set the parser's optimization level. The lower the number, the less nodes it will create in the tree. This could matter for debugging, or if you want to access the individual nodes in the tree.
 
 #### strictImports
 Type: `Boolean`  
@@ -83,19 +83,19 @@ When enabled, math is required to be in parenthesis.
 Type: `Boolean`  
 Default: `false`
 
-When enabled, LESS will validate the units used (e.g. `4px/2px = 2`, not `2px`, and `4em/2px` throws an error).
+When enabled, less will validate the units used (e.g. 4px/2px = 2, not 2px and 4em/2px throws an error).
 
 #### syncImport
 Type: `Boolean`  
 Default: `false`
 
-Read `@import`'ed files synchronously from disk.
+Read @import'ed files synchronously from disk.
 
 #### dumpLineNumbers
 Type: `String`  
 Default: `false`
 
-Configures `-sass-debug-info` support.
+Configures -sass-debug-info support.
 
 Accepts following values: `comments`, `mediaquery`, `all`.
 
@@ -103,15 +103,15 @@ Accepts following values: `comments`, `mediaquery`, `all`.
 Type: `Boolean`  
 Default: `false`
 
-Rewrite URLs to be relative. `false`: do not modify URLs.
+Rewrite URLs to be relative. false: do not modify URLs.
 
 #### customFunctions
 Type: `Object`  
 Default: none
 
 Define custom functions to be available within your LESS stylesheets. The function's name must be lowercase.
-In the definition, the first argument is the LESS object, and subsequent arguments are from the LESS function call.
-Values passed to the function are types defined within LESS, the return value may be either one of them or primitive.
+In the definition, the first argument is the less object, and subsequent arguments are from the less function call.
+Values passed to the function are types defined within less, the return value may be either one of them or primitive.
 See the LESS documentation for more information on the available types.
 
 #### sourceMap
@@ -136,31 +136,31 @@ Override the default URL that points to the source map from the compiled CSS fil
 Type: `String`  
 Default: none
 
-Sets the base path for the LESS file paths in the source map.
+Sets the base path for the less file paths in the source map.
 
 #### sourceMapRootpath
 Type: `String`  
 Default: none
 
-Adds this path onto the LESS file paths in the source map.
+Adds this path onto the less file paths in the source map.
 
 #### sourceMapFileInline
 Type: `Boolean`  
-Default: `false`
+Default: false
 
-Puts the map (and any LESS files) as a Base64 data URI into the output css file.
+Puts the map (and any less files) as a base64 data uri into the output css file.
 
 #### outputSourceFiles
 Type: `Boolean`  
-Default: `false`
+Default: false
 
-Puts the LESS files into the map instead of referencing them.
+Puts the less files into the map instead of referencing them.
 
 #### modifyVars
 Type: `Object`  
 Default: none
 
-Overrides global variables. Equivalent to `--modify-vars='VAR=VALUE'` option in LESS.
+Overrides global variables. Equivalent to `--modify-vars='VAR=VALUE'` option in less.
 
 #### banner
 Type: `String`  
@@ -200,40 +200,40 @@ less: {
 
 ## Release History
 
- * 2016-02-01   v1.2.0   Update to less ~2.6.0 removed peerDependency from package.json
- * 2015-11-09   v1.1.0   Update to less ~2.5.0
- * 2014-12-23   v1.0.0   Update to less 2.1.0
- * 2014-10-23   v0.12.0   Added cleancssOptions as a option. When possible, includes filename for failed writes. Ensure banner only outputs on the first file in a series.
- * 2014-07-29   v0.11.4   Fix 'banner', 'urlArgs' LESS options Fixes npm 2 peerDependencies issues
+ * 2016-02-01   v1.2.0   Update to less ~2.6.0. Removed peerDependency from package.json.
+ * 2015-11-09   v1.1.0   Update to less ~2.5.0.
+ * 2014-12-23   v1.0.0   Update to less 2.1.0.
+ * 2014-10-23   v0.12.0   Added `cleancssOptions` as an option. When possible, includes filename for failed writes. Ensure banner only outputs on the first file in a series.
+ * 2014-07-29   v0.11.4   Fix `banner` and `urlArgs` LESS options. Fixes npm 2 peerDependencies issues.
  * 2014-06-20   v0.11.3   Update to Less ~1.7.2.
  * 2014-06-01   v0.11.2   Lock to less 1.7.0.
  * 2014-05-26   v0.11.1   Fix `modifyVars` to work when less file ends with a comment.
- * 2014-03-19   v0.11.0   Custom functions can return types defined by less paths option now accepts a function Replaced deprecated grunt.util methods Removes deprecated grunt.lib.contrib
- * 2014-03-01   v0.10.0   sourceMapBasepath accepts a function. Update copyright to 2014. Update .gitattributes. Update less.js to v1.7.0. Prevent CRLF in the repo. Adds modify-vars option. Changed to async stack call. Fixes data-uri test. Normalize line endings on tests.
- * 2014-01-07   v0.9.0   Bump to less 1.6
- * 2013-12-06   v0.8.3   Support sourceMapURL
- * 2013-11-14   v0.8.2   Support outputSourceFiles
- * 2013-10-24   v0.8.1   Support sourceMapFilename, sourceMapBasepath and sourceMapRootpath
- * 2013-10-22   v0.8.0   Upgrade to LESS 1.5 Support strictUnits option Support sourceMap option Add customFunctions option for defining custom functions within LESS Output the source file name on error yuicompress option now cleancss (Less changed underlying dependency)
- * 2013-08-08   v0.7.0   Downgrade no source files warning to only in verbose mode
- * 2013-08-08   v0.6.5   Support strictMath option Support rootpath parse option
- * 2013-07-09   v0.6.4   Support relativeUrls option
- * 2013-07-06   v0.6.3   Add report option for minification and gzip results
- * 2013-07-03   v0.6.2   support syncImport
- * 2013-06-12   v0.6.1   Support ieCompat
- * 2013-06-09   v0.6.0   Bump less to 1.4.0
+ * 2014-03-19   v0.11.0   Custom functions can return types defined by less. `paths` option now accepts a function. Replaced deprecated `grunt.util` methods. Removes deprecated `grunt.lib.contrib`.
+ * 2014-03-01   v0.10.0   `sourceMapBasepath` accepts a function. Update copyright to 2014. Update .gitattributes. Update less.js to v1.7.0. Prevent CRLF in the repo. Adds modify-vars option. Changed to async stack call. Fixes data-uri test. Normalize line endings on tests.
+ * 2014-01-07   v0.9.0   Bump to less 1.6.
+ * 2013-12-06   v0.8.3   Support `sourceMapURL`.
+ * 2013-11-14   v0.8.2   Support `outputSourceFiles`.
+ * 2013-10-24   v0.8.1   Support `sourceMapFilename`, `sourceMapBasepath` and `sourceMapRootpath`.
+ * 2013-10-22   v0.8.0   Upgrade to LESS 1.5. Support `strictUnits` option. Support `sourceMap` option. Add `customFunctions` option for defining custom functions within LESS. Output the source file name on error. `yuicompress` option now cleancss (Less changed underlying dependency)
+ * 2013-08-08   v0.7.0   Downgrade no source files warning to only in verbose mode.
+ * 2013-08-08   v0.6.5   Support `strictMath` option. Support `rootpath` parse option.
+ * 2013-07-09   v0.6.4   Support `relativeUrls` option.
+ * 2013-07-06   v0.6.3   Add `report` option for minification and gzip results.
+ * 2013-07-03   v0.6.2   support `syncImport`.
+ * 2013-06-12   v0.6.1   Support `ieCompat`.
+ * 2013-06-09   v0.6.0   Bump less to 1.4.0.
  * 2013-05-23   v0.5.2   Improve error handling.
  * 2013-04-25   v0.5.1   Gracefully handle configuration without sources.
  * 2013-02-15   v0.5.0   First official release for Grunt 0.4.0.
- * 2013-01-23   v0.5.0rc7   Updating grunt/gruntplugin dependencies to rc7. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions. Remove experimental wildcard destination support. Switching to this.files api.
- * 2012-10-18   v0.3.2   Add support for dumpLineNumbers.
+ * 2013-01-23   v0.5.0rc7   Updating grunt/gruntplugin dependencies to rc7. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions. Remove experimental wildcard destination support. Switching to `this.files` API.
+ * 2012-10-18   v0.3.2   Add support for `dumpLineNumbers`.
  * 2012-10-12   v0.3.1   Rename grunt-contrib-lib dep to grunt-lib-contrib.
- * 2012-09-24   v0.3.0   Global options depreciated Revert normalize linefeeds.
- * 2012-09-16   v0.2.2   Support all less options Normalize linefeeds Default path to dirname of src file.
+ * 2012-09-24   v0.3.0   Global options depreciated. Revert normalize linefeeds.
+ * 2012-09-16   v0.2.2   Support all less options. Normalize linefeeds. Default path to dirname of src file.
  * 2012-09-10   v0.2.0   Refactored from grunt-contrib into individual repo.
 
 ---
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Mon Feb 01 2016 10:55:38.*
+*This file was generated on Fri Mar 18 2016 19:24:04.*
