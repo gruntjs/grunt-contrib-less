@@ -146,6 +146,19 @@ module.exports = function(grunt) {
         src: 'test/fixtures/style3.less',
         dest: 'tmp/sourceMapFilename.css'
       },
+      sourceMapFilenameFunction: {
+        options: {
+          sourceMap: true,
+          sourceMapFilename: function (dest) {
+            var path = require('path');
+            var destPath = path.parse(dest);
+            return path.join(destPath.dir, 'maps', destPath.base + '.map');
+            // returns 'tmp/maps/sourceMapFilename.css.map';
+          }
+        },
+        src: 'test/fixtures/style3.less',
+        dest: 'tmp/sourceMapFilename.css'
+      },
       sourceMapURL: {
         options: {
           sourceMap: true,
