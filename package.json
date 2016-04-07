@@ -16,10 +16,10 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "async": "^0.9.0",
+    "async": "^1.5.2",
     "chalk": "^1.0.0",
     "less": "~2.6.0",
-    "lodash": "^3.2.0"
+    "lodash": "^4.8.2"
   },
   "devDependencies": {
     "grunt": "^1.0.0",
