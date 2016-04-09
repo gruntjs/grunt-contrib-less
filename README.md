@@ -1,4 +1,4 @@
-# grunt-contrib-less v1.2.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-less/branch/master)
+# grunt-contrib-less v1.3.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-less/branch/master)
 
 > Compile LESS files to CSS
 
@@ -172,15 +172,15 @@ Default: none
 less: {
   development: {
     options: {
-      paths: ["assets/css"]
+      paths: ['assets/css']
     },
     files: {
-      "path/to/result.css": "path/to/source.less"
+      'path/to/result.css': 'path/to/source.less'
     }
   },
   production: {
     options: {
-      paths: ["assets/css"],
+      paths: ['assets/css'],
       plugins: [
         new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]}),
         new (require('less-plugin-clean-css'))(cleanCssOptions)
@@ -191,7 +191,7 @@ less: {
       }
     },
     files: {
-      "path/to/result.css": "path/to/source.less"
+      'path/to/result.css': 'path/to/source.less'
     }
   }
 }
@@ -200,6 +200,7 @@ less: {
 
 ## Release History
 
+ * 2016-04-07   v1.3.0   Update lodash and async dependecies.
  * 2016-02-01   v1.2.0   Update to less ~2.6.0. Removed peerDependency from package.json.
  * 2015-11-09   v1.1.0   Update to less ~2.5.0.
  * 2014-12-23   v1.0.0   Update to less 2.1.0.
@@ -236,4 +237,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Fri Mar 18 2016 19:24:04.*
+*This file was generated on Thu Apr 07 2016 15:26:05.*

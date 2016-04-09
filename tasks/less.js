@@ -168,7 +168,7 @@ module.exports = function(grunt) {
   };
 
   var parseVariableOptions = function(options) {
-    var pairs = _.pairs(options);
+    var pairs = _.toPairs(options);
     var output = '';
     pairs.forEach(function(pair) {
       output += '@' + pair[0] + ':' + pair[1] + ';';
