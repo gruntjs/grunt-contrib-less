@@ -204,7 +204,7 @@ module.exports = function(grunt) {
               return (((arg1.value * 1) + (arg2.value))) + arg1.unit.numerator[0];
             },
             'string-result': function() {
-                return '"Hello"';
+              return '"Hello"';
             }
           }
         },

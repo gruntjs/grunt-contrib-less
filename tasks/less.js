@@ -156,7 +156,7 @@ module.exports = function(grunt) {
           var args = [].slice.call(arguments);
           args.unshift(less);
           var res = options.customFunctions[name].apply(this, args);
-            return _.isObject(res) ? res : new less.tree.Anonymous(res);
+          return _.isObject(res) ? res : new less.tree.Anonymous(res);
         });
       });
     }
