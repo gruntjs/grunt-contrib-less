@@ -75,6 +75,7 @@ module.exports = function(grunt) {
             process.nextTick(next);
           },
           function(err) {
+            lessError(err, file);
             nextFileObj(err);
           });
       }, function() {
@@ -161,10 +162,7 @@ module.exports = function(grunt) {
       });
     }
 
-    return less.render(srcCode, options)
-      .catch(function(err) {
-        lessError(err, srcFile);
-      });
+    return less.render(srcCode, options);
   };
 
   var parseVariableOptions = function(options) {
