@@ -192,10 +192,14 @@ module.exports = function(grunt) {
 
   var parseVariableOptions = function(options) {
     var pairs = _.toPairs(options);
-    var output = '';
-    pairs.forEach(function(pair) {
-      output += '@' + pair[0] + ':' + pair[1] + ';';
-    });
+    var output = _.reduce(pairs, function(accumulator, pair) {
+      var variableName = pair[0];
+      var variableValue = pair[1];
+      if (variableValue) {
+        accumulator += '@' + variableName + ':' + variableValue + ';';
+      }
+      return accumulator;
+    }, '');
     return output;
   };
 

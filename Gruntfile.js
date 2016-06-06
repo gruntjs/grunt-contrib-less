@@ -251,6 +251,16 @@ module.exports = function(grunt) {
         files: {
           'tmp/modifyVars.css': ['test/fixtures/modifyVars.less']
         }
+      },
+      modifyVarsWithUndefined: {
+        options: {
+          modifyVars: {
+            customColor: undefined
+          }
+        },
+        files: {
+          'tmp/modifyVarsWithUndefined.css': [ 'test/fixtures/modifyVarsWithUndefined.less']
+        }
       }
     },
 

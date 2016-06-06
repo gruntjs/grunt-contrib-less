@@ -112,6 +112,15 @@ exports.less = {
 
     test.done();
   },
+  modifyVarsWithUndefined: function(test) {
+    test.expect(1);
+
+    var actual = read('tmp/modifyVarsWithUndefined.css');
+    var expected = read('test/expected/modifyVarsWithUndefined.css');
+    test.equal(expected, actual, 'should not override global variables with empty values');
+
+    test.done();
+  },
   sourceMap: function(test) {
     test.expect(1);
 
