@@ -115,7 +115,7 @@ module.exports = function(grunt) {
     }
 
     if (options.sourceMap && !options.sourceMapFileInline && !options.sourceMapFilename) {
-      options.sourceMapFilename = destFile + '.map';
+      options.sourceMapFilename = path.basename(destFile) + '.map';
     }
 
     if (typeof options.sourceMapBasepath === 'function') {
