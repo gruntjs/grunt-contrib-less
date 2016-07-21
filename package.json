@@ -16,9 +16,9 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "async": "^1.5.2",
+    "async": "^2.0.0",
     "chalk": "^1.0.0",
-    "less": "~2.6.0",
+    "less": "~2.7.1",
     "lodash": "^4.8.2"
   },
   "devDependencies": {
