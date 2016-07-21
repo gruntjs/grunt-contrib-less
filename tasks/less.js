@@ -106,7 +106,7 @@ module.exports = function(grunt) {
     options = _.assign({filename: srcFile}, options);
     options.paths = options.paths || [path.dirname(srcFile)];
 
-    if (_.isFunction(options.paths)) {
+    if (typeof options.paths === 'function') {
       try {
         options.paths = options.paths(srcFile);
       } catch (e) {
@@ -118,7 +118,7 @@ module.exports = function(grunt) {
       options.sourceMapFilename = destFile + '.map';
     }
 
-    if (_.isFunction(options.sourceMapBasepath)) {
+    if (typeof options.sourceMapBasepath === 'function') {
       try {
         options.sourceMapBasepath = options.sourceMapBasepath(srcFile);
       } catch (e) {
@@ -126,7 +126,7 @@ module.exports = function(grunt) {
       }
     }
 
-    if (_.isBoolean(options.sourceMap) && options.sourceMap) {
+    if (typeof options.sourceMap === 'boolean' && options.sourceMap) {
       options.sourceMap = {
         sourceMapBasepath: options.sourceMapBasepath,
         sourceMapFilename: options.sourceMapFilename,
@@ -156,7 +156,7 @@ module.exports = function(grunt) {
           var args = [].slice.call(arguments);
           args.unshift(less);
           var res = options.customFunctions[name].apply(this, args);
-          return _.isObject(res) ? res : new less.tree.Anonymous(res);
+          return typeof res === 'object' ? res : new less.tree.Anonymous(res);
         });
       });
     }
