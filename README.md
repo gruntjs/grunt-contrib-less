@@ -1,4 +1,4 @@
-# grunt-contrib-less v1.3.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-less/branch/master)
+# grunt-contrib-less v1.4.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-less/branch/master)
 
 > Compile LESS files to CSS
 
@@ -200,6 +200,7 @@ less: {
 
 ## Release History
 
+ * 2016-07-21   v1.4.0   Update async and less to ~2.7.1.
  * 2016-04-07   v1.3.0   Update lodash and async dependecies.
  * 2016-02-01   v1.2.0   Update to less ~2.6.0. Removed peerDependency from package.json.
  * 2015-11-09   v1.1.0   Update to less ~2.5.0.
@@ -237,4 +238,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Thu Apr 07 2016 15:26:05.*
+*This file was generated on Thu Jul 21 2016 11:18:02.*
