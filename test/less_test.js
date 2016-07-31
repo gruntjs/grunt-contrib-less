@@ -34,6 +34,20 @@ exports.less = {
 
     test.done();
   },
+  invalid: function(test) {
+    test.expect(3);
+
+    grunt.util.spawn({
+      grunt: true,
+      args: ['--force', 'less_error:error']
+    }, function doneFunction(error, result, code) {
+      test.equal(error, null, 'Error should be null');
+      test.equal(code, 0, 'the code should be 0');
+      test.ok(/\bDone\b/.test(result.stdout), 'The result should contain the "Done" word');
+
+      test.done();
+    });
+  },
   nopaths: function(test) {
     test.expect(1);
 

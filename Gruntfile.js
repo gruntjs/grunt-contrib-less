@@ -226,11 +226,23 @@ module.exports = function(grunt) {
       }
     },
 
+    less_error: {
+      error: {
+        files: {
+          'tmp/invalid.css': ['test/fixtures/invalid.less']
+        }
+      },
+    },
+
     // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js']
     }
   });
+
+  // First load this plugin's task(s) and rename for testing errors.
+  grunt.loadTasks('tasks');
+  grunt.renameTask('less', 'less_error');
 
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
