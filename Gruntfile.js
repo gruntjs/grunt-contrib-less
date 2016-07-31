@@ -201,7 +201,7 @@ module.exports = function(grunt) {
               return 'red';
             },
             'multiple-args': function(less, arg1, arg2) {
-              return (((arg1.value * 1) + (arg2.value))) + arg1.unit.numerator[0];
+              return Number(arg1.value) + arg2.value + arg1.unit.numerator[0];
             },
             'string-result': function() {
               return '"Hello"';

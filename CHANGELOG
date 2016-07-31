@@ -1,3 +1,7 @@
+v1.4.0:
+  date: 2016-07-21
+  changes:
+    - Update async and less to ~2.7.1.
 v1.3.0:
   date: 2016-04-07
   changes:
