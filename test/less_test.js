@@ -35,7 +35,7 @@ exports.less = {
     test.done();
   },
   invalid: function(test) {
-    test.expect(3);
+    test.expect(4);
 
     grunt.util.spawn({
       grunt: true,
@@ -43,6 +43,9 @@ exports.less = {
     }, function doneFunction(error, result, code) {
       test.equal(error, null, 'Error should be null');
       test.equal(code, 0, 'the code should be 0');
+      test.ok(
+        /ParseError: Unrecognised input\./.test(result.stdout),
+        'The result should contain error info.');
       test.ok(/\bDone\b/.test(result.stdout), 'The result should contain the "Done" word');
 
       test.done();
