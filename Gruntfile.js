@@ -212,6 +212,13 @@ module.exports = function(grunt) {
           'tmp/customFunctions.css': ['test/fixtures/customFunctions.less']
         }
       },
+      calc: {
+        options: {
+          strictMath: true
+        },
+        src: 'test/fixtures/calc.less',
+        dest: 'tmp/calc.css'
+      },
       modifyVars: {
         options: {
           modifyVars: {

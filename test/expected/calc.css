@@ -1,0 +1,3 @@
+.a {
+  padding-top: calc(var(--header-height) + 1rem);
+}

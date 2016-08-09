@@ -151,6 +151,15 @@ exports.less = {
 
     test.done();
   },
+  calc: function(test) {
+    test.expect(1);
+
+    var actual = read('tmp/calc.css');
+    var expected = read('test/expected/calc.css');
+    test.equal(expected, actual, 'should process calc function with `strictMath`');
+
+    test.done();
+  },
   customFunctions: function(test) {
     test.expect(1);
 
