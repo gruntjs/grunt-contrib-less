@@ -164,6 +164,7 @@ module.exports = function(grunt) {
     return less.render(srcCode, options)
       .catch(function(err) {
         lessError(err, srcFile);
+        throw err;
       });
   };
 
