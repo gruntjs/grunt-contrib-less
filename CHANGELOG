@@ -1,3 +1,8 @@
+v1.4.1:
+  date: 2017-03-08
+  changes:
+    - 'Fix `sourceMappingURL` to be the same as the CSS if not specified, #322.'
+    - 'Rethrow the compilation error after printing the message, #315.'
 v1.4.0:
   date: 2016-07-21
   changes:

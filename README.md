@@ -1,4 +1,4 @@
-# grunt-contrib-less v1.4.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-less/branch/master)
+# grunt-contrib-less v1.4.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/e3aa4d07xe4w4u05/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-less/branch/master)
 
 > Compile LESS files to CSS
 
@@ -200,6 +200,7 @@ less: {
 
 ## Release History
 
+ * 2017-03-08   v1.4.1   Fix `sourceMappingURL` to be the same as the CSS if not specified, #322. Rethrow the compilation error after printing the message, #315.
  * 2016-07-21   v1.4.0   Update async and less to ~2.7.1.
  * 2016-04-07   v1.3.0   Update lodash and async dependecies.
  * 2016-02-01   v1.2.0   Update to less ~2.6.0. Removed peerDependency from package.json.
@@ -238,4 +239,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Thu Jul 21 2016 11:18:02.*
+*This file was generated on Wed Mar 08 2017 11:27:07.*
