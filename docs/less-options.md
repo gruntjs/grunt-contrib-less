@@ -119,13 +119,13 @@ Adds this path onto the less file paths in the source map.
 
 ## sourceMapFileInline
 Type: `Boolean`  
-Default: false
+Default: `false`
 
 Puts the map (and any less files) as a base64 data uri into the output css file.
 
 ## outputSourceFiles
 Type: `Boolean`  
-Default: false
+Default: `false`
 
 Puts the less files into the map instead of referencing them.
 
