@@ -134,7 +134,7 @@ module.exports = function(grunt) {
       }
     }
 
-    if (_.isBoolean(options.sourceMap) && options.sourceMap) {
+    if (typeof options.sourceMap === 'boolean' && options.sourceMap) {
       options.sourceMap = {
         sourceMapBasepath: options.sourceMapBasepath,
         sourceMapFilename: options.sourceMapFilename,
