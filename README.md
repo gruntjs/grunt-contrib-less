@@ -166,6 +166,16 @@ Overrides global variables. Equivalent to `--modify-vars='VAR=VALUE'` option in 
 Type: `String`  
 Default: none
 
+#### listeners
+Type: `Object`  
+Default: none
+
+Define custom listeners for log events. Listener is a function accepting one argument (message/error). Possible events to listen to:
+- debug
+- info
+- warn
+- error
+
 ### Usage Examples
 
 ```js

@@ -213,5 +213,14 @@ exports.less = {
     test.equal(expected, actual, 'should add a banner to the second file');
 
     test.done();
+  },
+  listeners: function(test) {
+    test.expect(1);
+
+    var actual = read('tmp/listeners.log');
+    var expected = read('test/expected/listeners.log');
+    test.equal(expected, actual, 'should use custom listeners');
+
+    test.done();
   }
 };

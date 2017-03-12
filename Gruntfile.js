@@ -251,6 +251,18 @@ module.exports = function(grunt) {
         files: {
           'tmp/modifyVars.css': ['test/fixtures/modifyVars.less']
         }
+      },
+      listeners: {
+        options: {
+          listeners: {
+            warn: function (msg) {
+              require('fs').writeFileSync('tmp/listeners.log', msg);
+            }
+          }
+        },
+        files: {
+          'tmp/listeners.css': ['test/fixtures/listeners.less']
+        }
       }
     },
 
