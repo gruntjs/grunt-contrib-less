@@ -135,6 +135,13 @@ exports.less = {
     test.ok(actual.indexOf('/*# sourceMappingURL=custom/url/for/sourceMap.css.map') !== -1, 'compiled file should have a custom source map URL.');
     test.done();
   },
+  sourceMapURLFunction: function(test) {
+    test.expect(1);
+
+    var actual = read('tmp/sourceMapURLFunction.css');
+    test.ok(actual.indexOf('/*# sourceMappingURL=../maps/sourceMapURLFunction.css.map') !== -1, 'compiled file should have a dynamic source map URL.');
+    test.done();
+  },
   sourceMapBasepath: function(test) {
     test.expect(1);
 
