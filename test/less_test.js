@@ -128,6 +128,14 @@ exports.less = {
 
     test.done();
   },
+  sourceMapFilenameFunction: function(test) {
+    test.expect(1);
+
+    var sourceMap = grunt.file.readJSON('tmp/maps/sourceMapFilename.css.map');
+    test.equal(sourceMap.sources[0], 'test/fixtures/style3.less', 'should generate a sourceMap with the dynamic less file reference.');
+
+    test.done();
+  },
   sourceMapURL: function(test) {
     test.expect(1);
 
