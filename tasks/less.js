@@ -68,7 +68,7 @@ module.exports = function(grunt) {
               if (!sourceMapFilename) {
                 sourceMapFilename = destFile + '.map';
               }
-              if (_.isFunction(sourceMapFilename)) {
+              if (typeof sourceMapFilename === 'function') {
                 try {
                   sourceMapFilename = sourceMapFilename(destFile);
                 } catch (e) {
@@ -124,7 +124,7 @@ module.exports = function(grunt) {
 
     if (options.sourceMap && !options.sourceMapFileInline && !options.sourceMapFilename) {
       options.sourceMapFilename = destFile + '.map';
-    } else if (options.sourceMap && !options.sourceMapFileInline && _.isFunction(options.sourceMapFilename)) {
+    } else if (options.sourceMap && !options.sourceMapFileInline && typeof options.sourceMapFilename === 'function') {
       try {
         options.sourceMapFilename = options.sourceMapFilename(destFile);
       } catch (e) {
