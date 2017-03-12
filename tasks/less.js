@@ -126,7 +126,7 @@ module.exports = function(grunt) {
       }
     }
 
-    if (_.isFunction(options.sourceMapURL)) {
+    if (typeof options.sourceMapURL === 'function') {
       try {
         options.sourceMapURL = options.sourceMapURL(destFile);
       } catch (e) {
