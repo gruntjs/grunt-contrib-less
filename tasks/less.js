@@ -33,6 +33,12 @@ module.exports = function(grunt) {
 
     async.eachSeries(this.files, function(f, nextFileObj) {
       var destFile = f.dest;
+      // 'dest' can be empty or specified as a folder, like: 
+      // 	{ src: 'src/lib/**/*.less', expand: true, dest: 'dist' }
+      // if so then Grunt will substitute "expanded" filenames (which are .less), so we need to change '.less' onto '.css'.
+      if (grunt.util._.endsWith(destFile, '.less')) {
+        destFile = destFile.replace(/(.+).less$/, '$1.css');
+      }
 
       var files = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
