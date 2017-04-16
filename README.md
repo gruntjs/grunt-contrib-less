@@ -196,7 +196,27 @@ less: {
   }
 }
 ```
-
+If what you want is to compile *all* the .less files from a given directory, you may also use the "files-array" syntax :
+````js
+less: {
+  development: {
+    options: {
+      //  [...]
+    },
+    files: [
+      {
+         expand: true,
+         cwd: 'path/to/source/directory',
+         src: ['*.less'],
+         dest: 'path/to/result/directory',
+         ext: '.css'
+      }
+    ]
+  }
+  // [...]
+}
+  
+```
 
 ## Release History
 
