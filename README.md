@@ -1,4 +1,4 @@
-# grunt-contrib-less v1.4.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/ho4vr86k30r8un49/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-less/branch/master)
+# grunt-contrib-less v1.4.2 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/ho4vr86k30r8un49/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-less/branch/master)
 
 > Compile LESS files to CSS
 
@@ -146,13 +146,13 @@ Adds this path onto the less file paths in the source map.
 
 #### sourceMapFileInline
 Type: `Boolean`  
-Default: false
+Default: `false`
 
 Puts the map (and any less files) as a base64 data uri into the output css file.
 
 #### outputSourceFiles
 Type: `Boolean`  
-Default: false
+Default: `false`
 
 Puts the less files into the map instead of referencing them.
 
@@ -200,6 +200,7 @@ less: {
 
 ## Release History
 
+ * 2018-05-22   v1.4.2   Update less to ^3.0.0
  * 2017-03-08   v1.4.1   Fix `sourceMappingURL` to be the same as the CSS if not specified, #322. Rethrow the compilation error after printing the message, #315.
  * 2016-07-21   v1.4.0   Update async and less to ~2.7.1.
  * 2016-04-07   v1.3.0   Update lodash and async dependecies.
@@ -239,4 +240,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Mon Mar 13 2017 00:47:34.*
+*This file was generated on Tue May 22 2018 10:47:12.*
