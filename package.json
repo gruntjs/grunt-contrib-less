@@ -19,7 +19,7 @@
     "async": "^2.0.0",
     "chalk": "^1.0.0",
     "less": "^3.0.4",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "grunt": "^1.0.2",
