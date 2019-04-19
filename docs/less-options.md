@@ -140,7 +140,7 @@ Type: `String`
 Default: none
 
 ## process
-Type: `Function`
+Type: `Function(content, destinationPath)`
 Default: none
 Attributes: content, destinationPath
 
