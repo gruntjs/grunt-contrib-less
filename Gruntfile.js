@@ -12,6 +12,9 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+
+		testVariable: 'success',
+
     jshint: {
       all: [
         'Gruntfile.js',
@@ -251,7 +254,17 @@ module.exports = function(grunt) {
         files: {
           'tmp/modifyVars.css': ['test/fixtures/modifyVars.less']
         }
-      }
+      },
+			processFunction: {
+				options: {
+					process: function( content ) {
+						return grunt.template.process( content );
+					}
+				},
+				files: {
+					'tmp/processFunction.css': ['test/fixtures/processFunction.less']
+				}
+			}
     },
 
     less_error: {
