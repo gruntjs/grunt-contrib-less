@@ -13,7 +13,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-		testVariable: 'success',
+    testVariable: 'success',
 
     jshint: {
       all: [
@@ -255,16 +255,16 @@ module.exports = function(grunt) {
           'tmp/modifyVars.css': ['test/fixtures/modifyVars.less']
         }
       },
-			processFunction: {
-				options: {
-					process: function( content ) {
-						return grunt.template.process( content );
-					}
-				},
-				files: {
-					'tmp/processFunction.css': ['test/fixtures/processFunction.less']
-				}
-			}
+      processFunction: {
+        options: {
+          process: function( content ) {
+            return grunt.template.process( content );
+          }
+        },
+        files: {
+          'tmp/processFunction.css': ['test/fixtures/processFunction.less']
+        }
+      }
     },
 
     less_error: {
