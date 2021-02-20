@@ -1,4 +1,4 @@
-# grunt-contrib-less v2.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-less.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-less) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/ho4vr86k30r8un49/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-less/branch/master)
+# grunt-contrib-less v2.0.0 [![Build Status](https://github.com/gruntjs/grunt-contrib-less/workflows/Tests/badge.svg)](https://github.com/gruntjs/grunt-contrib-less/actions?workflow=Tests)
 
 > Compile LESS files to CSS
 
@@ -6,7 +6,7 @@
 
 ## Getting Started
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+If you haven't used [Grunt](https://gruntjs.com/) before, be sure to check out the [Getting Started](https://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](https://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install grunt-contrib-less --save-dev
@@ -166,7 +166,7 @@ Overrides global variables. Equivalent to `--modify-vars='VAR=VALUE'` option in 
 Type: `String`  
 Default: none
 
-## process
+#### process
 Type: `Function(content, destinationPath)`
 Default: none
 Attributes: content, destinationPath
@@ -247,4 +247,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Fri May 25 2018 16:31:35.*
+*This file was generated on Sat Feb 20 2021 10:22:12.*
