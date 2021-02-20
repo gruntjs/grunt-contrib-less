@@ -91,10 +91,10 @@ module.exports = function(grunt) {
         } else {
           var allCss = compiled.join(options.compress ? '' : grunt.util.normalizelf(grunt.util.linefeed));
 
-					// Add a process step to modify the written CSS
-					if ( typeof options.process === 'function' ) {
-						allCss = options.process( allCss, destFile );
-					}
+          // Add a process step to modify the written CSS
+          if ( typeof options.process === 'function' ) {
+            allCss = options.process( allCss, destFile );
+          }
 
           grunt.file.write(destFile, allCss);
           grunt.verbose.writeln('File ' + chalk.cyan(destFile) + ' created');
