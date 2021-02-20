@@ -1,4 +1,4 @@
-# grunt-contrib-less v2.0.0 [![Build Status](https://github.com/gruntjs/grunt-contrib-less/workflows/Tests/badge.svg)](https://github.com/gruntjs/grunt-contrib-less/actions?workflow=Tests)
+# grunt-contrib-less v2.1.0 [![Build Status](https://github.com/gruntjs/grunt-contrib-less/workflows/Tests/badge.svg)](https://github.com/gruntjs/grunt-contrib-less/actions?workflow=Tests)
 
 > Compile LESS files to CSS
 
@@ -207,6 +207,7 @@ less: {
 
 ## Release History
 
+ * 2021-02-20   v2.1.0   Dependency updates. New process option to modify the written CSS.
  * 2018-05-25   v2.0.0   Update less to ^3.0.0
  * 2017-03-08   v1.4.1   Fix `sourceMappingURL` to be the same as the CSS if not specified, #322. Rethrow the compilation error after printing the message, #315.
  * 2016-07-21   v1.4.0   Update async and less to ~2.7.1.
@@ -247,4 +248,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Sat Feb 20 2021 10:22:12.*
+*This file was generated on Sat Feb 20 2021 10:43:07.*

@@ -1,3 +1,8 @@
+v2.1.0:
+  date: 2021-02-20
+  changes:
+    - Dependency updates.
+    - New process option to modify the written CSS.
 v2.0.0:
   date: 2018-05-25
   changes:
