@@ -213,5 +213,14 @@ exports.less = {
     test.equal(expected, actual, 'should add a banner to the second file');
 
     test.done();
-  }
+  },
+	processFunction: function(test) {
+		test.expect(1);
+
+		var actual = read('tmp/processFunction.css');
+		var exprected = read('test/expected/processFunction.css');
+		test.equal(exprected, actual, 'should replace the grunt delimiter variable');
+
+		test.done();
+	}
 };

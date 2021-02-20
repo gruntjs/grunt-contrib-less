@@ -166,6 +166,13 @@ Overrides global variables. Equivalent to `--modify-vars='VAR=VALUE'` option in 
 Type: `String`  
 Default: none
 
+## process
+Type: `Function(content, destinationPath)`
+Default: none
+Attributes: content, destinationPath
+
+Allows to parse the CSS content to be written to destinationPath to flow through a self defined function.
+
 ### Usage Examples
 
 ```js
