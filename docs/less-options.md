@@ -26,14 +26,6 @@ Default: `null`
 
 Allows passing plugins.
 
-## ieCompat
-Type: `Boolean`  
-Default: `true`
-
-Enforce the CSS output is compatible with Internet Explorer 8.
-
-For example, the [data-uri](http://lesscss.org/functions/#misc-functions-data-uri) function encodes a file in base64 encoding and embeds it into the generated CSS files as a data-URI. Because Internet Explorer 8 limits `data-uri`s to 32KB, the ieCompat option prevents `less` from exceeding this.
-
 ## optimization
 Type: `Integer`  
 Default: `null`

@@ -1,3 +1,8 @@
+v3.0.0:
+  date: 2021-02-21
+  changes:
+    - Updated to Less 4.
+    - ieCompat option removed.
 v2.1.0:
   date: 2021-02-20
   changes:

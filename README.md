@@ -1,4 +1,4 @@
-# grunt-contrib-less v2.1.0 [![Build Status](https://github.com/gruntjs/grunt-contrib-less/workflows/Tests/badge.svg)](https://github.com/gruntjs/grunt-contrib-less/actions?workflow=Tests)
+# grunt-contrib-less v3.0.0 [![Build Status](https://github.com/gruntjs/grunt-contrib-less/workflows/Tests/badge.svg)](https://github.com/gruntjs/grunt-contrib-less/actions?workflow=Tests)
 
 > Compile LESS files to CSS
 
@@ -52,14 +52,6 @@ Type: `Array`
 Default: `null`
 
 Allows passing plugins.
-
-#### ieCompat
-Type: `Boolean`  
-Default: `true`
-
-Enforce the CSS output is compatible with Internet Explorer 8.
-
-For example, the [data-uri](http://lesscss.org/functions/#misc-functions-data-uri) function encodes a file in base64 encoding and embeds it into the generated CSS files as a data-URI. Because Internet Explorer 8 limits `data-uri`s to 32KB, the ieCompat option prevents `less` from exceeding this.
 
 #### optimization
 Type: `Integer`  
@@ -207,6 +199,7 @@ less: {
 
 ## Release History
 
+ * 2021-02-21   v3.0.0   Updated to Less 4. ieCompat option removed.
  * 2021-02-20   v2.1.0   Dependency updates. New process option to modify the written CSS.
  * 2018-05-25   v2.0.0   Update less to ^3.0.0
  * 2017-03-08   v1.4.1   Fix `sourceMappingURL` to be the same as the CSS if not specified, #322. Rethrow the compilation error after printing the message, #315.
@@ -248,4 +241,4 @@ less: {
 
 Task submitted by [Tyler Kellen](http://goingslowly.com/)
 
-*This file was generated on Sat Feb 20 2021 10:43:07.*
+*This file was generated on Sun Feb 21 2021 11:29:25.*
