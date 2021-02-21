@@ -86,24 +86,6 @@ module.exports = function(grunt) {
           'tmp/plugins.css': ['test/fixtures/plugins.less']
         }
       },
-      ieCompatTrue: {
-        options: {
-          paths: ['test/fixtures/include'],
-          ieCompat: true
-        },
-        files: {
-          'tmp/ieCompatTrue.css': ['test/fixtures/ieCompat.less']
-        }
-      },
-      ieCompatFalse: {
-        options: {
-          paths: ['test/fixtures/include'],
-          ieCompat: false
-        },
-        files: {
-          'tmp/ieCompatFalse.css': ['test/fixtures/ieCompat.less']
-        }
-      },
       nofiles: {
       },
       nomatchedfiles: {

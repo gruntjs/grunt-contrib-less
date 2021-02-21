@@ -81,19 +81,6 @@ exports.less = {
 
     test.done();
   },
-  ieCompat: function(test) {
-    test.expect(2);
-
-    var actual = read('tmp/ieCompatFalse.css');
-    var expected = read('test/expected/ieCompatFalse.css');
-    test.equal(expected.length, actual.length, 'should generate data-uris no matter the size when ieCompat option is true');
-
-    actual = read('tmp/ieCompatTrue.css');
-    expected = read('test/expected/ieCompatTrue.css');
-    test.equal(expected, actual, 'should generate data-uris only when under the 32KB mark for Internet Explorer 8');
-
-    test.done();
-  },
   variablesAsLess: function(test) {
     test.expect(1);
 
@@ -214,13 +201,13 @@ exports.less = {
 
     test.done();
   },
-	processFunction: function(test) {
-		test.expect(1);
+  processFunction: function(test) {
+    test.expect(1);
 
-		var actual = read('tmp/processFunction.css');
-		var exprected = read('test/expected/processFunction.css');
-		test.equal(exprected, actual, 'should replace the grunt delimiter variable');
+    var actual = read('tmp/processFunction.css');
+    var exprected = read('test/expected/processFunction.css');
+    test.equal(exprected, actual, 'should replace the grunt delimiter variable');
 
-		test.done();
-	}
+    test.done();
+  }
 };
