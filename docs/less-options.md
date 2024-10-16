@@ -38,11 +38,25 @@ Default: `false`
 
 Force evaluation of imports.
 
-## strictMath
+## strictMath (deprecated replaced by `Math`)
 Type: `Boolean`  
 Default: `false`
 
 When enabled, math is required to be in parenthesis.
+
+## math
+Type: `String`
+Default: `parens-division`
+
+Available options:
+
+| Option            | Description                                                                                                                             |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `always`          | Less does math eagerly                                                                                                                  |
+| `parens-division` | No division is performed outside of parens using / operator (but can be "forced" outside of parens with ./ operator - ./ is deprecated) |
+| `parens`          | Parens required for all math expressions                                                                                                |
+| `strict`          | Requires brackets for all operations.                                                                                                   |
+
 
 ## strictUnits
 Type: `Boolean`  
